@@ -258,6 +258,17 @@ Hefei, 230026\\ P.R. China\\}
 
 超出科大C语言的知识：编程范式(Programming paradigm)、方法(method)
 
+对于图形化输出的语言，我们还想总结如下知识：
+\begin{itemize}
+\item 坐标轴:确定位置
+\item 基本2D图形：圆、线段、圆弧、钢笔工具
+\item 几何计算：距离的计算，交点、中垂线、平行线等
+\item 3D作图
+\item 背景，控制边界长度
+\item 页面布局：盒子模型
+\item 数学文本输入：字体
+\end{itemize}
+
 \section{python}
 \subsection{安装+初始代码}
 Python是一门高级的编程语言。他有许多的标准模块(standard module).
@@ -366,6 +377,56 @@ for l in range(25, 10000, 24):
         else:
             print("the conjecture is not true for ", l)
 \end{lstlisting}
+这个例子计算affine quiver正根的可能情形(real positive root + regular simple). 
+\begin{lstlisting}[language=iPython]
+# Usage of format
+# E6 case
+orderedCouple1 = [(a1,a2,a3,a4,a5,a6,a7) for a1 in range(2) for a2 in range(3) for a3 in range(4) for a4 in range(3) for a5 in range(2) for a6 in range(3) for a7 in range(2)] 
+k=0 # compute the number of positive real root which is possible regular simple
+for a1,a2,a3,a4,a5,a6,a7 in orderedCouple1: # do everything in one line*
+    if a1**2+a2**2+a3**2+a4**2+a5**2+a6**2+a7**2-a1*a2-a2*a3-a3*a4-a4*a5-a3*a6-a6*a7 ==1:
+        k=k+1
+        print('                                {0}'.format(a7)) #ugly code have better output
+        print('                                {0}'.format(a6))
+        print('The positive real root is {0}, {1}, {2}, {3}, {4}.'.format(a1,a2,a3,a4,a5))
+        print("")
+print('There are {0} results'.format(k))
+
+# E7 case
+orderedCouple2 = [(a1,a2,a3,a4,a5,a6,a7,a8) for a1 in range(2) for a2 in range(3) for a3 in range(4) for a4 in range(5) for a5 in range(4) for a6 in range(3) for a7 in range(2) for a8 in range(3)] 
+k=0 # compute the number of positive real root which is possible regular simple
+for a1,a2,a3,a4,a5,a6,a7,a8 in orderedCouple2: # do everything in one line*
+    if a1**2+a2**2+a3**2+a4**2+a5**2+a6**2+a7**2+a8**2-a1*a2-a2*a3-a3*a4-a4*a5-a5*a6-a6*a7-a4*a8 ==1:
+        k=k+1
+        print('                                   {0}'.format(a8)) #ugly code have better output
+        print('The positive real root is {0}, {1}, {2}, {3}, {4}, {5}, {6}.'.format(a1,a2,a3,a4,a5,a6,a7))
+        print("")
+print('There are {0} results'.format(k))
+
+# E8 case
+orderedCouple3 = [(a1,a2,a3,a4,a5,a6,a7,a8,a9) for a1 in range(2) for a2 in range(3) for a3 in range(4) for a4 in range(5) for a5 in range(6) for a6 in range(7) for a7 in range(5) for a8 in range(3) for a9 in range(4)] 
+k=0 # compute the number of positive real root which is possible regular simple
+for a1,a2,a3,a4,a5,a6,a7,a8,a9 in orderedCouple3: # do everything in one line*
+    if a1**2+a2**2+a3**2+a4**2+a5**2+a6**2+a7**2+a8**2+a9**2-a1*a2-a2*a3-a3*a4-a4*a5-a5*a6-a6*a7-a7*a8-a6*a9 ==1:
+        k=k+1
+        print('                                         {0}'.format(a9)) #ugly code have better output
+        print('The positive real root is {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}.'.format(a1,a2,a3,a4,a5,a6,a7,a8))
+        print("")
+print('There are {0} results'.format(k))
+
+# E6 case, subspace case
+orderedCouple1 = [(a1,a2,a3,a4,a5,a6,a7) for a1 in range(2) for a2 in range(3) for a3 in range(4) for a4 in range(3) for a5 in range(2) for a6 in range(3) for a7 in range(2)] 
+k=0 # compute the number of positive real root which is possible regular simple
+for a1,a2,a3,a4,a5,a6,a7 in orderedCouple1: # do everything in one line*
+    if a1**2+a2**2+a3**2+a4**2+a5**2+a6**2+a7**2-a1*a2-a2*a3-a3*a4-a4*a5-a3*a6-a6*a7 == 1 and a1+a2-3*a3+a4+a5+a6+a7==0:
+        k=k+1
+        print('                                {0}'.format(a7)) #ugly code have better output
+        print('                                {0}'.format(a6))
+        print('The positive real root is {0}, {1}, {2}, {3}, {4}.'.format(a1,a2,a3,a4,a5))
+        print("")
+print('There are {0} results'.format(k))
+
+\end{lstlisting}
 \section{sage}
 \subsection{安装+初始代码}
 Sage是专为数学家设计的程序，基于python，通过集成大量数据库，使用其中的数学函数来简化编程难度。我使用的是网上在线的编辑器\href{https://cocalc.com/projects}{CoCalc},在New中生成Sage worksheet.
@@ -391,7 +452,12 @@ sage: tauM = M.AR_translate()
 sage: tauM
 \end{lstlisting}
 
-
+这个例子能帮助我画出$\Gamma(5)$对应的基本区域.
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+G5 = Gamma(5)
+A   = FareySymbol (G5). fundamental_domain ( show_pairing = true )
+show( A ,figsize=10 , fontsize=10 )
+\end{lstlisting}
 
 
 
@@ -400,6 +466,8 @@ sage: tauM
 \subsection{本文参考文献}
 
  \href{http://blog.sina.com.cn/s/blog_a382a9080102z25i.html}{listings的具体设置}
+  
+   \href{https://tex.stackexchange.com/questions/84748/fanciest-way-to-include-mathematica-code-in-latex}{fancy版本的Mathematica代码}没学会。
            
 \href{https://tex.stackexchange.com/questions/126241/autoindent-in-texmaker}{\LaTeX 中如何自动补全代码？} 不容易。
 
@@ -411,6 +479,25 @@ sage: tauM
 \section{Mathematica}
 \subsection{安装+初始代码}
 Mathematica是收费的数学计算软件，参考文档量多但是不够有结构性，导致我的代码往往是临时性的，每次计算都需要重新学习代码。(而且我也没有结构性地保存它们)不过现在可以在这份文档中储存代码了。
+
+\subsection{(想保留的)例子}
+
+这个例子能帮助我计算affine quiver相关的矩阵.
+\lstloadlanguages{[11.0]Mathematica}
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+Cp = ({
+    {1, 1, 1, 0, 0, 0},
+    {0, 1, 1, 0, 0, 0},
+    {0, 0, 1, 0, 0, 0},
+    {0, 0, 1, 1, 0, 0},
+    {0, 0, 1, 1, 1, 0},
+    {0, 0, 1, 0, 0, 1}
+   });
+Ci = Transpose[Cp];
+Phi = -Ci.Inverse[Cp]
+MatrixPower[Phi, 6]
+A = Transpose[Inverse[Ci]] + Inverse[Ci] (*symmetric form*)
+\end{lstlisting}
 
 \section{电脑快捷键(中级)}
 部分参见\href{https://zhuanlan.zhihu.com/p/42281412}{Chrome快捷键}。
