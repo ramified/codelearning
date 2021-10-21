@@ -498,7 +498,17 @@ Phi = -Ci.Inverse[Cp]
 MatrixPower[Phi, 6]
 A = Transpose[Inverse[Ci]] + Inverse[Ci] (*symmetric form*)
 \end{lstlisting}
-
+这个例子计算四元数$\mathbb{H}$上的non-reduced norm.
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+Det[({
+   {x, -y, -z, -w},
+   {y, x, -w, z},
+   {z, w, x, -y},
+   {w, -z, y, x}
+  })]
+Factor[w^4 + 2 w^2 x^2 + x^4 + 2 w^2 y^2 + 2 x^2 y^2 + y^4 + 
+  2 w^2 z^2 + 2 x^2 z^2 + 2 y^2 z^2 + z^4]
+\end{lstlisting}
 \section{电脑快捷键(中级)}
 部分参见\href{https://zhuanlan.zhihu.com/p/42281412}{Chrome快捷键}。
 \begin{itemize}
