@@ -512,6 +512,13 @@ Det[({
 Factor[w^4 + 2 w^2 x^2 + x^4 + 2 w^2 y^2 + 2 x^2 y^2 + y^4 + 
   2 w^2 z^2 + 2 x^2 z^2 + 2 y^2 z^2 + z^4]
 \end{lstlisting}
+这个例子画彩色的点.(255位RGB)
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+ListPlot[{Style[{{1, 1}, {2, 3}, {2, 4}}, 
+   Interpreter["Color"]["RGB 255 0 0"]], 
+  Style[{{1.5, 1}, {2.3, 3}, {2.4, 4}}, 
+   Interpreter["Color"]["RGB 0 255 0"]]}]
+\end{lstlisting}
 \section{电脑快捷键(中级)}
 部分参见\href{https://zhuanlan.zhihu.com/p/42281412}{Chrome快捷键}。
 \begin{itemize}
@@ -519,8 +526,175 @@ Factor[w^4 + 2 w^2 x^2 + x^4 + 2 w^2 y^2 + 2 x^2 y^2 + y^4 +
 	\item  alt+(shift)+tab:切换任务栏上的程序
 	\item  ctrl+(shift)+tab:切换标签页
 \end{itemize} 
+\section{正则表达式}
+正则表达式可以大幅提升搜索和修改代码的效率。
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+.{0,100}(?=;\d{0,3};\d{0,3}m\n);(\d{0,3});(\d{0,3})m\n
+\end{lstlisting}
+\subsection{参考文档}
+推荐\href{https://www.bilibili.com/video/BV19t4y1y7qP}{B站视频}。与之配套的\href{https://codejiaonang.com/#/course/regex_chapter1/}{练习}。
 
+你可以在\href{https://regexr-cn.com/}{regexr}中测试。
+\section{热键设置(AutoHotkey)}
+这是一款开源软件。为了Hackergame的脚本，同时我猜会大幅度提高打代码的速度。
+\subsection{调试}
 
+注释使用分号\lstinline|;|。
+
+\subsection{参考文档}
+\href{https://wyagd001.github.io/zh-cn/docs/AutoHotkey.htm}{官方文档}.
+;
+\subsection{(想保留的)例子}
+这个例子模拟鼠标和键盘，使用了条件和循环语句。
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+^j::
+Sleep,300
+loop, 1
+{
+    Random, rand, 1, 999
+	CoordMode, ToolTip
+	Click, 1743 81 1
+	Sleep, 100
+	Click, 36 64 2
+	Sleep, 100	
+	Send, {rand}.0.0.0
+	Sleep, 100
+	Click, 433 323 2
+	Sleep, 100
+	Send, 0.0.0.0
+	Sleep, 100
+	Click, 452 321 1
+	Sleep, 100		
+	if GetKeyState("F10")
+	{
+	break
+	}
+	Sleep,1000
+}
+Return 
+\end{lstlisting}
+这是第二版本，能够95\%成功提交。
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+#MaxThreadsPerHotkey 3
+^j::  ; 热键(可根据您的喜好改变此热键).
+#MaxThreadsPerHotkey 1
+if KeepWinZRunning  ;  这说明一个潜在的线程正在下面的循环中运行.
+{
+    KeepWinZRunning := false  ; 向那个线程的循环发出停止的信号.
+    return  ; 结束此线程, 这样才可以让下面的线程恢复并得知上一行所做的更改.
+}
+; 否则:
+KeepWinZRunning := true
+rand := 0
+Loop
+{
+    ; 以下四行是您要重复的动作(可根据您的需要修改它们):
+    MyNumber :=  rand . ".233.233.233"
+	Click, 1743 81 1
+	Sleep, 70	
+	Click, 74 74 2
+	Sleep, 70	
+	Send, %MyNumber%
+	Sleep, 70	
+	Click, 429 346 2
+	Sleep, 80
+	Send, %MyNumber%
+	Sleep, 90
+	Click, 1073 31 1
+	Send ^{Click 432 360 1}
+	Sleep, 190
+	rand += 1
+    ; 但请不要修改下面剩下的内容.
+    if not KeepWinZRunning  ; 用户再次按下 Win-Z 来向循环发出停止的信号.
+        break  ; 跳出此循环.
+}
+KeepWinZRunning := false  ; 复位, 为下一次使用热键做准备.
+return
+\end{lstlisting}
+第三个版本可以提交254个，还剩2个。。。
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+#MaxThreadsPerHotkey 3
+^j::  
+#MaxThreadsPerHotkey 1
+if KeepWinZRunning  
+{
+    KeepWinZRunning := false  
+    return  
+}
+KeepWinZRunning := true
+rand := 0
+Loop
+{
+    MyNumber :=  rand . ".233.233.233"
+	Click, 1751 91 1
+	Sleep, 120
+	Click, 74 74 2
+	Sleep, 50	
+	Send, %MyNumber%
+	Sleep, 70	
+	Click, 429 346 2
+	Sleep, 80
+	Send, %MyNumber%
+	Sleep, 50
+	Click, 587 747 1
+	;Click, 1073 31 1
+	Send ^{Click 387 437 1}
+	Sleep, 60	
+	rand += 1
+    if not KeepWinZRunning  
+        break  
+}
+KeepWinZRunning := false  
+return
+\end{lstlisting}
+最后成功的版本：
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+#MaxThreadsPerHotkey 3
+^j::  
+#MaxThreadsPerHotkey 1
+if KeepWinZRunning  
+{
+    KeepWinZRunning := false  
+    return  
+}
+KeepWinZRunning := true
+rand := 0
+Loop
+{
+    MyNumber :=  rand . ".233.233.233"
+	Click, 1751 91 1
+	Sleep, 120
+	Click, 74 74 2
+	Sleep, 50	
+	Send, %MyNumber%
+	Sleep, 70	
+	Click, 429 346 2
+	Sleep, 80
+	Send, %MyNumber%
+	Sleep, 40
+	Click, 587 747 1
+	;Click, 1073 31 1
+	Send ^{Click 387 437 1}
+	Sleep, 60	
+	rand += 1
+    if not KeepWinZRunning  
+        break  
+}
+KeepWinZRunning := false  
+return
+\end{lstlisting}
+\subsection{Tasks}
+通过该软件创建一个\LaTeX 的脚本，要求：
+\begin{itemize}
+	\item 自动翻译iff, SES, LES, mfld, rep...
+	\item 长段代码如equ+aligned
+	\item 只在打开TeXstudio时生效
+\end{itemize}
+通过该软件创建一个脚本，要求：
+\begin{itemize}
+	\item 自动打开日常软件
+	\item 将其放入开机启动项
+\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
