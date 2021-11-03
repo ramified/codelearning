@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.15)  2 NOV 2021 23:49
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.15)  3 NOV 2021 20:40
 entering extended mode
 **./code.tex
 (code.tex
@@ -975,37 +975,31 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [11]
 
 LaTeX Font Warning: Font shape `TU/FangSong(0)/bx/n' undefined
-(Font)              using `TU/FangSong(0)/m/n' instead on input line 702.
+(Font)              using `TU/FangSong(0)/m/n' instead on input line 703.
 
 [12]
 
-LaTeX Warning: Empty `thebibliography' environment on input line 752.
+LaTeX Warning: Empty `thebibliography' environment on input line 761.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 755.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 764.
 [13]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 755.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 764.
  (code.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 755.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 755.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 764.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 764.
+Package rerunfilecheck Info: File `code.out' has not changed.
+(rerunfilecheck)             Checksum: 930E5EB2E9AAD8B5595351D767D6DA3D.
 
-
-Package rerunfilecheck Warning: File `code.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `code.out':
-(rerunfilecheck)             Before: E58FCE17DDBEF1B11F5F0EBE56A5C5C5
-(rerunfilecheck)             After:  95659FFDDBA1EB4CF63B0DB79A036D76.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 755.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 764.
  ) 
 Here is how much of TeX's memory you used:
- 26045 strings out of 427748
- 496483 string characters out of 3150981
- 1030714 words of memory out of 3000000
- 29687 multiletter control sequences out of 15000+200000
+ 26087 strings out of 427748
+ 498205 string characters out of 3150981
+ 1030718 words of memory out of 3000000
+ 29729 multiletter control sequences out of 15000+200000
  541373 words of font info for 86 fonts, out of 3000000 for 9000
  1489 hyphenation exceptions out of 8191
  52i,7n,68p,534b,1931s stack positions out of 5000i,500n,10000p,200000b,50000s
