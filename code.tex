@@ -693,7 +693,7 @@ return
 \begin{itemize}
 	\item 自动翻译iff, SES, LES, mfld, rep...
 	\item 长段代码如equ+aligned
-	\item 只在打开TeXstudio时生效
+	\item 只在打开TeXstudio时生效(使用IfWinActive+Window Spy)
 \end{itemize}
 通过该软件创建一个脚本，要求：
 \begin{itemize}
@@ -702,10 +702,137 @@ return
 \end{itemize}
 已完成，代码如下：
 \begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+#IfWinActive, ahk_class Qt5QWindowIcon
+::SES::short exact sequence
+
+::LES::long exact sequence
+
+::TFAE::the following are equivalent:
+
+::iff::if and only if
+
+::st::such that 
+
+::eg::for example
+
+::geo::geometry
+
+::cont::continuous
+
+::diff::differential
+
+::sm::smooth
+
+::mfld::manifold
+
+::lb::line bundle
+
+::mlb::metrized line bundle
+
+::vb::vector bundle
+
+::cplx::complex
+
+::RS::Riemann surface
+
+::AV::abelian variety
+
+::ell::elliptic curve
+
+::proj::projective ;be careful for projection
+
+::inj::injective
+
+::fct::function
+
+::iso::isomorphism
+
+::irr::irreducible
+
+::ind::indecomposable
+
+::adm::admissible
+
+::rep::representation
+
+::Archi::Archimedean field
+
+::sign::Best wishes,`n`nXiaoxiang Zhou
+
+::sym::symmetric
+
+::corrg::corresponding ;be careful for correspondence
+
+::corre::correspondence
+
+::align:: ;超长变换,我的Texstudio还是有些问题
+(
+\begin{equation*}
+\begin{aligned}
+  =\;&  \\
+)
+
+::draw:: ;Texstudio如何原样打出？
+(
+\begin{figure}[ht]
+  \vspace{0cm}
+  \centering
+  \includegraphics[width=12cm]{}
+  \label{fig:}
+  \caption{}
+\end{figure}
+)
+
+::minipage::
+(
+\begin{figure}[th]
+  \begin{minipage}[t]{.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{}
+    \label{fig1}
+  \end{minipage}
+  \begin{minipage}[t]{.48\textwidth}
+    \centering
+    \includegraphics[width=1\textwidth]{}
+    \label{fig2}
+  \end{minipage}
+\caption{}
+\end{figure}
+)
+
+^+c:: ;注释
+send ^c
+sleep, 200
+clipboard=%clipboard%
+tooltip, %clipboard%
+sleep, 500
+tooltip,
+return
+
+::||:: ;临时符号
+(
+\norm{\cdot} 
+)
+
+::CLm::Chambert-Loir measure
+
+::show::\displaystyle
+
+::comm diag::commutative diagram
+
+::reso::resolution
+
+::pfv::partial flag variety
+
+::qgr::quiver Grassmannian
+
+
+#IfWinActive
 ^j::  
 Run, "F:\hide\Snipaste\Snipaste.exe"
 Run, "F:\hide\WiFi共享大师\WiFiMaster.exe"
 return
+
 \end{lstlisting}
 
 \section{其他}
