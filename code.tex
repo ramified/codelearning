@@ -234,7 +234,7 @@ Hefei, 230026\\ P.R. China\\}
 \end{itemize}
 \subsection{调试}
 \begin{itemize}
-	\item 快捷键
+	\item 快捷键(Keyboard shortcut)
 	\begin{itemize}
 		\item 运行代码
 	\item 注释方式及快捷键(单行注释+多行注释)
@@ -316,6 +316,7 @@ sieve.extend(100)
 sieve._list
 \end{lstlisting}
 \subsection{调试}
+单行注释使用井号\lstinline|#|,多行注释使用\lstinline|'''注释''' or """注释"""|。快捷键为Ctrl+/.
 
 控制输入使用函数\lstinline|input()|。
 
@@ -441,6 +442,9 @@ sage: print("Halloworld!233") #The code is the same as python
 \end{lstlisting}
 \subsection{基本逻辑}
 本节的基本内容参见\href{https://www.osgeo.cn/sagemath/thematic_tutorials/tutorial-programming-python.html#tutorial-programming-python}{这里}。
+\subsection{调试}
+大部分同python.
+
 \subsection{参考文档}
 \href{https://doc.sagemath.org/}{官方文档}
 
@@ -537,6 +541,72 @@ ListPlot[{Style[{{1, 1}, {2, 3}, {2, 4}},
   Style[{{1.5, 1}, {2.3, 3}, {2.4, 4}}, 
    Interpreter["Color"]["RGB 0 255 0"]]}]
 \end{lstlisting}
+\section{POV-Ray}
+\subsection{安装+初始代码}
+POV-Ray是一款依赖代码的3D建模软件，目前个人感觉是"3D版本的Tikz".
+
+程序对大小写敏感。
+\subsection{调试}
+单行注释使用两斜杠\lstinline|//|,多行注释使用\lstinline|/*注释*/|。
+\subsection{参考文档}
+\href{http://www.povray.org/documentation/3.7.0/t2_0.html}{官方文档}、\href{https://www.bilibili.com/video/BV1S4411e7AD}{视频教程}
+
+POV-Ray的经典实例是\href{http://www.dimensions-math.org/Dim_ZH_si.htm}{维度：数学漫步}。
+
+关于3D建模还有很多优秀的软件，比如:
+\begin{itemize}
+\item solidwork:曾经尝试过，后来删了
+\item 3DMax:实例可以参考\href{https://www.bilibili.com/video/BV1hy4y1k7k4}{GM的建模基地}。但是收费。
+\item blender:免费开源，似乎是3DMax的高级替代品，依赖快捷键。
+\end{itemize}
+如果我有一台优质的电脑、时间(没书读时)和精力那我也会尝试下。现在就算了。
+\subsection{(想保留的)例子}
+
+这个例子相当于"Hallo world".之后会改。
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+#include "colors.inc"
+
+camera{
+  location <0,0,-10>
+  look_at <0,0,0>
+
+} 
+light_source{
+    <4,6,-10>
+    White
+}   
+//background{
+//  Grey
+//}
+sky_sphere{
+  pigment{
+    gradient y
+    color_map {
+     [0 color White]
+     [1 color Blue]
+    } 
+    translate <0,-.5,0>
+  }
+}       
+sphere {
+  <-2,0,0>, 2
+  pigment { Red } 
+  finish { ambient .4 }
+
+}      
+sphere {
+  <4,0,0>, 1
+  pigment { Blue } 
+  finish { ambient .4 }
+
+}    
+sphere {
+  <0,0,0>, 2
+  pigment { Yellow } 
+  finish { ambient .4 }
+
+}
+\end{lstlisting}
 \section{电脑快捷键(中级)}
 部分参见\href{https://zhuanlan.zhihu.com/p/42281412}{Chrome快捷键}。
 \begin{itemize}
@@ -544,6 +614,7 @@ ListPlot[{Style[{{1, 1}, {2, 3}, {2, 4}},
 	\item  alt+(shift)+tab:切换任务栏上的程序
 	\item  ctrl+(shift)+tab:切换标签页
 	\item  win+D:显示桌面
+	\item  win+left:页面占左半边
 	\item  win+R:调出运行窗口
 \end{itemize} 
 \section{正则表达式}
@@ -914,6 +985,11 @@ In fact, the arguments used in the final part of this proof, give the following 
 Let us unravel this definition a little.(after complicated definition)
 We point out the similarities and the differences whenever appropriate.
 
+brackets:
+{}:curly set brackets
+():round brackets
+[]:square brackets
+<>:angle brackets
 \end{lstlisting}
 
 
