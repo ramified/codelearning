@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.15)  20 DEC 2021 10:41
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.15)  20 DEC 2021 23:16
 entering extended mode
 **./code.tex
 (code.tex
@@ -949,9 +949,9 @@ Package fontspec Info: Font family 'FangSong(0)' created for font 'FangSong'
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 317.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 323.
  [3]
-LaTeX Font Info:    Try loading font information for U+euf on input line 360.
+LaTeX Font Info:    Try loading font information for U+euf on input line 366.
 
 ("C:\Users\Administrator\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\u
 euf.fd"
@@ -983,32 +983,38 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [17]
 
 LaTeX Font Warning: Font shape `TU/FangSong(0)/bx/n' undefined
-(Font)              using `TU/FangSong(0)/m/n' instead on input line 947.
+(Font)              using `TU/FangSong(0)/m/n' instead on input line 957.
 
 [18] [19]
 
-LaTeX Warning: Empty `thebibliography' environment on input line 1053.
+LaTeX Warning: Empty `thebibliography' environment on input line 1066.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1056.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1069.
 [20]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1056.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1069.
  (code.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1056.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1056.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1069.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1069.
 
-Package rerunfilecheck Info: File `code.out' has not changed.
-(rerunfilecheck)             Checksum: 236FDF892FA7AE4D06D3FA7426CC59AA.
 
+
+Package rerunfilecheck Warning: File `code.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `code.out':
+(rerunfilecheck)             Before: 236FDF892FA7AE4D06D3FA7426CC59AA
+(rerunfilecheck)             After:  6C9F822370F5AF3AD05BD84A450C4C0E.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1056.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1069.
  ) 
 Here is how much of TeX's memory you used:
- 26598 strings out of 427748
- 504746 string characters out of 3150981
- 1068225 words of memory out of 3000000
- 30240 multiletter control sequences out of 15000+200000
+ 26613 strings out of 427748
+ 504930 string characters out of 3150981
+ 1062225 words of memory out of 3000000
+ 30255 multiletter control sequences out of 15000+200000
  541373 words of font info for 86 fonts, out of 3000000 for 9000
  1489 hyphenation exceptions out of 8191
  52i,7n,68p,534b,1931s stack positions out of 5000i,500n,10000p,200000b,50000s
