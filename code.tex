@@ -581,13 +581,27 @@ ListPlot[{Style[{{1, 1}, {2, 3}, {2, 4}},
 \end{lstlisting}
 \section{POV-Ray}
 \subsection{安装+初始代码}
-POV-Ray是一款依赖代码的3D建模软件，目前个人感觉是"3D版本的Tikz".
+POV-Ray是一款依赖代码的3D建模软件，免费开源，目前个人感觉是"3D版本的Tikz"."一款能够在短时间内持续追踪光线视觉，产生高质量计算机图像的工具。" from \href{https://blog.csdn.net/zhr_hadoop/article/details/51289804}{here}.
 
 程序对大小写敏感。
+
+一些特殊符号：
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+o=<0,0,0>, x=<1,0,0>, y=<0,1,0>, z=<0,0,1>, u=<1,0>, v=<0,1>.
+sqrt(a), pi, pow(a,n) sin(radians(90)), degrees(atan2(1,1))
+\end{lstlisting}
+\subsection{基本逻辑}
+基本几何体请参考\href{http://www.f-lohmueller.de/pov_tut/all_shapes/shapes000e.htm}{这里}。
+
+\href{http://www.imagico.de/pov/icons.php}{透明背景设置}
 \subsection{调试}
-单行注释使用两斜杠\lstinline|//|,多行注释使用\lstinline|/*注释*/|。
+单行注释使用两斜杠\lstinline|//|,多行注释使用\lstinline|/*注释*/|。对于.ini文档，单行注释使用分号\lstinline|;|.
+
+关于输出请参考\href{http://www.f-lohmueller.de/pov_tut/pov_inc/pov_300e.htm}{此文档}。
 \subsection{参考文档}
 \href{http://www.povray.org/documentation/3.7.0/t2_0.html}{官方文档}、\href{https://www.bilibili.com/video/BV1S4411e7AD}{视频教程}
+
+\href{http://www.f-lohmueller.de/pov_tut/animate/anim001e.htm}{动画效果}
 
 POV-Ray的经典实例是\href{http://www.dimensions-math.org/Dim_ZH_si.htm}{维度：数学漫步}。
 
@@ -600,55 +614,176 @@ POV-Ray的经典实例是\href{http://www.dimensions-math.org/Dim_ZH_si.htm}{维
 如果我有一台优质的电脑、时间(没书读时)和精力那我也会尝试下。现在就算了。
 \subsection{(想保留的)例子}
 
-这个例子相当于"Hallo world".之后会改。
+这个例子实现了杯子的旋转动画，并制作了一个好的坐标轴。
 \begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
-#include "colors.inc"
+// POV-Ray Scene File "begin.pov"
+// by Friedrich A. Lohmueller, Jan-2013, now Xiaoxiang Zhou
+//-------------------------------------------
+global_settings{assumed_gamma 1.0}
+//#default{ finish{ ambient 0.1 diffuse 0.9 }}
+//------------------------------------------
 
-camera{
-  location <0,0,-10>
+#include "colors.inc" 
+#include "textures.inc"    
+#include "woods.inc"  
+//------------------------------------------
+// camera ---------------------------------- 
+ camera{
+  location <25,25,25>    //best: <25,25,25> <10,-25,25>
+  right -x*image_width/image_height 
+  sky   <0,0,1>    //see the sky
   look_at <0,0,0>
-
-} 
-light_source{
-    <4,6,-10>
-    White
-}   
-//background{
-//  Grey
-//}
-sky_sphere{
+  angle 22
+ }
+ // sun -------------------------------------
+ light_source{
+    <25,25,25>,
+    White    
+    shadowless
+ }
+ // sky -------------------------------------
+ sky_sphere{
   pigment{
-    gradient y
+    gradient z-3
     color_map {
      [0 color White]
-     [1 color Blue]
+     [0.95 color Blue]
+     [1 color White]
     } 
-    translate <0,-.5,0>
+    
+    scale 2
+    translate <0,0,1>
   }
-}       
-sphere {
-  <-2,0,0>, 2
-  pigment { Red } 
-  finish { ambient .4 }
-
-}      
-sphere {
-  <4,0,0>, 1
-  pigment { Blue } 
-  finish { ambient .4 }
-
-}    
-sphere {
-  <0,0,0>, 2
-  pigment { Yellow } 
-  finish { ambient .4 }
-
+ }
+   // axis arrows ------------------------------------- 
+ cone {
+    6*x, .1, 6.5*x, 0
+ }
+cone {
+    6*y, .1, 6.5*y, 0
+  }
+cone {
+    6*z, .1, 6.5*z, 0
+   }
+  
+  // axis -------------------------------------
+cylinder {
+    -6*x, 6*x, .021
+    pigment{ Black}
+    finish {ambient .3}
 }
+cylinder {
+    -6*y, 6*y, .021
+    pigment{ Black}
+    finish {ambient .3}
+}
+cylinder {
+    -6*z, 6*z, .021
+    pigment{ Black}
+    finish {ambient .3}
+} 
+  // grid -------------------------------------
+#for (i,-5,5,1)
+cylinder {
+    <i,-5,0>, <i,5,0>, .02
+    pigment{ Grey}
+    finish {ambient .3}
+}    
+cylinder {
+    <-5,i,0>, <5,i,0>, .02
+    pigment{ Grey}
+    finish {ambient .3}
+    }
+#end
+
+   
+ text {
+    ttf "timrom.ttf" "x" 0.05, 0
+    pigment { Black }
+    translate -0.25*x  
+    rotate<90,0,180>
+    translate 6*x-0.8*z 
+  }
+ text {
+    ttf "timrom.ttf" "y" 0.05, 0
+    pigment { Black }
+    translate -0.25*x  
+    rotate<90,0,90> 
+    translate 6*y-0.8*z 
+  }
+ text {
+    ttf "timrom.ttf" "z" 0.05, 0
+    pigment { Black }
+    translate -0.25*x  
+    rotate<90,0,135> 
+    translate 6*z-0.8/sqrt(2)*x+0.8/sqrt(2)*y
+ }      
+ 
+ difference{
+union { 
+sphere_sweep { 
+    b_spline
+    7,      
+    <.7,2.2,0>, .8
+    <1.5,.5,0>,.3
+    <3.1,.5,0>,.3 
+    <3.8,2.4,0>,.3   
+    <3.1,4.1,0>,.3  
+    <1.5,4.1,0>,.3
+    <.7,2.6,0>,.8
+        texture{
+   pigment{ Grey}
+   finish { phong 1}
+ }
+    finish {ambient .3}  
+    scale <1,1,2.5>
+}  //cup
+cylinder{
+    <0,0,0>, <0,4.75,0>,2
+    
+    scale 1/4.75
+    
+        texture{
+   pigment{ Grey}
+   finish { phong 1}
+ } 
+    scale 4.75
+    finish {ambient .4}
+     rotate<0,-60,0>
+    }
+} //end of union   
+
+cylinder {
+    <0,.2,0>, <0,4.9,0>, 1.8
+        texture{
+   pigment{ Grey}
+   finish { phong 1}
+ }
+    finish {ambient .3}    
+    
+}
+rotate<90,0,360*clock>
+} //end of difference
+\end{lstlisting}
+我们还需要.ini文档才能够生成动画。
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+; Persistence Of Vision raytracer version 3.7 example file.
+Antialias=On
+
+Antialias_Threshold=0.1
+Antialias_Depth=2
+Input_File_Name=begin.pov
+
+Initial_Frame=1
+Final_Frame=30
+Initial_Clock=0
+Final_Clock=1
+
+Cyclic_Animation=on
+Pause_when_Done=off
 \end{lstlisting}
 \subsection{Tasks}
-通过该软件制造一个好的坐标轴(固定机位和打光，固定背景)。
-
-制造一个基本对象集，已经基本操作。
+制造一个基本对象集，以及基本操作。
 \section{电脑快捷键(中级)}
 部分参见\href{https://zhuanlan.zhihu.com/p/42281412}{Chrome快捷键}。
 \begin{itemize}
