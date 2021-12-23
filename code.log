@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.15)  22 DEC 2021 20:39
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.15)  23 DEC 2021 23:50
 entering extended mode
 **./code.tex
 (code.tex
@@ -995,19 +995,20 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 LaTeX Font Warning: Font shape `TU/FangSong(0)/bx/n' undefined
 (Font)              using `TU/FangSong(0)/m/n' instead on input line 1098.
 
-[21]
-Underfull \vbox (badness 3039) has occurred while \output is active []
+[21] [22]
 
- [22]
+LaTeX Warning: Empty `thebibliography' environment on input line 1216.
 
-LaTeX Warning: Empty `thebibliography' environment on input line 1207.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1219.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1210.
-[23]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1210.
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [23]
+[24]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1219.
  (code.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1210.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1210.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1219.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1219.
 
 Package rerunfilecheck Info: File `code.out' has not changed.
 (rerunfilecheck)             Checksum: 5B6C0A43F80B3675B8A048ACE1EC5671.
@@ -1015,15 +1016,15 @@ Package rerunfilecheck Info: File `code.out' has not changed.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1210.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1219.
  ) 
 Here is how much of TeX's memory you used:
- 26671 strings out of 427748
- 505630 string characters out of 3150981
+ 26719 strings out of 427748
+ 506217 string characters out of 3150981
  1063225 words of memory out of 3000000
- 30313 multiletter control sequences out of 15000+200000
+ 30361 multiletter control sequences out of 15000+200000
  541373 words of font info for 86 fonts, out of 3000000 for 9000
  1489 hyphenation exceptions out of 8191
  52i,7n,68p,534b,1931s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on code.pdf (23 pages).
+Output written on code.pdf (24 pages).
