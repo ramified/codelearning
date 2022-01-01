@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.15)  30 DEC 2021 20:26
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.15)  1 JAN 2022 16:49
 entering extended mode
 **./code.tex
 (code.tex
@@ -977,6 +977,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [13]
+Overfull \hbox (25.40816pt too wide) in paragraph at lines 802--803
+ \TU/lmr/m/n/10.95 8.1.\TU/SimSun(0)/bx/n/10.95 安 装 \TU/lmr/bx/n/10.95 + \TU/Si
+mSun(0)/bx/n/10.95 初 始 代 码\TU/lmr/bx/n/10.95 .[][] \TU/SimSun(0)/m/n/10.95 前 端 
+没 有 啥 好 说 的，|  我 所 理 解 的 就 是 \TU/lmr/m/n/10.95 html+css+javascript.
+ []
+
 [14] [15]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -993,35 +999,44 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [20]
 
 LaTeX Font Warning: Font shape `TU/FangSong(0)/bx/n' undefined
-(Font)              using `TU/FangSong(0)/m/n' instead on input line 1110.
+(Font)              using `TU/FangSong(0)/m/n' instead on input line 1116.
 
-[21] [22]
+[21]
+Underfull \vbox (badness 5036) has occurred while \output is active []
+
+ [22]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [23]
 
-LaTeX Warning: Empty `thebibliography' environment on input line 1228.
+LaTeX Warning: Empty `thebibliography' environment on input line 1234.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1231.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1237.
 [24]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1231.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1237.
  (code.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1231.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1231.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1237.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1237.
 
-Package rerunfilecheck Info: File `code.out' has not changed.
-(rerunfilecheck)             Checksum: 4BB55BDE11D964ED691E193CE1C960AE.
 
+
+Package rerunfilecheck Warning: File `code.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `code.out':
+(rerunfilecheck)             Before: 1A1606A35F047214D736A732CCA23526
+(rerunfilecheck)             After:  3018D01906A0251DD12257D2C3CD662B.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1231.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1237.
  ) 
 Here is how much of TeX's memory you used:
- 26753 strings out of 427748
- 508361 string characters out of 3150981
+ 26754 strings out of 427748
+ 508373 string characters out of 3150981
  1063225 words of memory out of 3000000
- 30395 multiletter control sequences out of 15000+200000
+ 30396 multiletter control sequences out of 15000+200000
  541373 words of font info for 86 fonts, out of 3000000 for 9000
  1489 hyphenation exceptions out of 8191
  52i,7n,68p,534b,1931s stack positions out of 5000i,500n,10000p,200000b,50000s
