@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.15)  6 JAN 2022 23:09
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.15)  7 JAN 2022 19:56
 entering extended mode
 **./code.tex
 (code.tex
@@ -1010,14 +1010,14 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [23]
 [24]
 
-LaTeX Warning: Empty `thebibliography' environment on input line 1254.
+LaTeX Warning: Empty `thebibliography' environment on input line 1255.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1257.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1258.
 [25]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1257.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1258.
  (code.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1257.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1257.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1258.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1258.
 
 Package rerunfilecheck Info: File `code.out' has not changed.
 (rerunfilecheck)             Checksum: A66A452BDD786DCCD2DDA735EB30A5B6.
@@ -1025,13 +1025,13 @@ Package rerunfilecheck Info: File `code.out' has not changed.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1257.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1258.
  ) 
 Here is how much of TeX's memory you used:
- 26837 strings out of 427748
- 509278 string characters out of 3150981
+ 26830 strings out of 427748
+ 509201 string characters out of 3150981
  1063225 words of memory out of 3000000
- 30479 multiletter control sequences out of 15000+200000
+ 30472 multiletter control sequences out of 15000+200000
  541373 words of font info for 86 fonts, out of 3000000 for 9000
  1489 hyphenation exceptions out of 8191
  52i,7n,68p,534b,1931s stack positions out of 5000i,500n,10000p,200000b,50000s
