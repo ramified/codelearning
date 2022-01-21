@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.15)  13 JAN 2022 21:15
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.15)  21 JAN 2022 17:36
 entering extended mode
 **./code.tex
 (code.tex
@@ -967,59 +967,61 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 ("C:\Users\Administrator\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listings\l
 stlang1.sty"
 File: lstlang1.sty 2018/09/02 1.7 listings language file
-) [9] [10]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [11]
+) [9] [10] [11]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [12]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [13]
-Overfull \hbox (25.40816pt too wide) in paragraph at lines 803--804
+Overfull \hbox (25.40816pt too wide) in paragraph at lines 809--810
  \TU/lmr/m/n/10.95 8.1.\TU/SimSun(0)/bx/n/10.95 安 装 \TU/lmr/bx/n/10.95 + \TU/Si
 mSun(0)/bx/n/10.95 初 始 代 码\TU/lmr/bx/n/10.95 .[][] \TU/SimSun(0)/m/n/10.95 前 端 
 没 有 啥 好 说 的，|  我 所 理 解 的 就 是 \TU/lmr/m/n/10.95 html+css+javascript.
  []
 
-[14] [15]
+
+Underfull \vbox (badness 2359) has occurred while \output is active []
+
+ [14]
+[15]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [16]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [17]
-[18]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [19]
+ [18]
+[19]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [20]
-
-LaTeX Font Warning: Font shape `TU/FangSong(0)/bx/n' undefined
-(Font)              using `TU/FangSong(0)/m/n' instead on input line 1117.
-
-[21]
-Underfull \vbox (badness 5036) has occurred while \output is active []
-
- [22]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [23]
+ [21]
+
+LaTeX Font Warning: Font shape `TU/FangSong(0)/bx/n' undefined
+(Font)              using `TU/FangSong(0)/m/n' instead on input line 1138.
+
+[22] [23]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [24]
 
-LaTeX Warning: Empty `thebibliography' environment on input line 1257.
+LaTeX Warning: Empty `thebibliography' environment on input line 1283.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1260.
-[25]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1260.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1286.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [25]
+[26]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1286.
  (code.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1260.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1260.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1286.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1286.
 
 Package rerunfilecheck Info: File `code.out' has not changed.
 (rerunfilecheck)             Checksum: A66A452BDD786DCCD2DDA735EB30A5B6.
@@ -1027,15 +1029,15 @@ Package rerunfilecheck Info: File `code.out' has not changed.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1260.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1286.
  ) 
 Here is how much of TeX's memory you used:
- 26831 strings out of 427748
- 509211 string characters out of 3150981
+ 26867 strings out of 427748
+ 509596 string characters out of 3150981
  1063225 words of memory out of 3000000
- 30473 multiletter control sequences out of 15000+200000
+ 30509 multiletter control sequences out of 15000+200000
  541373 words of font info for 86 fonts, out of 3000000 for 9000
  1489 hyphenation exceptions out of 8191
  52i,7n,68p,534b,1931s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on code.pdf (25 pages).
+Output written on code.pdf (26 pages).
