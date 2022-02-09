@@ -602,6 +602,256 @@ ListPlot[{Style[{{1, 1}, {2, 3}, {2, 4}},
   Style[{{1.5, 1}, {2.3, 3}, {2.4, 4}}, 
    Interpreter["Color"]["RGB 0 255 0"]]}]
 \end{lstlisting}
+\section{PuzzleScript}
+游戏制作软件:Unity可以由免费开源游戏引擎\href{https://docs.godotengine.org/zh_CN/stable/index.html}{Godot}替代。简单的2D游戏可以先尝试用\href{https://www.puzzlescript.net/}{PuzzleScript}实现。
+\subsection{调试}
+单行注释使用括号\lstinline|()|.快捷键可以参考\href{https://pancelor.com/PuzzleScript/Documentation/keyboard_shortcuts.html}{这里}。
+\subsection{(想保留的)例子}
+\href{https://www.puzzlescript.net/editor.html}{PuzzleScript网上的例子}已经非常方便了。这里只是把网上的例子改着玩。
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+title Basic Objects
+author Xiaoxiang Zhou
+homepage http://home.ustc.edu.cn/~xx352229/
+background_color #222323
+text_color #f0f6f0
+(color_palette 3)
+debug
+zoomscreen 10x10
+======== 
+OBJECTS
+========
+
+Background 
+green lightgreen  darkgreen
+00000 
+10000
+00010
+00000
+01000
+
+Target 
+DarkBlue   
+.....
+.000.
+.0.0.
+.000.
+.....
+
+
+Wall 
+BROWN DARKBROWN
+00010
+11111
+01000
+11111
+00010
+
+Player 
+darkblue red BLACK 
+.000.
+.000.
+11111
+.111.
+.2.2.  
+
+Crate 
+orange
+00000
+0...0
+0...0
+0...0
+00000
+
+Spike
+black gray white
+.....
+..0..
+.010.
+02110
+02210
+
+Stone
+black white
+.000.
+00110
+00010
+00000
+.000.
+
+Angle
+BROWN red
+00000
+0111.
+011..
+01...
+0....
+
+0
+black
+.000.
+.0.0.
+.0.0.
+.0.0.
+.000.
+
+1
+black
+..0..
+.00..
+..0..
+..0..
+.000.
+
+2
+black
+.000.
+...0.
+.000.
+.0...
+.000.
+
+3
+black
+.000.
+...0.
+.000.
+...0.
+.000.
+
+4
+black
+.0.0.
+.0.0.
+.000.
+...0.
+...0.
+
+5
+black
+.000.
+.0...
+.000.
+...0.
+.000.
+
+6
+black
+.000.
+.0...
+.000.
+.0.0.
+.000.
+
+7
+black
+.000.
+...0.
+...0.
+...0.
+...0.
+
+8
+black
+.000.
+.0.0.
+.000.
+.0.0.
+.000.
+
+9
+black
+.000.
+.0.0.
+.000.
+...0.
+.000.
+=======
+LEGEND
+=======
+
+. = Background
+# = Wall
+P = Player
+* = Crate
+@ = Crate and Target
+O = Target
+! = Spike
+S = Stone
+A = Angle
+
+=======
+SOUNDS
+=======
+player Move 33184907
+Crate Move 412312
+EndLevel 123413
+Player CantMove 4123412
+================
+COLLISIONLAYERS
+================
+
+Background
+Target
+Player, Wall, Crate
+Spike
+0,1,2,3,4,5,6,7,8,9
+Stone, Angle
+
+======
+RULES     
+======     
+
+[ >  Player | Crate ] -> [  >  Player | > Crate  ]
+late [ Player Spike ] -> [ Spike ]
+==============
+WINCONDITIONS
+==============
+
+All Target on Crate     
+
+=======     
+LEVELS
+=======
+
+MESSAGE I make no claim for the original. 
+
+MESSAGE Just some test.
+
+.#p*O@!SA..
+.#########.
+.#..p*.o...
+.#########.
+01234567890
+
+MESSAGE Er. I copied something to check.
+
+
+########
+#.*OO..#
+#P*..*.#
+#..OO*.#
+########
+
+MESSAGE I copied another difficult level. Don't worry.
+
+......####.
+#######.p#.
+#.....*..#.
+#...*##.*#.
+##*#ooo#.#.
+.#.*ooo..#.
+.#.#o.o#.##
+.#...#.#*.#
+.#*..*....#
+.#..#######
+.####......
+
+
+MESSAGE Thank you for playing the game.
+
+
+
+\end{lstlisting}
 \section{POV-Ray}
 \subsection{安装+初始代码}
 POV-Ray是一款依赖代码的3D建模软件，免费开源，目前个人感觉是"3D版本的Tikz"."一款能够在短时间内持续追踪光线视觉，产生高质量计算机图像的工具。" from \href{https://blog.csdn.net/zhr_hadoop/article/details/51289804}{here}.
@@ -1156,6 +1406,7 @@ return
 
 \subsection{数学与游戏}
 
+
 脑洞：搞个Riemann surface的世界， 在介绍这个世界的时候以神的旨意来介绍相关概念
 \begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
 1.安装Unity
@@ -1166,7 +1417,7 @@ return
 5.制作扭结+贪吃蛇游戏
 6.制作黎曼面游戏(两点)
 方程
-游戏类型:找不同？横版跳跃？迷宫？五子棋(4/3子棋,粘附5/4/3子棋)？围棋(扭羊头游戏)?跳棋？空间爬行？扭结+贪吃蛇？塔防？数独？数回？华容道？(mini metro？连连看？泡泡龙？消砖块？2048？推箱子？其他的Nikoli Puzzles？)
+游戏类型:找不同？横版跳跃？迷宫？五子棋(4/3子棋,粘附5/4/3子棋)？围棋(扭羊头游戏)?跳棋？空间爬行？扭结+贪吃蛇？塔防？数独？数回？华容道？ORBOX B?(这玩意可以做成三维版本!4维就有点难了)(mini metro？连连看？泡泡龙？消砖块？2048？推箱子？其他的Nikoli Puzzles？)
 简易示意图
 可能引入的概念:Laurent展开/同调群、基本群的概念(在数回中，请使得最后画出的曲线表示基本群不平凡但是同调群不平凡)/覆叠，万有覆叠，deck transformation(华容道简化难度:允许deck transformation将区块变换至另一个基本区域中相同的位置；或者，我们允许上下粘接)/曲率/曲率驱动游戏/descent(数独解何时能成为更小的黎曼面的解)
 视角：收敛区域视角(遮罩圆形)、星形区域视角、基本区域视角、万有覆叠视角、第一人称视角、二维3D视角(视角需要通过"培训+考试"解锁)
@@ -1240,9 +1491,10 @@ convey the breadth and excitement of the ideas
 
 connect different areas:
 unveils intricate links between
-give a bird's eye view on
+reveals connections between
 is akin to the phenomenon of ...
 is deeply interwined with
+give a bird's eye view on
 
 waiting for classification:
 equivalently(replace i.e.)
@@ -1259,7 +1511,7 @@ give a sense of the directions in which the area is going.
 there is nothing to be gained from specialization at this stage
 take it as a little rebus
 whirlwind tour of ...
-
+be enamored with
 brackets:
 {}:curly set brackets
 ():round brackets
@@ -1276,6 +1528,7 @@ beginning words: Goals, Pros and Cons
 Ich bin pappsatt.
 Der Fisch war nicht üppig.
 Es war ein großer Reinfall!
+Wir müssen feststellen, inwiefern sich die Situation geändert hat.
 \end{lstlisting}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
