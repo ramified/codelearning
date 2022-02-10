@@ -605,7 +605,7 @@ ListPlot[{Style[{{1, 1}, {2, 3}, {2, 4}},
 \section{PuzzleScript}
 游戏制作软件:Unity可以由免费开源游戏引擎\href{https://docs.godotengine.org/zh_CN/stable/index.html}{Godot}替代。简单的2D游戏可以先尝试用\href{https://www.puzzlescript.net/}{PuzzleScript}实现。
 \subsection{调试}
-单行注释使用括号\lstinline|()|.快捷键可以参考\href{https://pancelor.com/PuzzleScript/Documentation/keyboard_shortcuts.html}{这里}。
+单行多行注释使用括号\lstinline|()|.快捷键可以参考\href{https://pancelor.com/PuzzleScript/Documentation/keyboard_shortcuts.html}{这里}。
 \subsection{(想保留的)例子}
 \href{https://www.puzzlescript.net/editor.html}{PuzzleScript网上的例子}已经非常方便了。这里只是把网上的例子改着玩。
 \begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
@@ -849,6 +849,252 @@ MESSAGE I copied another difficult level. Don't worry.
 
 MESSAGE Thank you for playing the game.
 
+
+
+\end{lstlisting}
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+title Demake of ORBOX B
+author Xiaoxiang Zhou
+homepage http://home.ustc.edu.cn/~xx352229/
+background_color #222323
+text_color #f0f6f0
+(color_palette 3)
+debug
+youtube CKAc3nYEatw
+======== 
+OBJECTS
+========
+
+Background 
+green lightgreen  darkgreen
+00000 
+10000
+00010
+00000
+01000
+
+Target 
+DarkBlue   
+.....
+.000.
+.0.0.
+.000.
+.....
+
+Greytarget 
+gray  
+00000
+00000
+00000
+00000
+00000
+
+
+Wall 
+BROWN DARKBROWN
+00010
+11111
+01000
+11111
+00010
+
+Wall2 
+red
+0...0
+.0.0.
+..0..
+.0.0.
+0...0
+
+Player 
+darkblue red BLACK 
+.000.
+.000.
+11111
+.111.
+.2.2.  
+
+Crate 
+orange
+00000
+0...0
+0...0
+0...0
+00000
+
+
+LUMirror ◿
+BROWN LightBlue
+....0
+...10
+..110
+.1110
+00000
+
+URMirror ◺
+BROWN LightBlue
+0....
+01...
+011..
+0111.
+00000
+
+RDMirror ◸
+BROWN LightBlue
+00000
+0111.
+011..
+01...
+0....
+
+DLMirror ◹
+BROWN LightBlue
+00000
+.1110
+..110
+...10
+....0
+
+Bomb
+blue white
+00000
+01110
+01110
+01110
+00000
+
+=======
+LEGEND
+=======
+
+. = Background
+# = Wall
+P = Player
+* = Crate
+O = Target
+g = Greytarget
+d = Wall2
+B = Bomb
+Obstacle = Wall or Wall2 or Target or Greytarget or Bomb
+Mirror   = LUMirror or URMirror or RDMirror or DLMirror 
+Solid = Obstacle or Mirror
+=======
+SOUNDS
+=======
+Sfx0 33184907
+EndLevel 123413
+================
+COLLISIONLAYERS
+================
+
+Background
+Mirror
+Player, Crate, Obstacle
+
+
+======
+RULES     
+======  
+[ > Player | Bomb ] -> [ Player| ]
+[ > Player | Obstacle ] -> [ Player| Obstacle ]
+[ > Player | ...|| Obstacle ] -> [ | ... | Player| Obstacle ] sfx0
+[No Bomb ][Greytarget] -> [ ][Target]
+(Here I really want to turn the Greytarget to Target exactly when there is no Bomb on the screen. But I failed.)
+(late [ Player | Wall2 ] -> restart)
+(Here I want to wait several seconds to restart)
+late [ Player | Target ] -> [ win|Player ]
+==============
+WINCONDITIONS
+==============
+
+=======     
+LEVELS
+=======
+
+MESSAGE I make no claim for the original. 
+
+(MESSAGE Level 1
+
+dddddddddddd
+d..........d
+d....#.....d
+d.......#..d
+d..#.......d
+d........#.d
+d....p#....d
+d.O........d
+d.#........d
+d......#...d
+d...#......d
+d..........d
+dddddddddddd
+
+MESSAGE Level 2
+ddddddddddddddddd
+d...............d
+d.......#.......d
+d...........#...d
+d...##..........d
+d.#..#........o.d
+d.........p#....d
+d......#.....#..d
+d........#......d
+d..#........#...d
+d.........#.....d
+d...............d
+ddddddddddddddddd
+
+MESSAGE Level 3
+dddddddddddddddddd
+d................d
+d.......###......d
+d......#...#.....d
+d............#...d
+d..####....#b....d
+d.p.bbb..bb#b.o#.d
+d..####....#b....d
+d............#...d
+d......#...#.....d
+d.......###......d
+d................d
+dddddddddddddddddd
+
+MESSAGE Level 4
+dddddddddddddddddd
+d................d
+d..#.............d
+d........#.......d
+d...........#....d
+d.....#..........d
+d.#..............d
+d..#......#......d
+d.......#........d
+d....#...........d
+d........#.#.....d
+d..............#.d
+d...p....#.......d
+d...#............d
+d....o...#.......d
+d...........#.#..d
+d.......#........d
+d...#............d
+d.........#......d
+d................d
+dddddddddddddddddd)
+
+MESSAGE Level 5
+dddddddddddddddddddd
+d..................d
+d....#.......##.##.d
+d.bb.....b...#◸.◹#.d
+d.bb..p..b.....g...d
+d............#◺.◿#.d
+d............##.##.d
+d...#◺...◿#........d
+d...#######........d
+d..................d
+dddddddddddddddddddd
+MESSAGE Thank you for playing the game.
 
 
 \end{lstlisting}
@@ -1466,6 +1712,7 @@ The arguments in ... carry over mutatis mutandis.
 provide a navigable route into the area with a complete and self-contained account of the case ...
 eschew all generality
 exploit special features to abbreviate/simplify the arguments
+tinker with the examples
 
 Disclamer:
 minor errors and obscurities, a couple of significant lapses
