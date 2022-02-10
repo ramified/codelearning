@@ -604,6 +604,11 @@ ListPlot[{Style[{{1, 1}, {2, 3}, {2, 4}},
 \end{lstlisting}
 \section{PuzzleScript}
 游戏制作软件:Unity可以由免费开源游戏引擎\href{https://docs.godotengine.org/zh_CN/stable/index.html}{Godot}替代。简单的2D游戏可以先尝试用\href{https://www.puzzlescript.net/}{PuzzleScript}实现。
+\subsection{基本逻辑}
+本节目前主要讨论RULES.在Object中可以用transparent来表示变量(在正常对象之后)，在LEGEND中请将一个字符放在其他变量名之后。
+
+否定语句比较困难，目前只知道部分否定，如\lstinline|[Background no Player]->[wall]|。
+循环语句以startloop开始，以endloop结束,当循环的过程不再改变游戏内容时停止。(这种循环语句是不是智障？)
 \subsection{调试}
 单行多行注释使用括号\lstinline|()|.快捷键可以参考\href{https://pancelor.com/PuzzleScript/Documentation/keyboard_shortcuts.html}{这里}。
 \subsection{(想保留的)例子}
@@ -852,6 +857,10 @@ MESSAGE Thank you for playing the game.
 
 
 \end{lstlisting}
+
+想要做自己的游戏，先得学会复刻已有的小游戏。做了点尝试。
+
+小技巧：制造边缘砖块的方式(堆叠)以及关卡编辑器中可以使用特殊符号来形象表达，比如\lstinline|LUMirror ◿|.
 \begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
 title Demake of ORBOX B
 author Xiaoxiang Zhou
@@ -859,8 +868,11 @@ homepage http://home.ustc.edu.cn/~xx352229/
 background_color #222323
 text_color #f0f6f0
 (color_palette 3)
-debug
+verbose_logging (for better debug)
 youtube CKAc3nYEatw
+(realtime_interval 0.15 (automove)
+again_interval 1 (The amount of time it takes an 'again' event to trigger. We won't use it.)
+key_repeat_interval 0.10 (hold one key))
 ======== 
 OBJECTS
 ========
@@ -892,11 +904,43 @@ gray
 
 Wall 
 BROWN DARKBROWN
-00010
 11111
 01000
 11111
 00010
+11111
+
+WallL
+Black
+0....
+0....
+0....
+0....
+0....
+
+WallR
+Black
+....0
+....0
+....0
+....0
+....0
+
+WallU
+Black
+00000
+.....
+.....
+.....
+.....
+
+WallD
+Black
+.....
+.....
+.....
+.....
+00000
 
 Wall2 
 red
@@ -967,6 +1011,12 @@ blue white
 LEGEND
 =======
 
+
+WallOutline = WallU or WallD or WallL or WallR
+Obstacle = Wall or Wall2 or Greytarget or Bomb
+Mirror   = LUMirror or URMirror or RDMirror or DLMirror 
+Solid = Obstacle or Mirror
+
 . = Background
 # = Wall
 P = Player
@@ -975,34 +1025,61 @@ O = Target
 g = Greytarget
 d = Wall2
 B = Bomb
-Obstacle = Wall or Wall2 or Target or Greytarget or Bomb
-Mirror   = LUMirror or URMirror or RDMirror or DLMirror 
-Solid = Obstacle or Mirror
+
 =======
 SOUNDS
 =======
-Sfx0 33184907
+Sfx0 73682502 (die)
+sfx1 74413905 (mirror)
+sfx2 89661502 (explosion)
+sfx3 63441708 (walk)
+Sfx10 77515308 (test)
 EndLevel 123413
 ================
 COLLISIONLAYERS
 ================
 
 Background
-Mirror
+Mirror, Target
 Player, Crate, Obstacle
-
+(for beauty)
+WallL 
+WallR 
+WallU 
+WallD 
 
 ======
 RULES     
 ======  
-[ > Player | Bomb ] -> [ Player| ]
-[ > Player | Obstacle ] -> [ Player| Obstacle ]
-[ > Player | ...|| Obstacle ] -> [ | ... | Player| Obstacle ] sfx0
-[No Bomb ][Greytarget] -> [ ][Target]
-(Here I really want to turn the Greytarget to Target exactly when there is no Bomb on the screen. But I failed.)
-(late [ Player | Wall2 ] -> restart)
+((Editing convenience: Automatically add outlines to walls)
+[ WallOutline ] -> [ ]
+up   [ Wall | No Wall ] -> [ Wall WallU | ]
+down [ Wall | No Wall ] -> [ Wall WallD | ]
+left [ Wall | No Wall ] -> [ Wall WallL | ]
+right[ Wall | No Wall ] -> [ Wall WallR | ])
+
+(Test if player touchs the Bomb)
+[ > Player | Bomb ] -> [ Player| ] sfx2
+
+
+(Go directly, for a loop)(Here stationary is important. Without it the LUMirror can also move. And the Mirrors must be near the wall. Otherwise the player would go across the mirror. And be careful that never make a loop!)
+ right  [ > Player | LUMirror] -> [ |up Player stationary LUMirror ] sfx1 
++down  [ > Player | LUMirror] -> [ |left Player stationary LUMirror ] sfx1 
++left  [ > Player | URMirror] -> [ |up Player stationary URMirror ] sfx1 
++down  [ > Player | URMirror] -> [ |right Player stationary URMirror ] sfx1 
++left  [ > Player | RDMirror] -> [ |down Player stationary RDMirror ] sfx1 
++up  [ > Player | RDMirror] -> [ |right Player stationary RDMirror ] sfx1 
++right  [ > Player | DLMirror] -> [ |down Player stationary DLMirror ] sfx1 
++up[ > Player | DLMirror] -> [ |left Player stationary DLMirror ] sfx1 
++  [ > Player| no Obstacle no Mirror] -> [ |> Player ]  (better if one can wait for some time)
++  [ > Player| Obstacle] -> [  Player|Obstacle] sfx3
++  [Player Target] -> [stationary Player Target]win
+
+(Very ugly code to turn the Greytarget to Target exactly when there is no Bomb on the screen. Hope that there is some better way.)
+[Greytarget] -> [target]
+[Bomb][target] -> [Bomb][Greytarget]
+late [ Player | Wall2 ] -> restart sfx0
 (Here I want to wait several seconds to restart)
-late [ Player | Target ] -> [ win|Player ]
 ==============
 WINCONDITIONS
 ==============
@@ -1013,7 +1090,7 @@ LEVELS
 
 MESSAGE I make no claim for the original. 
 
-(MESSAGE Level 1
+MESSAGE Level 1
 
 dddddddddddd
 d..........d
@@ -1051,7 +1128,7 @@ d.......###......d
 d......#...#.....d
 d............#...d
 d..####....#b....d
-d.p.bbb..bb#b.o#.d
+d.p.bbb..bb#b.g#.d
 d..####....#b....d
 d............#...d
 d......#...#.....d
@@ -1067,12 +1144,12 @@ d........#.......d
 d...........#....d
 d.....#..........d
 d.#..............d
-d..#......#......d
+d..#......#p.....d
 d.......#........d
 d....#...........d
 d........#.#.....d
 d..............#.d
-d...p....#.......d
+d........#.......d
 d...#............d
 d....o...#.......d
 d...........#.#..d
@@ -1080,20 +1157,54 @@ d.......#........d
 d...#............d
 d.........#......d
 d................d
-dddddddddddddddddd)
+dddddddddddddddddd
 
 MESSAGE Level 5
-dddddddddddddddddddd
-d..................d
-d....#.......##.##.d
-d.bb.....b...#◸.◹#.d
-d.bb..p..b.....g...d
-d............#◺.◿#.d
-d............##.##.d
-d...#◺...◿#........d
-d...#######........d
-d..................d
-dddddddddddddddddddd
+ddddddddddddddddddddd
+d...................d
+d...............###.d
+d....#.......##.◹##.d
+d.bb.....b...#◸..◹#.d
+d.bb..p..b.....g....d
+d............#◺.◿#..d
+d............##.##..d
+d...#◺...◿#.........d
+d...#######.........d
+d...................d
+ddddddddddddddddddddd
+
+MESSAGE Level 6
+dddddddddddddd
+d............d
+d.......#....d
+d.....#......d
+d..#.........d
+d....bb..#g..d
+d....bpb.#...d
+d....bbb...#.d
+d.#..........d
+d.....#.#....d
+d.......#....d
+d....#.......d
+d............d
+dddddddddddddd
+
+
+MESSAGE  That's just a test, not a game!
+◸...◹##...◹#
+...o◿##◺...◹
+◺...####...◿
+##..####..◿#
+.#◺.◹##◸◿###
+.###...◿####
+.#◸.bbb#####
+.#.bbbbb...◹
+.#◺.bbb.....
+.##########.
+.##◸...p....
+.##◺.......◿
+
+
 MESSAGE Thank you for playing the game.
 
 
