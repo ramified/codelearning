@@ -283,13 +283,13 @@ Hefei, 230026\\ P.R. China\\}
 	\item 快捷键(Keyboard shortcut)
 	\begin{itemize}
 		\item 运行代码
-	\item 注释方式及快捷键(单行注释+多行注释)
-	\item 自动补全功能
-\item 自动对齐功能
+		\item 注释方式及快捷键(单行注释+多行注释)
+		\item 自动补全功能
+    	\item 自动对齐功能
 		\item 其他快捷键	
 	\end{itemize}
 	\item 如何获得帮助
-	\item 控制输出	
+	\item 控制输出(包含调整至debug模式)	
 	\item 如何设置断点
 	\item 控制输入
 
@@ -603,14 +603,31 @@ ListPlot[{Style[{{1, 1}, {2, 3}, {2, 4}},
    Interpreter["Color"]["RGB 0 255 0"]]}]
 \end{lstlisting}
 \section{PuzzleScript}
-游戏制作软件:Unity可以由免费开源游戏引擎\href{https://docs.godotengine.org/zh_CN/stable/index.html}{Godot}替代。简单的2D游戏可以先尝试用\href{https://www.puzzlescript.net/}{PuzzleScript}实现。
-\subsection{基本逻辑}
-本节目前主要讨论RULES.在Object中可以用transparent来表示变量(在正常对象之后)，在LEGEND中请将一个字符放在其他变量名之后。
+游戏制作软件:Unity可以由免费开源游戏引擎\href{https://docs.godotengine.org/zh_CN/stable/index.html}{Godot}替代。简单的2D游戏可以先尝试用PuzzleScript实现。
 
-否定语句比较困难，目前只知道部分否定，如\lstinline|[Background no Player]->[wall]|。
+请注意，PuzzleScript只是一个类推箱类游戏制作语言，比较难制作3D/扭曲/用鼠标处理的游戏，而且基本逻辑不完备导致许多功能的实现需要大量技巧。 如果不是技术开发狂热者请只把它当成游戏开发初始阶段的调试器使用。
+\subsection{基本逻辑}
+本节目前主要讨论RULES.在OBJECT中可以用transparent来表示变量(在正常对象之后)，在LEGEND中请将一个字符放在其他变量名之后。
+
+RULES的基本结构是\lstinline|keyword1 [keyword2 objectA] -> [objectB] result|,其中
+\begin{itemize}
+\item \lstinline|keyword1|可以取 \lstinline|up/down/left/right, horizontal/vertical, random, late, orthogonal|;
+\item \lstinline|keyword2|可以取 \lstinline|>/</^/v/up/down/left/right, moving/stationary, no, action|;
+\item \lstinline|result|可以取 \lstinline|Message, sfx0, win, checkpoint, restart, cancel, again|.
+\end{itemize}
+   
+
+否定语句比较困难，目前只知道部分否定，如\lstinline|[Background no Player]->[wall]|。\footnote{通过部分否定以及一些额外的变量即可达到全局的否定，就是代码丑陋一点罢了。}
 循环语句以startloop开始，以endloop结束,当循环的过程不再改变游戏内容时停止。(这种循环语句是不是智障？)
 \subsection{调试}
 单行多行注释使用括号\lstinline|()|.快捷键可以参考\href{https://pancelor.com/PuzzleScript/Documentation/keyboard_shortcuts.html}{这里}。
+
+Debug可以在Prelude中写上\lstinline|verbose_logging|,或者功能弱一点的\lstinline|debug|.另外游戏中可以用音效来辅助调试.
+\subsection{参考文档}
+\href{https://www.puzzlescript.net/Documentation/documentation.html}{官方文档}
+和\href{https://www.puzzlescript.net/Gallery/index.html}{官方例子}
+
+\href{https://erich-friedman.github.io/published/interactive.html}{一些例子}。差不多类推箱游戏都有PuzzleScript的版本。
 \subsection{(想保留的)例子}
 \href{https://www.puzzlescript.net/editor.html}{PuzzleScript网上的例子}已经非常方便了。这里只是把网上的例子改着玩。
 \begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
@@ -893,7 +910,7 @@ DarkBlue
 .000.
 .....
 
-Greytarget 
+BombObstacle
 gray  
 00000
 00000
@@ -1007,24 +1024,39 @@ blue white
 01110
 00000
 
+Teleport
+blue purple black
+00000
+01110
+01210
+01110
+00000
+
+Initial
+transparent
+
+Shiftbomb
+transparent
+
 =======
 LEGEND
 =======
 
 
 WallOutline = WallU or WallD or WallL or WallR
-Obstacle = Wall or Wall2 or Greytarget or Bomb
+Obstacle = Wall or Wall2 or BombObstacle or Bomb
 Mirror   = LUMirror or URMirror or RDMirror or DLMirror 
 Solid = Obstacle or Mirror
 
 . = Background
 # = Wall
-P = Player
+P = Player and Initial
 * = Crate
 O = Target
-g = Greytarget
+g = BombObstacle and Target
 d = Wall2
 B = Bomb
+t = Teleport
 
 =======
 SOUNDS
@@ -1033,6 +1065,7 @@ Sfx0 73682502 (die)
 sfx1 74413905 (mirror)
 sfx2 89661502 (explosion)
 sfx3 63441708 (walk)
+sfx4 29985308 (teleport)
 Sfx10 77515308 (test)
 EndLevel 123413
 ================
@@ -1040,29 +1073,35 @@ COLLISIONLAYERS
 ================
 
 Background
-Mirror, Target
+Mirror, Target, Teleport
 Player, Crate, Obstacle
 (for beauty)
 WallL 
 WallR 
 WallU 
 WallD 
+Initial
+Shiftbomb
 
 ======
 RULES     
 ======  
-((Editing convenience: Automatically add outlines to walls)
-[ WallOutline ] -> [ ]
-up   [ Wall | No Wall ] -> [ Wall WallU | ]
-down [ Wall | No Wall ] -> [ Wall WallD | ]
-left [ Wall | No Wall ] -> [ Wall WallL | ]
-right[ Wall | No Wall ] -> [ Wall WallR | ])
+(Initial setting)
+(Editing convenience: Automatically add outlines to walls)
+[Initial][ WallOutline ] -> [Initial][ ]
+up   [Initial][ Wall | No Wall ] -> [Initial][ Wall WallU | ]
+down [Initial][ Wall | No Wall ] -> [Initial][ Wall WallD | ]
+left [Initial][ Wall | No Wall ] -> [Initial][ Wall WallL | ]
+right[Initial][ Wall | No Wall ] -> [Initial][ Wall WallR | ]
+[Initial] ->[]
 
+(begin every step)
 (Test if player touchs the Bomb)
 [ > Player | Bomb ] -> [ Player| ] sfx2
 
 
-(Go directly, for a loop)(Here stationary is important. Without it the LUMirror can also move. And the Mirrors must be near the wall. Otherwise the player would go across the mirror. And be careful that never make a loop!)
+(Go directly, for a loop)
+(Here stationary is important. Without it the LUMirror can also move. And the Mirrors must be near the wall. Otherwise the player would go across the mirror. And be careful that never make a loop with mirrors and teleports!)
  right  [ > Player | LUMirror] -> [ |up Player stationary LUMirror ] sfx1 
 +down  [ > Player | LUMirror] -> [ |left Player stationary LUMirror ] sfx1 
 +left  [ > Player | URMirror] -> [ |up Player stationary URMirror ] sfx1 
@@ -1071,13 +1110,19 @@ right[ Wall | No Wall ] -> [ Wall WallR | ])
 +up  [ > Player | RDMirror] -> [ |right Player stationary RDMirror ] sfx1 
 +right  [ > Player | DLMirror] -> [ |down Player stationary DLMirror ] sfx1 
 +up[ > Player | DLMirror] -> [ |left Player stationary DLMirror ] sfx1 
+(now move on)
 +  [ > Player| no Obstacle no Mirror] -> [ |> Player ]  (better if one can wait for some time)
+(Teleport)
++ [> Player Teleport][Teleport no Player] ->[Teleport][Teleport > Player] sfx4
+(stop)
 +  [ > Player| Obstacle] -> [  Player|Obstacle] sfx3
+(win condition)
 +  [Player Target] -> [stationary Player Target]win
 
-(Very ugly code to turn the Greytarget to Target exactly when there is no Bomb on the screen. Hope that there is some better way.)
-[Greytarget] -> [target]
-[Bomb][target] -> [Bomb][Greytarget]
+
+random [Bomb][BombObstacle] -> [Bomb][BombObstacle Shiftbomb]
+[BombObstacle no Shiftbomb] -> []
+[Shiftbomb] -> []
 late [ Player | Wall2 ] -> restart sfx0
 (Here I want to wait several seconds to restart)
 ==============
@@ -1128,7 +1173,7 @@ d.......###......d
 d......#...#.....d
 d............#...d
 d..####....#b....d
-d.p.bbb..bb#b.g#.d
+d.p.bbb..bb#b.o#.d
 d..####....#b....d
 d............#...d
 d......#...#.....d
@@ -1179,7 +1224,7 @@ d............d
 d.......#....d
 d.....#......d
 d..#.........d
-d....bb..#g..d
+d....bbb.#o..d
 d....bpb.#...d
 d....bbb...#.d
 d.#..........d
@@ -1189,10 +1234,27 @@ d....#.......d
 d............d
 dddddddddddddd
 
+MESSAGE Level 7
+ddddddddddddddddddddddd
+d.....................d
+d.#######.............d
+d.###...#.............d
+d.#.....#.............d
+d.#...............#...d
+d.##....#......o......d
+d.###..##....◿#####◺..d
+d...........◿###...#◺.d
+d.##.......◿#p.#....#.d
+d.#..t...###....t...#.d
+d........#.#...#....#.d
+d.#......#.◹####...##.d
+d.##....##.....◹####◸.d
+d.....................d
+ddddddddddddddddddddddd
 
 MESSAGE  That's just a test, not a game!
 ◸...◹##...◹#
-...o◿##◺...◹
+...g◿##◺.t.◹
 ◺...####...◿
 ##..####..◿#
 .#◺.◹##◸◿###
@@ -1201,12 +1263,15 @@ MESSAGE  That's just a test, not a game!
 .#.bbbbb...◹
 .#◺.bbb.....
 .##########.
-.##◸...p....
+.##◸...p.t..
 .##◺.......◿
 
 
-MESSAGE Thank you for playing the game.
 
+
+
+
+MESSAGE Thank you for playing the game.
 
 \end{lstlisting}
 \section{POV-Ray}
