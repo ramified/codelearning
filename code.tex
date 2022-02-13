@@ -1477,6 +1477,14 @@ blue
 .....
 .....
 
+reach256
+transparent
+
+reach512
+transparent
+
+reach1024
+transparent
 
 copy1
 transparent
@@ -1507,12 +1515,13 @@ LEGEND
 
 Player = 1 or 2 or 3 or 4 or 5 or 6 or 7 or 8 or 256 or 512 or 1024 or 2048 or nouseplayer
 
+
 . = Background
 # = wall
 ? = nouseplayer
 c = copy1
 d = copy2
-o = overabove and specialcase
+o = overabove and specialcase and reach256 and reach512 and reach1024
 s = specialcase
 =======
 SOUNDS
@@ -1537,6 +1546,9 @@ glow, glow2
 overabove
 didmove
 specialcase
+reach256
+reach512
+reach1024
 ======
 RULES
 ======
@@ -1547,19 +1559,19 @@ random[down Player]->[down Player vert]
 random [vert][copy1][copy2] -> [vert][copy2][copy1]
 
 
-[ > player | no Player no wall] -> [ | > player didmove] sfx0
+[ > player | no Player no wall] -> [ | > player didmove] 
 
 
-[ > 1 | 1 ] -> [ | 2 didmove  ] sfx0
-[ > 2 | 2 ] -> [ | 3 didmove  ] sfx0
-[ > 3 | 3 ] -> [ | 4 didmove  ] sfx0
-[ > 4 | 4 ] -> [ | 5 didmove  ] sfx0
-[ > 5 | 5 ] -> [ | 6  didmove ] sfx0
-[ > 6 | 6 ] -> [ | 7  didmove ] sfx0
-[ > 7 | 7 ] -> [ | 8 didmove  ] sfx0
-[ > 8 | 8 ] -> [ | 256 didmove  ] sfx1
-[ > 256 | 256 ] -> [ | 512 didmove  ] sfx2
-[ > 512 | 512 ] -> [ | 1024 didmove  ] sfx3
+[ > 1 | 1 ] -> [ | 2 didmove  ] 
+[ > 2 | 2 ] -> [ | 3 didmove  ] 
+[ > 3 | 3 ] -> [ | 4 didmove  ] 
+[ > 4 | 4 ] -> [ | 5 didmove  ] 
+[ > 5 | 5 ] -> [ | 6  didmove ] 
+[ > 6 | 6 ] -> [ | 7  didmove ] 
+[ > 7 | 7 ] -> [ | 8 didmove  ] 
+[ > 8 | 8 ] -> [ | 256 didmove  ] 
+[ > 256 | 256 ] -> [ | 512 didmove  ] 
+[ > 512 | 512 ] -> [ | 1024 didmove  ]
 [ > 1024 | 1024 ] -> [ | 2048 didmove  ]
 
 
@@ -1644,8 +1656,11 @@ random [vert][copy1][copy2] -> [vert][copy2][copy1]
 [vert]-> []
 
 [glow] -> []
-random [ no Player no wall ][Player didmove] -> [glow][Player]
+random [ no Player no wall ][Player didmove] -> [glow][Player] sfx0
 [didmove]->[]
+[reach256][256]->[][256]sfx1
+[reach512][512]->[][512]sfx2
+[reach1024][1024]->[][1024]sfx3
 
 up [glow specialcase|||||]->[glow specialcase|||||glow2]
 down [glow specialcase|||||]->[glow specialcase|||||glow2]
@@ -1673,8 +1688,6 @@ Message The original version of 2048 is here: https://gist.github.com/tinjoonata
 
 Message Here you would have a brand new experience of the game 2048. It's simpler since there are more spaces for you to move.
 
-Message There is a bug for the sound, and I don't know how to repair it in efficient way.
-
 Message Now enjoy it!
 
 ?############
@@ -1692,8 +1705,8 @@ Message Now enjoy it!
 
 
 Message Congratulations!
-Message You can make more games on this special twisted world! It's a special Riemann surface with constant zero curvature. For more ideas of this twisted world, see https://github.com/ramified/codelearning/blob/main/code.pdf
-Message For me, I may rebuild it when I learn python. Creating delicate games is harder than any other programming, since something is missing.
+Message You can make more games on this special twisted world! It's a special Riemann surface with constant zero curvature.
+Message Tell me how do you feel!
 \end{lstlisting}
 \section{POV-Ray}
 \subsection{安装+初始代码}
