@@ -648,6 +648,7 @@ text_color #f0f6f0
 (color_palette 3)
 zoomscreen 10x10
 enable_level_select
+noaction
 (
 References
 https://www.sokobanonline.com/play
@@ -933,6 +934,7 @@ enable_level_select
 (realtime_interval 0.15 (automove)
 again_interval 1 (The amount of time it takes an 'again' event to trigger. We won't use it.)
 key_repeat_interval 0.10 (hold one key))
+noaction
 ======== 
 OBJECTS
 ========
@@ -1325,6 +1327,373 @@ MESSAGE  That's just a test, not a game!
 
 MESSAGE Thank you for playing the game.
 
+\end{lstlisting}
+以下是黎曼面版本的2048.
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+title ramified 2048
+author Xiaoxiang Zhou
+homepage http://home.ustc.edu.cn/~xx352229/
+youtube CKAc3nYEatw
+verbose_logging (for better debug)
+noaction
+flickscreen 13x6
+(
+ref:
+https://dario-zubovic.github.io/PuzzleScript/play.html?p=e6e4b858fb96486f5d91f390b640345b
+https://gist.github.com/tinjoonatan/ada1f82d7a51bad137083c4133ad4fc2
+)
+========
+OBJECTS
+========
+
+Background
+lightblue
+
+wall
+green red
+1.0.1
+.1.1.
+0.1.0
+.1.1.
+1.0.1
+
+1
+white lightgrey
+00000
+00000
+00100
+00000
+00000
+
+2
+white grey
+00000
+00100
+00000
+00100
+00000
+
+3
+white darkgray
+00000
+01000
+00100
+00010
+00000
+
+4
+white black 
+00000
+01010
+00000
+01010
+00000
+
+5
+white darkblue
+00000
+01010
+00100
+01010
+00000
+
+6
+white blue 
+00000
+01010
+01010
+01010
+00000
+
+7
+white lightblue 
+00000
+01010
+01110
+01010
+00000
+
+8
+white lightred
+00000
+01110
+01010
+01110
+00000
+
+256
+white red
+00000
+01110
+01110
+01110
+00000
+
+512
+white darkred
+00000
+01110
+01110
+01110
+00000
+
+1024
+white orange
+00000
+01110
+01110
+01110
+00000
+ 
+2048
+white yellow
+00000
+01110
+01110
+01110
+00000
+
+glow
+yellow
+00000
+0...0
+0...0
+0...0
+00000
+
+glow2
+orange
+00000
+0...0
+0...0
+0...0
+00000
+
+overabove
+blue
+00000
+.....
+.....
+.....
+.....
+
+
+copy1
+transparent
+
+copy2
+transparent
+
+vert
+transparent
+
+didmove
+transparent
+
+specialcase
+transparent
+
+(To fix the screen)
+nouseplayer
+green red
+1.0.1
+.1.1.
+0.1.0
+.1.1.
+1.0.1
+=======
+LEGEND
+=======
+
+Player = 1 or 2 or 3 or 4 or 5 or 6 or 7 or 8 or 256 or 512 or 1024 or 2048 or nouseplayer
+
+. = Background
+# = wall
+? = nouseplayer
+c = copy1
+d = copy2
+o = overabove and specialcase
+s = specialcase
+=======
+SOUNDS
+=======
+
+sfx0 35354707
+sfx1 50561103
+sfx2 36214503
+sfx3 78336708
+endgame 111111111111111111111111111111
+endlevel 63354508
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Player, wall
+c,d
+vert
+glow, glow2
+overabove
+didmove
+specialcase
+======
+RULES
+======
+(indication)
+random[up Player]->[up Player vert]
+random[down Player]->[down Player vert]
+(If one put the vertical arrow, than switsch copy1 and copy2)
+random [vert][copy1][copy2] -> [vert][copy2][copy1]
+
+
+[ > player | no Player no wall] -> [ | > player didmove] sfx0
+
+
+[ > 1 | 1 ] -> [ | 2 didmove  ] sfx0
+[ > 2 | 2 ] -> [ | 3 didmove  ] sfx0
+[ > 3 | 3 ] -> [ | 4 didmove  ] sfx0
+[ > 4 | 4 ] -> [ | 5 didmove  ] sfx0
+[ > 5 | 5 ] -> [ | 6  didmove ] sfx0
+[ > 6 | 6 ] -> [ | 7  didmove ] sfx0
+[ > 7 | 7 ] -> [ | 8 didmove  ] sfx0
+[ > 8 | 8 ] -> [ | 256 didmove  ] sfx1
+[ > 256 | 256 ] -> [ | 512 didmove  ] sfx2
+[ > 512 | 512 ] -> [ | 1024 didmove  ] sfx3
+[ > 1024 | 1024 ] -> [ | 2048 didmove  ]
+
+
+
+(horizontal move --- copy1 to copy2)
+
+[copy1 Player][copy2] -> [copy1 Player][copy2 Player]
++ [copy1 no Player][copy2] -> [copy1 no Player][copy2 no Player]
++ right[copy1|]->[|copy1]
++ right[copy2|]->[|copy2]
+
+random down [copy1|] ->[|copy1]
+random down [copy2|] ->[|copy2]
+
+[copy1 Player][copy2] -> [copy1 Player][copy2 Player]
++ [copy1 no Player][copy2] -> [copy1 no Player][copy2 no Player]
++ left[copy1|]->[|copy1]
++ left[copy2|]->[|copy2]
+
+random down [copy1|] ->[|copy1]
+random down [copy2|] ->[|copy2]
+
+[copy1 Player][copy2] -> [copy1 Player][copy2 Player]
++ [copy1 no Player][copy2] -> [copy1 no Player][copy2 no Player]
++ right[copy1|]->[|copy1]
++ right[copy2|]->[|copy2]
+
+random down [copy1|] ->[|copy1]
+random down [copy2|] ->[|copy2]
+
+[copy1 Player][copy2] -> [copy1 Player][copy2 Player]
++ [copy1 no Player][copy2] -> [copy1 no Player][copy2 no Player]
++ left[copy1|]->[|copy1]
++ left[copy2|]->[|copy2]
+
+(twist)
+random right [copy1|||] ->[|||copy1]
+random right [copy2||||||||||] ->[||||||||||copy2]
+random [copy1 Player][copy2] -> [copy1 Player][copy2 Player]
+random [copy1 no Player][copy2] -> [copy1 no Player][copy2 no Player]
+random right [copy1|] ->[|copy1]
+random right [copy2|] ->[|copy2]
+random [copy1 Player][copy2] -> [copy1 Player][copy2 Player]
+random [copy1 no Player][copy2] -> [copy1 no Player][copy2 no Player]
+random up [copy1|] ->[|copy1]
+random up [copy2|] ->[|copy2]
+random [copy1 Player][copy2] -> [copy1 Player][copy2 Player]
+random [copy1 no Player][copy2] -> [copy1 no Player][copy2 no Player]
+random left [copy1|] ->[|copy1]
+random left [copy2|] ->[|copy2]
+random [copy1 Player][copy2] -> [copy1 Player][copy2 Player]
+random [copy1 no Player][copy2] -> [copy1 no Player][copy2 no Player]
+
+(second twist)
+random right [copy1|||||||] ->[|||||||copy1]
+random right [|||||||copy2] ->[copy2|||||||]
+random [copy1 Player][copy2] -> [copy1 Player][copy2 Player]
+random [copy1 no Player][copy2] -> [copy1 no Player][copy2 no Player]
+random right [copy1|] ->[|copy1]
+random right [copy2|] ->[|copy2]
+random [copy1 Player][copy2] -> [copy1 Player][copy2 Player]
+random [copy1 no Player][copy2] -> [copy1 no Player][copy2 no Player]
+random down [copy1|] ->[|copy1]
+random down [copy2|] ->[|copy2]
+random [copy1 Player][copy2] -> [copy1 Player][copy2 Player]
+random [copy1 no Player][copy2] -> [copy1 no Player][copy2 no Player]
+random left [copy1|] ->[|copy1]
+random left [copy2|] ->[|copy2]
+random [copy1 Player][copy2] -> [copy1 Player][copy2 Player]
+random [copy1 no Player][copy2] -> [copy1 no Player][copy2 no Player]
+
+
+(return)
+left[copy1|]->[|copy1]
++ left[copy2|]->[|copy2]
+random up [copy1|||] ->[|||copy1]
+random up [copy2|||] ->[|||copy2]
+
+(If one put the vertical arrow, than switsch back copy1 and copy2)
+random [vert][copy1][copy2] -> [vert][copy2][copy1]
+(destroy indicator)
+[vert]-> []
+
+[glow] -> []
+random [ no Player no wall ][Player didmove] -> [glow][Player]
+[didmove]->[]
+
+up [glow specialcase|||||]->[glow specialcase|||||glow2]
+down [glow specialcase|||||]->[glow specialcase|||||glow2]
+left [glow2 specialcase|||||||]->[glow2 specialcase|||||||glow]
+right [glow2 specialcase|||||||]->[glow2 specialcase|||||||glow]
+[glow2]->[]
+
+up [glow no specialcase|||||]->[glow|||||glow]
+down [glow no specialcase|||||]->[glow|||||glow]
+[glow] -> [glow 1]
+
+==============
+WINCONDITIONS
+==============
+some 2048
+
+
+=======
+LEVELS
+=======
+
+Message Welcome to the twisted world!
+
+Message The original version of 2048 is here: https://gist.github.com/tinjoonatan/ada1f82d7a51bad137083c4133ad4fc2
+
+Message Here you would have a brand new experience of the game 2048. It's simpler since there are more spaces for you to move.
+
+Message There is a bug for the sound, and I don't know how to repair it in efficient way.
+
+Message Now enjoy it!
+
+?############
+#c8..###....#
+#....###....#
+#..oo###..oo#
+#..ss###..ss#
+#############
+#d8..###....#
+#....###....#
+#..ss###..ss#
+#..ss###..ss#
+#############
+
+
+
+Message Congratulations!
+Message You can make more games on this special twisted world! It's a special Riemann surface with constant zero curvature. For more ideas of this twisted world, see https://github.com/ramified/codelearning/blob/main/code.pdf
+Message For me, I may rebuild it when I learn python. Creating delicate games is harder than any other programming, since something is missing.
 \end{lstlisting}
 \section{POV-Ray}
 \subsection{安装+初始代码}
