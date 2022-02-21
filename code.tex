@@ -354,7 +354,9 @@ sieve.extend(100)
 sieve._list
 \end{lstlisting}
 \subsection{调试}
-单行注释使用井号\lstinline|#|,多行注释使用\lstinline|'''注释''' or """注释"""|。快捷键为Ctrl+/.
+运行代码的快捷键为Shift+Enter.单行注释使用井号\lstinline|#|,多行注释使用\lstinline|'''注释''' or """注释"""|。快捷键为Ctrl+/.
+
+在Cocalc中输入部分单词可以按Tab键补全代码。
 
 控制输入使用函数\lstinline|input()|。
 
@@ -476,6 +478,8 @@ for a1,a2,a3,a4,a5,a6,a7 in orderedCouple1: # do everything in one line*
 print('There are {0} results'.format(k))
 
 \end{lstlisting}
+
+
 \section{sage}
 \subsection{安装+初始代码}
 Sage是专为数学家设计的程序，基于python，通过集成大量数据库，使用其中的数学函数来简化编程难度。我使用的是网上在线的编辑器\href{https://cocalc.com/projects}{CoCalc},在New中生成Sage worksheet.
@@ -486,6 +490,28 @@ sage: print("Halloworld!233") #The code is the same as python
 \end{lstlisting}
 \subsection{基本逻辑}
 本节的基本内容参见\href{https://www.osgeo.cn/sagemath/thematic_tutorials/tutorial-programming-python.html#tutorial-programming-python}{这里}。
+
+在矩阵群中的计算可以模仿这个例子。
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+G=SL(2,ZZ)
+A = G([0,-1,1,0])
+B = G([1,1,0,1])
+A*B*A^(-1)
+\end{lstlisting}
+
+在指定代数结构的时候可以同时指定生成元。定义数域须先生成多项式环再使用其中的多项式定义。
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+R.<t> = PolynomialRing(QQ) #R= Q[t]
+F.<i>=NumberField(t^2+1) #Define number field
+OF=F.ring_of_integers() #Define ring of integers
+[OF.0,OF.1] #Find the basis of ring of integers
+T.<z>= PolynomialRing(OF)
+L.<l>=NumberField(z^2+i) #define number field in the same way again
+LL.<u> = L.absolute_field() #Change the base field
+Q8.<c>= CyclotomicField(8) #Second way to construct field
+Q8.is_isomorphic(LL)
+\end{lstlisting}
+
 \subsection{调试}
 大部分同python.
 
@@ -497,6 +523,9 @@ sage: print("Halloworld!233") #The code is the same as python
 \href{https://wiki.sagemath.org/quickref}{Sage Quick Reference Cards}
 
 \href{http://gregorybard.com/Sage.html}{Sage for Undergraduates}
+
+\href{http://dl.lateralis.org/public/sagebook/sagebook-ba6596d.pdf}{Sage for Computational
+Mathematics}
 
 \href{https://www.youtube.com/watch?v=A4j3qbCn1PM&list=PLYpVTXjEi1odEHr_-4fkbudq-gQnljSso&index=3}{基本例子的视频教程}
 
@@ -517,6 +546,90 @@ sage: tauM
 G5 = Gamma(5)
 A   = FareySymbol (G5). fundamental_domain ( show_pairing = true )
 show( A ,figsize=10 , fontsize=10 )
+\end{lstlisting}
+
+这个例子为了实现\href{https://ctnt-summer.math.uconn.edu/wp-content/uploads/sites/1632/2020/06/CTNT2020-CompNT-Exercises.pdf}{这里}的作业,练练手感。
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+#This document solves the problems in https://ctnt-summer.math.uconn.edu/wp-content/uploads/sites/1632/2020/06/CTNT2020-CompNT-Exercises.pdf
+
+# Exercise 5
+# https://ask.sagemath.org/question/41952/int-object-has-no-attribute-is_prime/
+def relative_prime(a,N,X):
+    primenumber=0
+    for i in range(a,X,N):
+        if is_prime(i):
+            primenumber=primenumber+1
+    return primenumber
+relative_prime(1,5,10000)
+# v = [(x, relative_prime(1,5,x)) for x in [6,11,..,10000]]
+# show(points(v, rgbcolor=(0.2,0.6, 0.1), pointsize=2))
+def quotient(X):
+    return N(relative_prime(1,5,X)/X*ln(X))
+# w = [(x, quotient(x)) for x in [6,26,..,10000]]
+# show(points(w, rgbcolor=(0.2,0.6, 0.1), pointsize=2))
+
+
+# Exercise 6 & 7
+from scipy import integrate
+def newpi(X):
+    sum=0
+    for i in range(2,X):
+        sum=sum+N(1/ln(i))
+    return sum
+def Li(X):
+    def g(t):
+        return N(1/ln(t))
+    return integrate.quad(g, 2, X)[0]
+def compare(X):
+    return N(X/ln(X))
+# newpiplot = [(x, newpi(x)) for x in [5,25,..,1000]]
+# oldpiplot = [(x, prime_pi(x)) for x in [5,25,..,1000]]
+# compareplot = [(x, compare(x)) for x in [5,25,..,1000]]
+# Liplot = [(x, Li(x)) for x in [5,25,..,1000]]
+# show(points(newpiplot, rgbcolor=(0.2,0.6, 0.1), pointsize=2)+points(oldpiplot, rgbcolor=(0.2,0.2, 1), pointsize=5)+points(compareplot, rgbcolor=(0.9,0.1, 0.1), pointsize=2) +points(Liplot, rgbcolor=(0,0, 0), pointsize=2))
+
+compare1plot = [(x, prime_pi(x)/compare(x)) for x in [5,25,..,1000]]
+compare2plot = [(x, prime_pi(x)/newpi(x)) for x in [5,25,..,1000]]
+compare3plot = [(x, prime_pi(x)/Li(x)) for x in [5,25,..,1000]]
+show(points(compare1plot, rgbcolor=(1,0, 0), pointsize=5)+points(compare2plot, rgbcolor=(0,1,0), pointsize=5)+points(compare3plot, rgbcolor=(0,0,1), pointsize=5))
+
+# Exercise 8
+# https://ask.sagemath.org/question/51114/how-can-i-find-number-of-elements-of-n-torsion-points-on-an-elliptic-curve-over-finite-field/
+# p = 1233.next_prime()
+# E = EllipticCurve(GF(p),[3,12])
+p = 100.next_prime()**3
+E = EllipticCurve(GF(p),[1,0])
+E.abelian_group().order().factor()
+E.abelian_group()
+
+# Exercise 9
+Qpadic=Qp(53,prec=20) #By changing the number of q, we know that \phi_7(x) factors exactly when q \mod 1,2,4,6 mod 7.
+R.<t> = PolynomialRing(Qpadic)
+g= t^6+t^5+t^4+t^3+t^2+t+1
+g.factor()
+
+# Exercise 10
+# https://stackoverflow.com/questions/132988/is-there-a-difference-between-and-is
+Q32.<c>= CyclotomicField(32) 
+G = Q32.galois_group()
+# Some standard test of the group
+# G.number_field() is Q32
+# G.order()
+# G.is_galois()
+# G.is_abelian()
+# G.is_cyclic()
+# G.transitive_label()
+# G.list()
+for K in G.normal_subgroups():
+    if K.order() == 8: # We can't replace "==" with "is"
+        print("we've found")
+        newfield=K.fixed_field(polred=True)[0]
+        print("The number field is a ",newfield,"with Galois group of order",newfield.galois_group().order())
+for K in G.normal_subgroups():
+    if K.order() == 4: # We can't replace "==" with "is"
+        newfield=K.fixed_field(polred=True)[0]
+        if newfield.galois_group().is_cyclic():
+             print("Congrats! The number field is a ",newfield)
 \end{lstlisting}
 \section{Manim Community}
 \subsection{安装+初始代码}
@@ -2360,6 +2473,9 @@ excitement/beauty:
 The literature on ... is vast and often technical, but the underlying ideas are possessing of an undeniable beauty.
 The excitement provoked by ... stimulated a period of intense and widespread activity.
 convey the breadth and excitement of the ideas
+At first sight, ... does not seem
+very natural from a ... perspective. However, at least for ..., ... is important from
+... perspective, since...
 
 connect different areas:
 unveils intricate links between
@@ -2402,6 +2518,7 @@ Der Fisch war nicht üppig.
 Es war ein großer Reinfall!
 Wir müssen feststellen, inwiefern sich die Situation geändert hat.
 ums Leben kommen
+Jeder ist seines Glückes Schmied.
 \end{lstlisting}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
