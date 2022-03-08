@@ -631,6 +631,34 @@ for K in G.normal_subgroups():
         if newfield.galois_group().is_cyclic():
              print("Congrats! The number field is a ",newfield)
 \end{lstlisting}
+这个例子为了实现\href{https://ctnt-summer.math.uconn.edu/wp-content/uploads/sites/1632/2020/06/CTNTsieves_problems.pdf}{这里}的作业,练练手感。其中有实现散点/线状图、多数据的作图。
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+︠0246576f-8987-4797-b380-43a732218552s︠
+def primedivisors(n):
+    input1 = divisors(n)
+    result = 0
+    for i in range(len(input1)):
+        if is_prime(input1[i]):
+            result=result+1
+    return result
+# pp1=point([(n,primedivisors(n)) for n in (1..100)],rgbcolor=(1,0,0))
+# p1=plot(pp1)
+# pp2=point([(n,sigma(n,1)) for n in (1..100)],rgbcolor=(0,1,0))
+# p2=plot(pp2)
+# pp3=point([(n,euler_phi(n)) for n in (1..100)],rgbcolor=(0,0,1))
+# p3=plot(pp3)
+# p1
+qq1=plot(lambda x:sum(primedivisors(n) for n in (1..floor(x))),(x,1,100),rgbcolor=(1,0,0))
+qguess1=plot(x*log(log(x))+x/7,(x,1,100),rgbcolor=(1,0,0))
+qq1+qguess1
+# qq2=plot(lambda x:sum(sigma(n,1) for n in (1..floor(x))),(x,1,100),rgbcolor=(1,0,0))
+# qguess2=plot(x^2/1.23,(x,1,100),rgbcolor=(1,0,0))
+# qq2+qguess2
+# a3=N(1/(2*zeta(2)))
+# qq3=plot(lambda x:sum(euler_phi(n) for n in (1..floor(x))),(x,1,100),rgbcolor=(1,0,0))
+# qguess3=plot(x^2*a3,(x,1,100),rgbcolor=(1,0,0))
+# qq3+qguess3
+\end{lstlisting}
 \section{Manim Community}
 \subsection{安装+初始代码}
 这是做数学科普视频的软件，同样基于python,其对数学公式的支持远远超过了其他软件，而且是开源的。不想安装的懒惰者可以试试\href{https://eulertour.com/lab}{在线编译网页EulerTour}。
@@ -2461,6 +2489,7 @@ technical problem:
 achieve some technical control
 Ceci nous contraint à prouver ... par une voie détournée
 It should be noted that even if one is interested only in ..., the proofs often involve more general ...
+... are pivotal in this matter.
 
 ask for details:
 I find there are a lot of cool ideas in your answers, but I would be grateful if you could be a bit more precise.
@@ -2468,6 +2497,7 @@ I find there are a lot of cool ideas in your answers, but I would be grateful if
 digression:
 We now want to describe the ... This can be done in a more straightforward way, but we prefer to include a short digression in ... theory as this allows us to mention a general fact which is in the background of a later construction anyhow.
 Nevertheless, the reader can skip this digression without loss of continuity and continue with ... instead.
+Choosing a linear order in presenting the foundations is no easy task.
 
 excitement/beauty:
 The literature on ... is vast and often technical, but the underlying ideas are possessing of an undeniable beauty.
@@ -2519,6 +2549,15 @@ Es war ein großer Reinfall!
 Wir müssen feststellen, inwiefern sich die Situation geändert hat.
 ums Leben kommen
 Jeder ist seines Glückes Schmied.
+Unerhörtes ist geschehen.
+Große und unübersehbare Arbeit steht uns bevor.
+Wir müssen alle Kräfte anspannen, um ...
+eine Ausgleich zwischen ... und ... herbeigeführt haben
+Damit wurden die Chancen, die ..., nicht wahrgenommen.
+auf ... angewiesen sein
+... suchen die Wahrnehmung des Betrachters zu lenken.
+hetzend zur Arbeit begeben
+Es war auf Schritt und Tritt zu spüren, dass...
 \end{lstlisting}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
