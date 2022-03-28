@@ -356,7 +356,7 @@ sieve._list
 \subsection{调试}
 运行代码的快捷键为Shift+Enter.单行注释使用井号\lstinline|#|,多行注释使用\lstinline|'''注释''' or """注释"""|。快捷键为Ctrl+/.
 
-在Cocalc中输入部分单词可以按Tab键补全代码。
+在Cocalc中输入部分单词可以按Tab键补全代码，按住ctrl键可以多点输入。
 
 控制输入使用函数\lstinline|input()|。
 
@@ -529,6 +529,8 @@ Mathematics}
 
 \href{https://www.youtube.com/watch?v=A4j3qbCn1PM&list=PLYpVTXjEi1odEHr_-4fkbudq-gQnljSso&index=3}{基本例子的视频教程}
 
+\href{http://www.math.hawaii.edu/~williamdemeo/GAP/GapNotes.pdf}{如何使用GAP处理群论}
+
 除了sage外还有一些数学自动证明软件，比如\href{https://leanprover-community.github.io/}{Lean theorem prover}.只是我懒不想学自动证明。
 \subsection{(想保留的)例子}
 
@@ -546,6 +548,30 @@ sage: tauM
 G5 = Gamma(5)
 A   = FareySymbol (G5). fundamental_domain ( show_pairing = true )
 show( A ,figsize=10 , fontsize=10 )
+\end{lstlisting}
+
+这个例子能帮助我验证Hankel determinant的性质，其中用到了矩阵的构造和形式幂级数.
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+#Here is a check for Hankel determinants
+# construction of Matrices https://doc.sagemath.org/html/en/reference/matrices/sage/matrix/constructor.html
+K.<x> = QQ[[]]; 
+f = (x^3 + 5*x + 13) / (x^3 + 17*x + 2)
+ListA = f.coefficients()
+A = matrix(QQ, 4, 4, lambda x, y: ListA[x+y+4])
+A
+det(A)
+\end{lstlisting}
+
+这个例子为了计算常见平面光滑曲线的bitangles和flexs的数目。其中用到了多项式求值和表格的输出。
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+#Here is a computation of dual curves.
+#ref for table: https://doc.sagemath.org/html/en/reference/misc/sage/misc/table.html
+R.<d> = QQ[]; 
+K=R.fraction_field()
+dd = d * (d-1)
+u = vector(K, [dd*(dd-1)-d, 1/2 * (dd-1)*(dd-2) - 1/2 * (d-1)*(d-2)])
+A = matrix(K, [[2,3],[1,1]])
+table(columns=[(x,(A^(-1)*u)[0].subs(d=x),(A^(-1)*u)[1].subs(d=x)) for x in [2..9]], header_column=["$d$", "$b$", "$f$"], frame=True)
 \end{lstlisting}
 
 这个例子为了实现\href{https://ctnt-summer.math.uconn.edu/wp-content/uploads/sites/1632/2020/06/CTNT2020-CompNT-Exercises.pdf}{这里}的作业,练练手感。
@@ -2106,109 +2132,7 @@ Pause_when_Done=off
 \href{https://wyagd001.github.io/zh-cn/docs/AutoHotkey.htm}{官方文档}.
 ;
 \subsection{(想保留的)例子}
-这个例子模拟鼠标和键盘，使用了条件和循环语句。
-\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
-^j::
-Sleep,300
-loop, 1
-{
-    Random, rand, 1, 999
-	CoordMode, ToolTip
-	Click, 1743 81 1
-	Sleep, 100
-	Click, 36 64 2
-	Sleep, 100	
-	Send, {rand}.0.0.0
-	Sleep, 100
-	Click, 433 323 2
-	Sleep, 100
-	Send, 0.0.0.0
-	Sleep, 100
-	Click, 452 321 1
-	Sleep, 100		
-	if GetKeyState("F10")
-	{
-	break
-	}
-	Sleep,1000
-}
-Return 
-\end{lstlisting}
-这是第二版本，能够95\%成功提交。
-\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
-#MaxThreadsPerHotkey 3
-^j::  ; 热键(可根据您的喜好改变此热键).
-#MaxThreadsPerHotkey 1
-if KeepWinZRunning  ;  这说明一个潜在的线程正在下面的循环中运行.
-{
-    KeepWinZRunning := false  ; 向那个线程的循环发出停止的信号.
-    return  ; 结束此线程, 这样才可以让下面的线程恢复并得知上一行所做的更改.
-}
-; 否则:
-KeepWinZRunning := true
-rand := 0
-Loop
-{
-    ; 以下四行是您要重复的动作(可根据您的需要修改它们):
-    MyNumber :=  rand . ".233.233.233"
-	Click, 1743 81 1
-	Sleep, 70	
-	Click, 74 74 2
-	Sleep, 70	
-	Send, %MyNumber%
-	Sleep, 70	
-	Click, 429 346 2
-	Sleep, 80
-	Send, %MyNumber%
-	Sleep, 90
-	Click, 1073 31 1
-	Send ^{Click 432 360 1}
-	Sleep, 190
-	rand += 1
-    ; 但请不要修改下面剩下的内容.
-    if not KeepWinZRunning  ; 用户再次按下 Win-Z 来向循环发出停止的信号.
-        break  ; 跳出此循环.
-}
-KeepWinZRunning := false  ; 复位, 为下一次使用热键做准备.
-return
-\end{lstlisting}
-第三个版本可以提交254个，还剩2个。。。
-\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
-#MaxThreadsPerHotkey 3
-^j::  
-#MaxThreadsPerHotkey 1
-if KeepWinZRunning  
-{
-    KeepWinZRunning := false  
-    return  
-}
-KeepWinZRunning := true
-rand := 0
-Loop
-{
-    MyNumber :=  rand . ".233.233.233"
-	Click, 1751 91 1
-	Sleep, 120
-	Click, 74 74 2
-	Sleep, 50	
-	Send, %MyNumber%
-	Sleep, 70	
-	Click, 429 346 2
-	Sleep, 80
-	Send, %MyNumber%
-	Sleep, 50
-	Click, 587 747 1
-	;Click, 1073 31 1
-	Send ^{Click 387 437 1}
-	Sleep, 60	
-	rand += 1
-    if not KeepWinZRunning  
-        break  
-}
-KeepWinZRunning := false  
-return
-\end{lstlisting}
-最后成功的版本：
+这个例子模拟鼠标和键盘，使用了条件和循环语句。最后成功的版本：
 \begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
 #MaxThreadsPerHotkey 3
 ^j::  
@@ -2273,6 +2197,10 @@ return
 
 ::wrt::with respect to
 
+::wlog::without loss of generality
+
+::ptc::particular
+
 ::geo::geometry
 
 ::cont::continuous
@@ -2282,6 +2210,8 @@ return
 ::sm::smooth
 
 ::mfld::manifold
+
+::nbhd::neighbourhood
 
 ::lb::line bundle
 
@@ -2299,11 +2229,25 @@ return
 
 ::AV::abelian variety
 
+::AR::Auslander-Reiten
+
+::ARtr::Auslander-Reiten translation
+
+::ARth::Auslander-Reiten theory
+
+::ARs::Auslander–Reiten sequence
+
+::ARq::Auslander–Reiten quiver
+
 ::ell::elliptic curve
+
+::Weq::Weierstrass equation
 
 ::proj::projective ;be careful for projection
 
 ::inj::injective
+
+::emb::embedding
 
 ::fct::function
 
@@ -2394,15 +2338,20 @@ return
 
 ::pfv::partial flag variety
 
+::qpfv::quiver partial flag variety
+
 ::qgr::quiver Grassmannian
 
 ::dv::dimension vector
+
+::msm::minimal sectional mono
 
 #IfWinActive
 ^j::  
 Run, "F:\hide\Snipaste\Snipaste.exe"
 Run, "F:\hide\WiFi共享大师\WiFiMaster.exe"
 return
+
 
 
 \end{lstlisting}
@@ -2444,10 +2393,40 @@ return
 
 脑洞：利用扭结来制作游戏，例如“贪吃蛇”。 需要的时候考虑离散化，也可以考虑离散版本的Reidemeister moves。游戏制作的难点在于如何判定成功(好的Goal是啥。很难去说明一个扭结和另一个扭结等价)
 扭结的相关知识可参考\href{https://www.youtube.com/watch?v=nYz3pRk1cCA}{这个视频}。Ballance如果能添加磁场和电场，考虑带电小球(不考虑电磁感应)的话就是高中物理的必玩游戏了。
-
+\subsection{数学论文自检流程}
+这里列出自己常见的语法/格式错误清单，以期在下次能减少错误。
+\begin{itemize}
+\item 标点
+\begin{itemize}
+\item 人名之间用--
+\item footnote写在标点之后
+\item 中文文档：同一全半角
+\item 引号的修改
+\item 行间公式末尾句号,图表整句标题末尾句号
+\end{itemize}
+\item 排版
+\begin{itemize}
+\item 证明符号前移\footnote{可以使用\textbackslash belowdisplayskip=-12pt或者align*环境中的\textbackslash qedhere达成目标}
+\item 开头大写，包括图表整句标题、环境后标题
+\end{itemize}
+\end{itemize}
 \subsection{数学相关句子模板}
 这里收集“啊我之前不知道咋表达，这就是我当时卡住的时候可以用的句子！”的外文句子。绝对是非原创的。
 \begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+
+refer to:
+The main references for the material covered in this section are ...
+A more detailed overview of this chapter may be obtained by reading the introductions to the various sections.
+More detailed treatments appear in ..., to which we will refer for proofs.
+mimic the arguments for ...
+We refrain from giving a more detailed introduction here and instead refer the reader to the table of contents as well as to the short introductions of the individual sections.
+References for ... include the monograph ... and the more introductory account ...
+The result of ... was catalyzed by reading...
+
+Disclamer:
+minor errors and obscurities, a couple of significant lapses
+I am by far not a person with serious knowledge/understanding of ..., thus in the ... I may oversimplify/overcomplicate things, be inaccurate, or even wrong, and miss subtelties.
+I have actually been meaning to correct some typos for a while and so I will hopefully do all these corrections in the next few weeks.
 
 notations:
 Beginning with..., only ... are considered.
@@ -2463,13 +2442,8 @@ While for the most part this convention seems to work well, it occasionally lead
 We try to flag this artifice when it occurs.
 The following abuse of notation will prove handy:...
 
-refer to:
-The main references for the material covered in this section are ...
-A more detailed overview of this chapter may be obtained by reading the introductions to the various sections.
-More detailed treatments appear in ..., to which we will refer for proofs.
-mimic the arguments for ...
-We refrain from giving a more detailed introduction here and instead refer the reader to the table of contents as well as to the short introductions of the individual sections.
-References for ... include the monograph ... and the more introductory account ...
+thanks:
+warm hospitality
 
 example and generalization:
 prototypical example
@@ -2480,16 +2454,13 @@ eschew all generality
 exploit special features to abbreviate/simplify the arguments
 tinker with the examples
 
-Disclamer:
-minor errors and obscurities, a couple of significant lapses
-I am by far not a person with serious knowledge/understanding of ..., thus in the ... I may oversimplify/overcomplicate things, be inaccurate, or even wrong, and miss subtelties.
-I have actually been meaning to correct some typos for a while and so I will hopefully do all these corrections in the next few weeks.
-
 technical problem:
 achieve some technical control
 Ceci nous contraint à prouver ... par une voie détournée
 It should be noted that even if one is interested only in ..., the proofs often involve more general ...
 ... are pivotal in this matter.
+For a rigorous definitions of ... we would need the notion of ..., which would take us too far away from the subject of ...
+
 
 ask for details:
 I find there are a lot of cool ideas in your answers, but I would be grateful if you could be a bit more precise.
