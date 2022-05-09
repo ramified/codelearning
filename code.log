@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.15)  28 MAR 2022 23:54
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.15)  7 MAY 2022 16:30
 entering extended mode
 **./code.tex
 (code.tex
@@ -1147,15 +1147,16 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [55]
-
-LaTeX Warning: Empty `thebibliography' environment on input line 2560.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2563.
 [56]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2563.
+
+LaTeX Warning: Empty `thebibliography' environment on input line 2577.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2580.
+[57]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2580.
  (code.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 2563.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2563.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 2580.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2580.
 
 Package rerunfilecheck Info: File `code.out' has not changed.
 (rerunfilecheck)             Checksum: A07C379306EF1923F08AAF7613E81570.
@@ -1163,15 +1164,15 @@ Package rerunfilecheck Info: File `code.out' has not changed.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2563.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2580.
  ) 
 Here is how much of TeX's memory you used:
- 27226 strings out of 427748
- 513584 string characters out of 3150981
+ 27286 strings out of 427748
+ 514316 string characters out of 3150981
  1062225 words of memory out of 3000000
- 30868 multiletter control sequences out of 15000+200000
+ 30928 multiletter control sequences out of 15000+200000
  541373 words of font info for 86 fonts, out of 3000000 for 9000
  1489 hyphenation exceptions out of 8191
  52i,7n,68p,534b,1931s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on code.pdf (56 pages).
+Output written on code.pdf (57 pages).
