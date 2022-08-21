@@ -479,6 +479,34 @@ print('There are {0} results'.format(k))
 
 \end{lstlisting}
 
+一个失败的计算，尝试画zeta函数虚部为0的地平线。(不过Gamma函数画出来已经比Mathematica漂亮了，精度也高一些)
+\begin{lstlisting}[language=iPython]
+# zeta function: https://mpmath.org/doc/current/functions/zeta.html
+#                https://github.com/empet/Math/blob/master/Riemann-Zeta.ipynb
+# https://stackoverflow.com/questions/36429875/create-mpf-from-array
+# contour demo: https://matplotlib.org/stable/gallery/images_contours_and_fields/contour_demo.html
+import numpy as np
+import matplotlib.cm as cm
+import matplotlib.pyplot as plt
+from scipy.special import gamma, factorial
+# importing "cmath" for complex number operations
+import cmath
+
+np_zeta = np.frompyfunc(mp.zeta, 1, 1)
+
+delta = 0.1
+x = np.arange(-15.0, 15.0, delta)
+y = np.arange(-15.0, 15.0, delta)
+X, Y = np.meshgrid(x, y)
+
+Z= gamma(X + 1j*Y).imag 
+# np_zeta(X+1j*Y).imag
+
+fig, ax = plt.subplots()
+CS = ax.contour(X, Y, Z)
+# ax.clabel(CS, inline=True, fontsize=10)
+# ax.set_title('Simplest default with labels')
+\end{lstlisting}
 
 \section{sage}
 \subsection{安装+初始代码}
@@ -685,6 +713,8 @@ qq1+qguess1
 # qguess3=plot(x^2*a3,(x,1,100),rgbcolor=(1,0,0))
 # qq3+qguess3
 \end{lstlisting}
+
+
 \section{Manim Community}
 \subsection{安装+初始代码}
 这是做数学科普视频的软件，同样基于python,其对数学公式的支持远远超过了其他软件，而且是开源的。不想安装的懒惰者可以试试\href{https://eulertour.com/lab}{在线编译网页EulerTour}。
@@ -698,6 +728,16 @@ qq1+qguess1
 实例:3B1B的所有动画视频，\href{https://www.youtube.com/watch?v=ACZC_XEyg9U&list=PLnQX-jgAF5pTkwtUuVpqS5tuWmJ-6ZM-Z&index=10}{Dirac's belt trick}和\href{https://www.bilibili.com/video/BV1sK4y1V7TE}{自由变形动画}。
 
 \section{latex} 
+\subsection{基本逻辑}
+这里存些常用常忘的代码。
+
+$\stackrel{\sim}{\longrightarrow}$
+
+\text{ \rotatebox[origin=c]{270}{$\circlearrowleft$} }
+
+Beamer从上往下:\lstinline|\begin{overlayarea}{\linewidth}{\textheight}\end{overlayarea}|
+
+
 
 \subsection{本文参考文献}
 
@@ -717,6 +757,8 @@ qq1+qguess1
 \href{https://tex.stackexchange.com/questions/322268/table-of-contents-amsart}{如何在amsart下调整目录}
 
 \href{https://tex.stackexchange.com/questions/11542/left-and-right-subscript-superscript}{上下左右标}
+
+tikzcd中的\href{https://tex.stackexchange.com/questions/289295/column-alignment-in-tikzcd}{列对齐}和\href{https://tex.stackexchange.com/questions/411742/tikzcd-how-to-get-even-column-spacing}{无视文字宽度对齐},\href{https://tex.stackexchange.com/questions/325297/how-to-scale-a-tikzcd-diagram}{全局伸缩}以及\href{https://tex.stackexchange.com/questions/84945/adjustbox-ate-my-newlines}{解决换行问题}
 \subsection{非初等但是值得学习的宏包}
 \begin{itemize}
 \item \href{https://ctan.org/pkg/pgf}{Tikz}:数学系画图专属宏包，其子宏包Tikzcd也是相当实用\footnote{tikzcd is in fact only an improvement of matrix in TikZ. Cited from \href{https://tex.stackexchange.com/questions/484743/format-single-node-in-tikzcd}{here}.}，为了简化制图流程大佬们甚至做了两个网站\href{https://tikzcd.yichuanshen.de/}{tikzcd-editor}和\href{https://q.uiver.app/}{quiver: a modern commutative diagram editor},都非常实用。 另外还可以尝试\href{https://tikzit.github.io/}{TikZiT}来辅助画图。
@@ -776,6 +818,17 @@ ListPlot[{Style[{{1, 1}, {2, 3}, {2, 4}},
    Interpreter["Color"]["RGB 255 0 0"]], 
   Style[{{1.5, 1}, {2.3, 3}, {2.4, 4}}, 
    Interpreter["Color"]["RGB 0 255 0"]]}]
+\end{lstlisting}
+这个例子画一些亚纯函数的"Dedekind tessellation".不知道怎么才能提高精度以及把白色部分给填充了.
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+ContourPlot[Im[Zeta[x + I y]], {x, -15, 15}, {y, -15, 15}, 
+ Contours -> {0}, Mesh -> All]
+ContourPlot[Im[Gamma[x + I y]] == 0, {x, -15, 15}, {y, -15, 15}, 
+ Contours -> {0}]
+Grid[Table[
+  ContourPlot[Im[Gamma[x + I y]], {x, -15, 15}, {y, -15, 15}, 
+   PlotPoints -> pp, 
+   MaxRecursion -> mr], {mr, {0, 2}}, {pp, {5, 15}}]]
 \end{lstlisting}
 \section{PuzzleScript}
 游戏制作软件:Unity可以由免费开源游戏引擎\href{https://docs.godotengine.org/zh_CN/stable/index.html}{Godot}替代。简单的2D游戏可以先尝试用PuzzleScript实现。
@@ -2101,6 +2154,10 @@ Pause_when_Done=off
 \section{前端,sublime}
 \subsection{安装+初始代码}
 前端没有啥好说的，我所理解的就是html+css+javascript.初学者用记事本就可以了，我目前用的是sublime，原因请参考\href{https://www.bilibili.com/video/BV1vx411z7rb}{这个教程}。代码技术主要参考的是\href{https://www.quanzhanketang.com/}{W3(英文版)}、\href{http://www.w3school.com.cn/}{Web 技术教程}.
+\subsection{调试}
+运行代码的快捷键为Ctrl+B.注释快捷键为Ctrl+/, Ctrl+Shift+/可以在当前位置插入注释。
+
+输入部分单词可以按Tab键补全代码，按住ctrl键可以多点输入。
 \subsection{非初等但是值得学习的库}
 \begin{itemize}
 \item \href{https://echarts.apache.org/zh/index.html}{Apache ECharts}:一个基于JavaScript的开源可视化图表库，不过这里的图表限定范围较窄。
@@ -2432,6 +2489,7 @@ the third of a sequence of courses ... is teaching
 I'm not sure I can jump on the train without toiling so much
 lines of inquiry
 Perhaps me saying something stupid will encourage an expert to weigh in
+The answer is a resounding "no".
 
 refer to:
 The main references for the material covered in this section are ...
@@ -2455,6 +2513,7 @@ use the most naive and explicit language without having to sacrifice any essenti
 Many of the topics in this ... have appeared elsewhere, or belong to the mathematical folklore; it should not be assumed that uncredited results are due to the author.
 I felt that my students were not adequately prepared for his text, and I wrote my notes with the hope to provide this preparation.
 is directed to non-experts or not-yet-experts
+Though we are not aware of any reference which states these theorems in the generality which we consider, these theorems should be considered well known.
 
 notations:
 Beginning with..., only ... are considered.
@@ -2517,17 +2576,24 @@ for highly non-formal reasons
 The following lemma summarizes the abstract setup, and isolates the key property that we need to prove in our situation.
 The theory of ... involves occasionally long computations. I moved several of them to the end of .... The reader may want to do some of them as exercises without looking first at these appendices.
 A plethora of techniques has been applied to ...
-
+In spite of a similarity between the notion of ... and ... there are essential differences.
 
 ask for details:
 I find there are a lot of cool ideas in your answers, but I would be grateful if you could be a bit more precise.
+
+believe something without proving them:
 We believe that one could also carry out the proof of ... in the language of ..., but we  have not investigated the details.
+We further suspect, but do not prove, that...
 
 digression:
 We now want to describe the ... This can be done in a more straightforward way, but we prefer to include a short digression in ... theory as this allows us to mention a general fact which is in the background of a later construction anyhow.
 Nevertheless, the reader can skip this digression without loss of continuity and continue with ... instead.
 Choosing a linear order in presenting the foundations is no easy task.
 Fall into the purview of the above theorem
+In this survey we intend to give a reasonably thorough account of the recent work, though mostly without detailed proofs
+let us beyond the areas where we can pretend to competence
+describe sufficiently but not exhaustively the earlier work of...
+
 
 excitement/beauty:
 The literature on ... is vast and often technical, but the underlying ideas are possessing of an undeniable beauty.
@@ -2539,6 +2605,8 @@ very natural from a ... perspective. However, at least for ..., ... is important
 carve out a hierarchy
 of full subcategories of ...
 colloquially speaking
+Here is a concrete paraphrase of the proposition.
+... is one of the pinnacles of mathematical achievement in the 20th century.
 
 connect different areas:
 unveils intricate links between
@@ -2600,6 +2668,13 @@ auf ... angewiesen sein
 ... suchen die Wahrnehmung des Betrachters zu lenken.
 hetzend zur Arbeit begeben
 Es war auf Schritt und Tritt zu spüren, dass...
+\end{lstlisting}
+
+\subsection{法语日常句子}
+临时存储这里。
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+Je ne suis vraiment pas du matin.
+Je ne suis pas matinal.
 \end{lstlisting}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
