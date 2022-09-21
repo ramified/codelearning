@@ -1,0 +1,456 @@
+
+\documentclass[11pt]{amsart}
+
+%\usepackage{color,graphicx}
+%\usepackage{mathrsfs,amsbsy}
+\usepackage{ctex}
+\usepackage{CJKfntef}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage[mathscr]{eucal}
+\usepackage{mathrsfs}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{fancybox}
+
+%\usepackage[notcite,notref]{showkeys}
+
+% showkeys  make label explicit on the paper
+
+
+
+%python settings
+\definecolor{halfgray}{gray}{0.55}
+\definecolor{ipython_frame}{RGB}{207, 207, 207}
+\definecolor{ipython_bg}{RGB}{247, 247, 247}
+\definecolor{ipython_red}{RGB}{186, 33, 33}
+\definecolor{ipython_green}{RGB}{0, 128, 0}
+\definecolor{ipython_cyan}{RGB}{64, 128, 128}
+\definecolor{ipython_purple}{RGB}{170, 34, 255}
+
+\usepackage{listings}
+\lstset{
+	breaklines=true,
+	%
+	extendedchars=true,
+	literate=
+	{á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+	{Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+	{à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+	{À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+	{ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+	{Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+	{â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+	{Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+	{œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+	{ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+	{€}{{\EUR}}1 {£}{{\pounds}}1
+}
+
+%%
+%% Python definition (c) 1998 Michael Weber
+%% Additional definitions (2013) Alexis Dimitriadis
+%% modified by me (should not have empty lines)
+%%
+\lstdefinelanguage{iPython}{
+	morekeywords={access,and,break,class,continue,def,del,elif,else,except,exec,finally,for,from,global,if,import,in,is,lambda,not,or,pass,print,raise,return,try,while},%
+	%
+	% Built-ins
+	morekeywords=[2]{abs,all,any,basestring,bin,bool,bytearray,callable,chr,classmethod,cmp,compile,complex,delattr,dict,dir,divmod,enumerate,eval,execfile,file,filter,float,format,frozenset,getattr,globals,hasattr,hash,help,hex,id,input,int,isinstance,issubclass,iter,len,list,locals,long,map,max,memoryview,min,next,object,oct,open,ord,pow,property,range,raw_input,reduce,reload,repr,reversed,round,set,setattr,slice,sorted,staticmethod,str,sum,super,tuple,type,unichr,unicode,vars,xrange,zip,apply,buffer,coerce,intern},%
+	%
+	sensitive=true,%
+	morecomment=[l]\#,%
+	morestring=[b]',%
+	morestring=[b]",%
+	%
+	morestring=[s]{'''}{'''},% used for documentation text (mulitiline strings)
+	morestring=[s]{"""}{"""},% added by Philipp Matthias Hahn
+	%
+	morestring=[s]{r'}{'},% `raw' strings
+	morestring=[s]{r"}{"},%
+	morestring=[s]{r'''}{'''},%
+	morestring=[s]{r"""}{"""},%
+	morestring=[s]{u'}{'},% unicode strings
+	morestring=[s]{u"}{"},%
+	morestring=[s]{u'''}{'''},%
+	morestring=[s]{u"""}{"""},%
+	%
+	% {replace}{replacement}{lenght of replace}
+	% *{-}{-}{1} will not replace in comments and so on
+	literate=
+	*{+}{{{\color{ipython_purple}+}}}1
+	{-}{{{\color{ipython_purple}-}}}1
+	{*}{{{\color{ipython_purple}$^\ast$}}}1
+	{/}{{{\color{ipython_purple}/}}}1
+	{^}{{{\color{ipython_purple}\^{}}}}1
+	{?}{{{\color{ipython_purple}?}}}1
+	{!}{{{\color{ipython_purple}!}}}1
+	{\%}{{{\color{ipython_purple}\%}}}1
+	{<}{{{\color{ipython_purple}<}}}1
+	{>}{{{\color{ipython_purple}>}}}1
+	{|}{{{\color{ipython_purple}|}}}1
+	{\&}{{{\color{ipython_purple}\&}}}1
+	{~}{{{\color{ipython_purple}~}}}1
+	%
+	{==}{{{\color{ipython_purple}==}}}2
+	{<=}{{{\color{ipython_purple}<=}}}2
+	{>=}{{{\color{ipython_purple}>=}}}2
+	%
+	{+=}{{{+=}}}2
+	{-=}{{{-=}}}2
+	{*=}{{{$^\ast$=}}}2
+	{/=}{{{/=}}}2,
+	%
+	literate=
+	{á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+	{Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+	{à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+	{À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+	{ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+	{Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+	{â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+	{Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+	{œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+	{ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+	{€}{{\EUR}}1 {£}{{\pounds}}1,
+	%
+	%   identifierstyle=\color{red}\ttfamily,
+	commentstyle=\color{ipython_cyan}\ttfamily,
+	stringstyle=\color{ipython_red}\ttfamily,
+	keepspaces=true,
+	showspaces=false,
+	showstringspaces=false,
+	%
+	rulecolor=\color{ipython_frame},
+	frame=single,
+	frameround={t}{t}{t}{t},
+	framexleftmargin=6mm,
+	numbers=left,
+	numberstyle=\tiny\color{halfgray},
+	%
+	%
+	backgroundcolor=\color{ipython_bg},
+	%   extendedchars=true,
+	basicstyle=\scriptsize\ttfamily,
+	keywordstyle=\color{ipython_green}\ttfamily,
+}
+
+
+\lstdefinelanguage{Sage}[]{Python}
+{morekeywords={False,sage,True},sensitive=true}
+\lstset{
+	frame=single,%none or single
+	showtabs=False,
+	showspaces=False,
+	showstringspaces=False,
+	commentstyle={\ttfamily\color{dgreencolor}},
+	keywordstyle={\ttfamily\color{keywordsage}\bfseries},
+	stringstyle={\ttfamily\color{dgraycolor}\bfseries},
+	language=Sage,
+	basicstyle={\fontsize{10pt}{10pt}\ttfamily},
+	aboveskip=0.3em,
+	belowskip=0.1em,
+	numbers=left,
+	numberstyle=\footnotesize,
+	stepnumber=5,
+	breaklines=true,
+	backgroundcolor=\color{backsage}
+}
+\definecolor{dblackcolor}{rgb}{0.0,0.0,0.0}
+\definecolor{dbluecolor}{rgb}{0.01,0.02,0.7}
+\definecolor{dgreencolor}{rgb}{0.2,0.4,0.0}
+\definecolor{dgraycolor}{rgb}{0.30,0.3,0.30}
+\newcommand{\dblue}{\color{dbluecolor}\bf}
+\newcommand{\dred}{\color{dredcolor}\bf}
+\newcommand{\dblack}{\color{dblackcolor}\bf}
+\definecolor{backsage}{RGB}{255, 255, 229}
+\definecolor{keywordsage}{RGB}{198, 93, 9}
+
+
+
+
+\begin{document}
+\date{}
+
+\title
+{例句}
+
+
+\author{周潇翔}
+\address{School of Mathematical Sciences\\
+University of Science and Technology of China\\
+Hefei, 230026\\ P.R. China\\} 
+\email{xx352229@mail.ustc.edu.cn}
+
+
+
+
+
+\begin{abstract}
+这里收集外文例句。
+
+Here are some example sentences for language expressions collected from articles and daily lives. 
+\end{abstract}
+
+
+
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+\section{数学相关句子模板}
+这里收集“啊我之前不知道咋表达，这就是我当时卡住的时候可以用的句子！”的外文句子。绝对是非原创的。
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+casual expression:
+whizz through
+take it for granted
+Many of them are better at faking it.
+Students have to learn how to properly write down a proof and everything. So one has to do important pedagogical work and teach them, how to do this.
+eagle eye viewer
+plunge onward to
+insanely general
+wrap up the current discussion
+One small wrinkle
+get things off the ground
+the third of a sequence of courses ... is teaching
+I'm not sure I can jump on the train without toiling so much
+lines of inquiry
+Perhaps me saying something stupid will encourage an expert to weigh in
+The answer is a resounding "no".
+the running example
+provide impetus
+
+refer to:
+The main references for the material covered in this section are ...
+A more detailed overview of this chapter may be obtained by reading the introductions to the various sections.
+More detailed treatments appear in ..., to which we will refer for proofs.
+mimic the arguments for ...
+We refrain from giving a more detailed introduction here and instead refer the reader to the table of contents as well as to the short introductions of the individual sections.
+References for ... include the monograph ... and the more introductory account ...
+The result of ... was catalyzed by reading...
+follow a circuitous route
+We include the ... argument here for convenience of exposition, and because the comparison with their constructions is interesting in its own right.
+We refer to this theorem as the ... theorem.
+All ideas from these notes were shamelessly stolen from various lecture notes in the literature. I mention a few:
+
+Disclaimer:
+minor errors and obscurities, a couple of significant lapses
+I am by far not a person with serious knowledge/understanding of ..., thus in the ... I may oversimplify/overcomplicate things, be inaccurate, or even wrong, and miss subtelties.
+I have actually been meaning to correct some typos for a while and so I will hopefully do all these corrections in the next few weeks.
+All errors or inaccuracies are on my side.
+We cannot assemble here the necessary apparatus from ... theory.
+use the most naive and explicit language without having to sacrifice any essential ideas
+Many of the topics in this ... have appeared elsewhere, or belong to the mathematical folklore; it should not be assumed that uncredited results are due to the author.
+I felt that my students were not adequately prepared for his text, and I wrote my notes with the hope to provide this preparation.
+is directed to non-experts or not-yet-experts
+Though we are not aware of any reference which states these theorems in the generality which we consider, these theorems should be considered well known.
+
+
+notations:
+Beginning with..., only ... are considered.
+shorthand
+By an aesthentically desirable abuse of notation, 
+One word about the notation: for simplicity we often omit ...
+For notational reasons we usually extend the ... to (negative indices) by defining ...
+The term ... is a convenient, but temporary, expedient.
+To save adjectives, if ... is described as ..., it is implicitly assumed to be ...
+Finally, a word about terminology.
+However on many occasions it is natural or customary to stay in ... mode when nonetheless one has ... in mind.
+While for the most part this convention seems to work well, it occasionally leads us to make extraneous ... hypotheses in order to invoke ...
+We try to flag this artifice when it occurs.
+The following abuse of notation will prove handy:...
+we can use the same definition in more general contexts, for example, ...
+allow us to state theorems more succinctly
+clutter notation
+As ... will appear frequently below, we stress that ... are always ... for us.
+It would be more customary to write ..., but this leads to inconsistent notation.
+Recap: recapitulation
+This assumption is for simplicity only
+A depends on b, but we suppress this from the notation
+by alliteration
+(in the same
+sense as for exceptional sequences)
+Although we'll only use standard properties of ..., let us recall a few definitions for the comfort of the reader.
+
+thanks:
+warm hospitality
+Further comments, corrections and suggestions are of course more than welcome.
+
+example and generalization:
+prototypical example
+By the same argument as the special case above, ...
+The arguments in ... carry over mutatis mutandis.
+provide a navigable route into the area with a complete and self-contained account of the case ...
+eschew all generality
+exploit special features to abbreviate/simplify the arguments
+tinker with the examples
+proceed similarly in general
+In fact, we would expect similar results to hold true in the case where ...
+Our arguments are not general enough to handle that case.
+There is a veritable legion of examples of categories which fit this paradigm:...
+specialize to our case of main interest
+... generalizes ... in two directions: it works for ..., and moreover it deals with ... instead of ...
+At the expense of more notation a similar result holds for the other...
+
+technical problem:
+achieve some technical control
+Ceci nous contraint à prouver ... par une voie détournée
+It should be noted that even if one is interested only in ..., the proofs often involve more general ...
+... are pivotal in this matter.
+For a rigorous definitions of ... we would need the notion of ..., which would take us too far away from the subject of ...
+the entire difficulty is bundled in ...
+It turns out that ... is inadequate to this role, ...
+It is not strictly necessary to think only in the case of ..., but it certainly allows one to ignore some technical difficulties.
+address an issue
+To keep the exposition brisk, we will postpone the more difficult proofs until ...
+subtle distinction
+the choice of ... is immaterial
+for highly non-formal reasons
+The following lemma summarizes the abstract setup, and isolates the key property that we need to prove in our situation.
+The theory of ... involves occasionally long computations. I moved several of them to the end of .... The reader may want to do some of them as exercises without looking first at these appendices.
+A plethora of techniques has been applied to ...
+In spite of a similarity between the notion of ... and ... there are essential differences.
+
+ask for details:
+I find there are a lot of cool ideas in your answers, but I would be grateful if you could be a bit more precise.
+
+believe something without proving them:
+We believe that one could also carry out the proof of ... in the language of ..., but we  have not investigated the details.
+We further suspect, but do not prove, that...
+
+digression:
+We now want to describe the ... This can be done in a more straightforward way, but we prefer to include a short digression in ... theory as this allows us to mention a general fact which is in the background of a later construction anyhow.
+Nevertheless, the reader can skip this digression without loss of continuity and continue with ... instead.
+Choosing a linear order in presenting the foundations is no easy task.
+Fall into the purview of the above theorem
+In this survey we intend to give a reasonably thorough account of the recent work, though mostly without detailed proofs
+let us beyond the areas where we can pretend to competence
+describe sufficiently but not exhaustively the earlier work of...
+
+
+excitement/beauty:
+The literature on ... is vast and often technical, but the underlying ideas are possessing of an undeniable beauty.
+The excitement provoked by ... stimulated a period of intense and widespread activity.
+convey the breadth and excitement of the ideas
+At first sight, ... does not seem
+very natural from a ... perspective. However, at least for ..., ... is important from
+... perspective, since...
+carve out a hierarchy
+of full subcategories of ...
+colloquially speaking
+Here is a concrete paraphrase of the proposition.
+... is one of the pinnacles of mathematical achievement in the 20th century.
+Each theory sheds its own light on these objects, and combining the various perspectives is likely to be very fruitful.
+
+connect different areas:
+unveils intricate links between
+reveals connections between
+is akin to the phenomenon of ...
+is deeply interwined with
+give a bird's eye view on
+
+waiting for classification:
+equivalently(replace i.e.)
+encyclopaedic knowledge of ...
+In fact, the arguments used in the final part of this proof, give the following result.
+Let us unravel this definition a little.(after complicated definition)
+... is pivotal in this matter./ ... play a pivotal rôle. 
+The arithmetic/information/structure of ... is encapsulated in ...
+encapsulate a significant amount of information concerning ...
+encapsulate subtlety
+We point out the similarities and the differences whenever appropriate.
+There is also some degree of novelty in our treatment of ...
+... contiennent les outils requis pour surmonter ces difficultés.
+give a sense of the directions in which the area is going.
+there is nothing to be gained from specialization at this stage
+take it as a little rebus
+whirlwind tour of ...
+be enamored with
+concrete paraphrase
+To avoid any vicious circles, we use the following elementary argument going back to ...
+..., if the following equivalent conditions are satisfied:
+Let us discuss the contents in a nutshell.
+it's instructive to give here a direct argument. 
+A slow start in a lecture is never an obstacle to arrive far and present involved advanced material in the end.
+
+brackets:
+{}:curly set brackets
+():round brackets
+[]:square brackets
+<>:angle brackets
+
+beginning words: Goals, Pros and Cons
+\end{lstlisting}
+
+另外关于英语语法，可以参考\href{https://arxiv.org/ftp/arxiv/papers/1011/1011.5973.pdf}{天文物理类英文科技论文写作的常见问题}.
+\section{德语日常句子}
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+Ich bin pappsatt.
+gesund bleiben / gesund sein
+je ... desto ...
+Nichts ist umsonst.
+Der Fisch war nicht üppig.
+Es war ein großer Reinfall!
+Wir müssen feststellen, inwiefern sich die Situation geändert hat.
+ums Leben kommen
+Jeder ist seines Glückes Schmied.
+Unerhörtes ist geschehen.
+Große und unübersehbare Arbeit steht uns bevor.
+Wir müssen alle Kräfte anspannen, um ...
+eine Ausgleich zwischen ... und ... herbeigeführt haben
+Damit wurden die Chancen, die ..., nicht wahrgenommen.
+auf ... angewiesen sein
+... suchen die Wahrnehmung des Betrachters zu lenken.
+hetzend zur Arbeit begeben
+Es war auf Schritt und Tritt zu spüren, dass...
+\end{lstlisting}
+
+\section{法语日常句子}
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+Je ne suis vraiment pas du matin.
+Je ne suis pas matinal.
+\end{lstlisting}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ 
+   
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ 
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\begin{thebibliography}{99}
+
+ 
+%\bibitem{AF12}%
+%Antunes, P., Freitas, P.: Optimal spectral rectangles and lattice ellipses. \emph{Proc. Royal Soc. London Ser. A.} \textbf{469} (2012), 20120492.
+
+
+  
+
+\end{thebibliography}
+
+
+\end{document}
+
+
+

@@ -2260,6 +2260,12 @@ return
 
 ::ptc::particular
 
+::fin::finite
+
+::fd::finite dimensional
+
+::intro::introduction
+
 ::geo::geometry
 
 ::cont::continuous
@@ -2278,6 +2284,8 @@ return
 
 ::vb::vector bundle
 
+::vs::vector space
+
 ::cplx::complex
 
 ::RS::Riemann surface
@@ -2288,15 +2296,17 @@ return
 
 ::AV::abelian variety
 
-::AR::Auslander-Reiten
+::AR::Auslander--Reiten
 
-::ARtr::Auslander-Reiten translation
+::ARtr::Auslander--Reiten translation
 
-::ARth::Auslander-Reiten theory
+::ARth::Auslander--Reiten theory
 
-::ARs::Auslander–Reiten sequence
+::ARs::Auslander--Reiten sequence
 
-::ARq::Auslander–Reiten quiver
+::ARq::Auslander--Reiten quiver
+
+::ext::extension
 
 ::ell::elliptic curve
 
@@ -2320,23 +2330,33 @@ return
 
 ::adm::admissible
 
+::qr::quiver representation
+
 ::rep::representation
 
 ::repe::representable 
 
 ::Archi::Archimedean field
 
+::redgp::reductive group
+
+::gp::group
+
+::subgp::subgroup
+
 ::sign::Best wishes,`n`nXiaoxiang Zhou
 
 ::sym::symmetric
 
-::corrg::corresponding ;be careful for correspondence
+::crspd::corresponding ;be careful for correspondence
 
-::corre::correspondence
+::crspdc::correspondence
+
+::equiv::equivalence
 
 ::sset::simplicial set
 
-::LLC::local langlands correspondence
+::LLC::local Langlands correspondence
 
 ::align:: ;超长变换,我的Texstudio还是有些问题
 (
@@ -2405,6 +2425,18 @@ return
 
 ::msm::minimal sectional mono
 
+::dgp::dual group
+
+::ldgp::Langlands dual group
+
+::Lpm::L-parameter
+
+::spgp::split group
+
+::qsgp::quasi-split group
+
+::sdpd::semidirect product
+
 #IfWinActive
 ^j::  
 Run, "F:\hide\Snipaste\Snipaste.exe"
@@ -2413,8 +2445,18 @@ return
 
 
 
-\end{lstlisting}
 
+\end{lstlisting}
+\section{笔记软件}
+在这里记录对笔记软件的常用需求。
+\begin{itemize}
+\item 分页
+\item 可使用不内嵌的网格纸
+\item 自带文件标签，可分类
+\item 可在中间插入间隙
+\item 作图方便，例如圆弧、涂色、表格、组合和固定
+\item 链接可以点击
+\end{itemize}
 \section{其他}
 这里收集乱七八糟的材料，以后说不定可以单独搞个文件。
 \subsection{数学的可视化}
@@ -2469,214 +2511,7 @@ return
 \item 开头大写，包括图表整句标题、环境后标题
 \end{itemize}
 \end{itemize}
-\subsection{数学相关句子模板}
-这里收集“啊我之前不知道咋表达，这就是我当时卡住的时候可以用的句子！”的外文句子。绝对是非原创的。
-\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
 
-
-casual expression:
-whizz through
-take it for granted
-Many of them are better at faking it.
-Students have to learn how to properly write down a proof and everything. So one has to do important pedagogical work and teach them, how to do this.
-eagle eye viewer
-plunge onward to
-insanely general
-wrap up the current discussion
-One small wrinkle
-get things off the ground
-the third of a sequence of courses ... is teaching
-I'm not sure I can jump on the train without toiling so much
-lines of inquiry
-Perhaps me saying something stupid will encourage an expert to weigh in
-The answer is a resounding "no".
-
-refer to:
-The main references for the material covered in this section are ...
-A more detailed overview of this chapter may be obtained by reading the introductions to the various sections.
-More detailed treatments appear in ..., to which we will refer for proofs.
-mimic the arguments for ...
-We refrain from giving a more detailed introduction here and instead refer the reader to the table of contents as well as to the short introductions of the individual sections.
-References for ... include the monograph ... and the more introductory account ...
-The result of ... was catalyzed by reading...
-follow a circuitous route
-We include the ... argument here for convenience of exposition, and because the comparison with their constructions is interesting in its own right.
-We refer to this theorem as the ... theorem.
-
-Disclaimer:
-minor errors and obscurities, a couple of significant lapses
-I am by far not a person with serious knowledge/understanding of ..., thus in the ... I may oversimplify/overcomplicate things, be inaccurate, or even wrong, and miss subtelties.
-I have actually been meaning to correct some typos for a while and so I will hopefully do all these corrections in the next few weeks.
-All errors or inaccuracies are on my side.
-We cannot assemble here the necessary apparatus from ... theory.
-use the most naive and explicit language without having to sacrifice any essential ideas
-Many of the topics in this ... have appeared elsewhere, or belong to the mathematical folklore; it should not be assumed that uncredited results are due to the author.
-I felt that my students were not adequately prepared for his text, and I wrote my notes with the hope to provide this preparation.
-is directed to non-experts or not-yet-experts
-Though we are not aware of any reference which states these theorems in the generality which we consider, these theorems should be considered well known.
-
-notations:
-Beginning with..., only ... are considered.
-shorthand
-By an aesthentically desirable abuse of notation, 
-One word about the notation: for simplicity we often omit ...
-For notational reasons we usually extend the ... to (negative indices) by defining ...
-The term ... is a convenient, but temporary, expedient.
-To save adjectives, if ... is described as ..., it is implicitly assumed to be ...
-Finally, a word about terminology.
-However on many occasions it is natural or customary to stay in ... mode when nonetheless one has ... in mind.
-While for the most part this convention seems to work well, it occasionally leads us to make extraneous ... hypotheses in order to invoke ...
-We try to flag this artifice when it occurs.
-The following abuse of notation will prove handy:...
-we can use the same definition in more general contexts, for example, ...
-allow us to state theorems more succinctly
-clutter notation
-As ... will appear frequently below, we stress that ... are always ... for us.
-It would be more customary to write ..., but this leads to inconsistent notation.
-Recap: recapitulation
-This assumption is for simplicity only
-A depends on b, but we suppress this from the notation
-by alliteration
-(in the same
-sense as for exceptional sequences)
-Although we'll only use standard properties of ..., let us recall a few definitions for the comfort of the reader.
-
-thanks:
-warm hospitality
-
-example and generalization:
-prototypical example
-By the same argument as the special case above, ...
-The arguments in ... carry over mutatis mutandis.
-provide a navigable route into the area with a complete and self-contained account of the case ...
-eschew all generality
-exploit special features to abbreviate/simplify the arguments
-tinker with the examples
-proceed similarly in general
-In fact, we would expect similar results to hold true in the case where ...
-Our arguments are not general enough to handle that case.
-There is a veritable legion of examples of categories which fit this paradigm:...
-specialize to our case of main interest
-... generalizes ... in two directions: it works for ..., and moreover it deals with ... instead of ...
-
-technical problem:
-achieve some technical control
-Ceci nous contraint à prouver ... par une voie détournée
-It should be noted that even if one is interested only in ..., the proofs often involve more general ...
-... are pivotal in this matter.
-For a rigorous definitions of ... we would need the notion of ..., which would take us too far away from the subject of ...
-the entire difficulty is bundled in ...
-It turns out that ... is inadequate to this role, ...
-It is not strictly necessary to think only in the case of ..., but it certainly allows one to ignore some technical difficulties.
-address an issue
-To keep the exposition brisk, we will postpone the more difficult proofs until ...
-subtle distinction
-the choice of ... is immaterial
-for highly non-formal reasons
-The following lemma summarizes the abstract setup, and isolates the key property that we need to prove in our situation.
-The theory of ... involves occasionally long computations. I moved several of them to the end of .... The reader may want to do some of them as exercises without looking first at these appendices.
-A plethora of techniques has been applied to ...
-In spite of a similarity between the notion of ... and ... there are essential differences.
-
-ask for details:
-I find there are a lot of cool ideas in your answers, but I would be grateful if you could be a bit more precise.
-
-believe something without proving them:
-We believe that one could also carry out the proof of ... in the language of ..., but we  have not investigated the details.
-We further suspect, but do not prove, that...
-
-digression:
-We now want to describe the ... This can be done in a more straightforward way, but we prefer to include a short digression in ... theory as this allows us to mention a general fact which is in the background of a later construction anyhow.
-Nevertheless, the reader can skip this digression without loss of continuity and continue with ... instead.
-Choosing a linear order in presenting the foundations is no easy task.
-Fall into the purview of the above theorem
-In this survey we intend to give a reasonably thorough account of the recent work, though mostly without detailed proofs
-let us beyond the areas where we can pretend to competence
-describe sufficiently but not exhaustively the earlier work of...
-
-
-excitement/beauty:
-The literature on ... is vast and often technical, but the underlying ideas are possessing of an undeniable beauty.
-The excitement provoked by ... stimulated a period of intense and widespread activity.
-convey the breadth and excitement of the ideas
-At first sight, ... does not seem
-very natural from a ... perspective. However, at least for ..., ... is important from
-... perspective, since...
-carve out a hierarchy
-of full subcategories of ...
-colloquially speaking
-Here is a concrete paraphrase of the proposition.
-... is one of the pinnacles of mathematical achievement in the 20th century.
-
-connect different areas:
-unveils intricate links between
-reveals connections between
-is akin to the phenomenon of ...
-is deeply interwined with
-give a bird's eye view on
-
-waiting for classification:
-equivalently(replace i.e.)
-encyclopaedic knowledge of ...
-In fact, the arguments used in the final part of this proof, give the following result.
-Let us unravel this definition a little.(after complicated definition)
-... is pivotal in this matter./ ... play a pivotal rôle. 
-The arithmetic/information/structure of ... is encapsulated in ...
-encapsulate a significant amount of information concerning ...
-encapsulate subtlety
-We point out the similarities and the differences whenever appropriate.
-There is also some degree of novelty in our treatment of ...
-... contiennent les outils requis pour surmonter ces difficultés.
-give a sense of the directions in which the area is going.
-there is nothing to be gained from specialization at this stage
-take it as a little rebus
-whirlwind tour of ...
-be enamored with
-concrete paraphrase
-To avoid any vicious circles, we use the following elementary argument going back to ...
-..., if the following equivalent conditions are satisfied:
-Let us discuss the contents in a nutshell.
-it's instructive to give here a direct argument. 
-
-brackets:
-{}:curly set brackets
-():round brackets
-[]:square brackets
-<>:angle brackets
-
-beginning words: Goals, Pros and Cons
-\end{lstlisting}
-
-另外关于英语语法，可以参考\href{https://arxiv.org/ftp/arxiv/papers/1011/1011.5973.pdf}{天文物理类英文科技论文写作的常见问题}.
-\subsection{德语日常句子}
-临时存储这里。
-\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
-Ich bin pappsatt.
-gesund bleiben / gesund sein
-je ... desto ...
-Nichts ist umsonst.
-Der Fisch war nicht üppig.
-Es war ein großer Reinfall!
-Wir müssen feststellen, inwiefern sich die Situation geändert hat.
-ums Leben kommen
-Jeder ist seines Glückes Schmied.
-Unerhörtes ist geschehen.
-Große und unübersehbare Arbeit steht uns bevor.
-Wir müssen alle Kräfte anspannen, um ...
-eine Ausgleich zwischen ... und ... herbeigeführt haben
-Damit wurden die Chancen, die ..., nicht wahrgenommen.
-auf ... angewiesen sein
-... suchen die Wahrnehmung des Betrachters zu lenken.
-hetzend zur Arbeit begeben
-Es war auf Schritt und Tritt zu spüren, dass...
-\end{lstlisting}
-
-\subsection{法语日常句子}
-临时存储这里。
-\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
-Je ne suis vraiment pas du matin.
-Je ne suis pas matinal.
-\end{lstlisting}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
  
