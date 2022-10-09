@@ -830,6 +830,13 @@ Grid[Table[
    PlotPoints -> pp, 
    MaxRecursion -> mr], {mr, {0, 2}}, {pp, {5, 15}}]]
 \end{lstlisting}
+这个例子算Feynman diagram的个数.
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+Table[3 Sum[
+   m! Binomial[2 i + m, m] Binomial[2 j + m, m] (2 i)!/(
+    2^i i!) (2 j)!/(2^j j!), {m, 1, n}, {i, 0, n - m}, {j, n - m - i, 
+    n - m - i}], {n, 10}]
+\end{lstlisting}
 \section{PuzzleScript}
 游戏制作软件:Unity可以由免费开源游戏引擎\href{https://docs.godotengine.org/zh_CN/stable/index.html}{Godot}替代。简单的2D游戏可以先尝试用PuzzleScript实现。
 
@@ -2174,13 +2181,23 @@ Pause_when_Done=off
 \end{itemize} 
 \section{正则表达式}
 正则表达式可以大幅提升搜索和修改代码的效率。
-\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
-.{0,100}(?=;\d{0,3};\d{0,3}m\n);(\d{0,3});(\d{0,3})m\n
-\end{lstlisting}
+
 \subsection{参考文档}
 推荐\href{https://www.bilibili.com/video/BV19t4y1y7qP}{B站视频}。与之配套的\href{https://codejiaonang.com/#/course/regex_chapter1/}{练习}。
 
 你可以在\href{https://regexr-cn.com/}{regexr}中测试。
+
+\subsection{(想保留的)例子}
+这是在Hackergame中的某道题中使用的代码。
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+.{0,100}(?=;\d{0,3};\d{0,3}m\n);(\d{0,3});(\d{0,3})m\n
+\end{lstlisting}
+这是在latex中使用的代码，目的是将\lstinline|_good_|替换为\lstinline|\textbm{good}|.
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+_([^_]*)_
+\textbf{\1}
+\end{lstlisting}
+
 \section{热键设置(AutoHotkey)}
 这是一款开源软件。为了Hackergame的脚本，同时我猜会大幅度提高打代码的速度。我想可以实现\href{https://zhuanlan.zhihu.com/p/60049290}{快速打笔记}的功能？
 \subsection{调试}

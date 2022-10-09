@@ -1,0 +1,424 @@
+
+\documentclass[11pt]{amsart}
+
+%\usepackage{color,graphicx}
+%\usepackage{mathrsfs,amsbsy}
+\usepackage{ctex}
+\usepackage{CJKfntef}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage[mathscr]{eucal}
+\usepackage{mathrsfs}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{fancybox}
+
+%\usepackage[notcite,notref]{showkeys}
+
+% showkeys  make label explicit on the paper
+
+
+
+%python settings
+\definecolor{halfgray}{gray}{0.55}
+\definecolor{ipython_frame}{RGB}{207, 207, 207}
+\definecolor{ipython_bg}{RGB}{247, 247, 247}
+\definecolor{ipython_red}{RGB}{186, 33, 33}
+\definecolor{ipython_green}{RGB}{0, 128, 0}
+\definecolor{ipython_cyan}{RGB}{64, 128, 128}
+\definecolor{ipython_purple}{RGB}{170, 34, 255}
+
+\usepackage{listings}
+\lstset{
+	breaklines=true,
+	%
+	extendedchars=true,
+	literate=
+	{á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+	{Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+	{à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+	{À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+	{ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+	{Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+	{â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+	{Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+	{œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+	{ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+	{€}{{\EUR}}1 {£}{{\pounds}}1
+}
+
+%%
+%% Python definition (c) 1998 Michael Weber
+%% Additional definitions (2013) Alexis Dimitriadis
+%% modified by me (should not have empty lines)
+%%
+\lstdefinelanguage{iPython}{
+	morekeywords={access,and,break,class,continue,def,del,elif,else,except,exec,finally,for,from,global,if,import,in,is,lambda,not,or,pass,print,raise,return,try,while},%
+	%
+	% Built-ins
+	morekeywords=[2]{abs,all,any,basestring,bin,bool,bytearray,callable,chr,classmethod,cmp,compile,complex,delattr,dict,dir,divmod,enumerate,eval,execfile,file,filter,float,format,frozenset,getattr,globals,hasattr,hash,help,hex,id,input,int,isinstance,issubclass,iter,len,list,locals,long,map,max,memoryview,min,next,object,oct,open,ord,pow,property,range,raw_input,reduce,reload,repr,reversed,round,set,setattr,slice,sorted,staticmethod,str,sum,super,tuple,type,unichr,unicode,vars,xrange,zip,apply,buffer,coerce,intern},%
+	%
+	sensitive=true,%
+	morecomment=[l]\#,%
+	morestring=[b]',%
+	morestring=[b]",%
+	%
+	morestring=[s]{'''}{'''},% used for documentation text (mulitiline strings)
+	morestring=[s]{"""}{"""},% added by Philipp Matthias Hahn
+	%
+	morestring=[s]{r'}{'},% `raw' strings
+	morestring=[s]{r"}{"},%
+	morestring=[s]{r'''}{'''},%
+	morestring=[s]{r"""}{"""},%
+	morestring=[s]{u'}{'},% unicode strings
+	morestring=[s]{u"}{"},%
+	morestring=[s]{u'''}{'''},%
+	morestring=[s]{u"""}{"""},%
+	%
+	% {replace}{replacement}{lenght of replace}
+	% *{-}{-}{1} will not replace in comments and so on
+	literate=
+	*{+}{{{\color{ipython_purple}+}}}1
+	{-}{{{\color{ipython_purple}-}}}1
+	{*}{{{\color{ipython_purple}$^\ast$}}}1
+	{/}{{{\color{ipython_purple}/}}}1
+	{^}{{{\color{ipython_purple}\^{}}}}1
+	{?}{{{\color{ipython_purple}?}}}1
+	{!}{{{\color{ipython_purple}!}}}1
+	{\%}{{{\color{ipython_purple}\%}}}1
+	{<}{{{\color{ipython_purple}<}}}1
+	{>}{{{\color{ipython_purple}>}}}1
+	{|}{{{\color{ipython_purple}|}}}1
+	{\&}{{{\color{ipython_purple}\&}}}1
+	{~}{{{\color{ipython_purple}~}}}1
+	%
+	{==}{{{\color{ipython_purple}==}}}2
+	{<=}{{{\color{ipython_purple}<=}}}2
+	{>=}{{{\color{ipython_purple}>=}}}2
+	%
+	{+=}{{{+=}}}2
+	{-=}{{{-=}}}2
+	{*=}{{{$^\ast$=}}}2
+	{/=}{{{/=}}}2,
+	%
+	literate=
+	{á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+	{Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+	{à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+	{À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+	{ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+	{Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+	{â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+	{Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+	{œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+	{ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+	{€}{{\EUR}}1 {£}{{\pounds}}1,
+	%
+	%   identifierstyle=\color{red}\ttfamily,
+	commentstyle=\color{ipython_cyan}\ttfamily,
+	stringstyle=\color{ipython_red}\ttfamily,
+	keepspaces=true,
+	showspaces=false,
+	showstringspaces=false,
+	%
+	rulecolor=\color{ipython_frame},
+	frame=single,
+	frameround={t}{t}{t}{t},
+	framexleftmargin=6mm,
+	numbers=left,
+	numberstyle=\tiny\color{halfgray},
+	%
+	%
+	backgroundcolor=\color{ipython_bg},
+	%   extendedchars=true,
+	basicstyle=\scriptsize\ttfamily,
+	keywordstyle=\color{ipython_green}\ttfamily,
+}
+
+
+\lstdefinelanguage{Sage}[]{Python}
+{morekeywords={False,sage,True},sensitive=true}
+\lstset{
+	frame=single,%none or single
+	showtabs=False,
+	showspaces=False,
+	showstringspaces=False,
+	commentstyle={\ttfamily\color{dgreencolor}},
+	keywordstyle={\ttfamily\color{keywordsage}\bfseries},
+	stringstyle={\ttfamily\color{dgraycolor}\bfseries},
+	language=Sage,
+	basicstyle={\fontsize{10pt}{10pt}\ttfamily},
+	aboveskip=0.3em,
+	belowskip=0.1em,
+	numbers=left,
+	numberstyle=\footnotesize,
+	stepnumber=5,
+	breaklines=true,
+	backgroundcolor=\color{backsage}
+}
+\definecolor{dblackcolor}{rgb}{0.0,0.0,0.0}
+\definecolor{dbluecolor}{rgb}{0.01,0.02,0.7}
+\definecolor{dgreencolor}{rgb}{0.2,0.4,0.0}
+\definecolor{dgraycolor}{rgb}{0.30,0.3,0.30}
+\newcommand{\dblue}{\color{dbluecolor}\bf}
+\newcommand{\dred}{\color{dredcolor}\bf}
+\newcommand{\dblack}{\color{dblackcolor}\bf}
+\definecolor{backsage}{RGB}{255, 255, 229}
+\definecolor{keywordsage}{RGB}{198, 93, 9}
+
+
+
+
+\begin{document}
+\date{}
+
+\title
+{例句}
+
+
+\author{周潇翔}
+\address{School of Mathematical Sciences\\
+University of Science and Technology of China\\
+Hefei, 230026\\ P.R. China\\} 
+\email{xx352229@mail.ustc.edu.cn}
+
+
+
+
+
+\begin{abstract}
+ Some templates for TOEFL speaking and writing.
+\end{abstract}
+
+
+
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+integrated writing:
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+beginning 1st:
+Recently, there has been a debate about whether ...
+Both reading and listening passage discuss ...
+The reading and the lecture are both about ... ... both discuss this controversial
+
+beginning 2nd:
+provides several advantages for ...
+present three points to support this concept.
+purposes three explanations of the theory.
+
+end of the beginning:
+However, ... refutes all of them with strong reasons one by one.
+However, ... disagrees and shows that ...
+holds these arguements questionable.
+Whereas ..., ... is quick to point that there are some flaws and cast doubt on each claim given by the writer.
+
+Claims:
+writer/author (of the reading passage)
+article/passage/text/reading passage/reading content
+notes/claims/expresses/states/suggests/asserts/contends/maintains that ...
+according to the reading passage,
+The final point in the reading is that ...
+
+Refutions:
+lecturer/professor/man
+lecture
+the professor points out/notes/argues/mentions/disproves/refutes/rebuts/maintains that ...
+while the man argues that ... 
+dispute this argument, contending ...
+opposes the reading content that ...
+..., however, disproves this point as well and says that ...
+The point is challenged by the lecture.
+stand in firm opposition to this claim.
+
+It was inconclusive to say that ...
+It was not sufficient to ...
+justify the accusation
+evidence=proof=justification=testimony
+be similar to=resemble=analogous
+similarity=resemblance=analogy
+\end{lstlisting}
+
+
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+
+
+反:
+On the contrary,
+Conversely, 
+In some people's views, .... Contrary to these people's views is my perspective that...
+
+顺:
+To put it in other words,
+To put it more simply,
+
+
+例:
+For instance
+My personal experience is a convincing/excellent/compelling example/illustration of this.
+To put it in a vivid picture,
+
+因:
+In order to ...
+due to (these occurrences)
+due to their ability to
+..., owing to ...
+
+果:
+Hence, Therefore, Thus, As a result, 
+As a matter of fact, In fact, Actually,
+
+虽然但是:
+Despite ..., I believe otherwise, maintaining that
+Nevertheless, ...
+Nonetheless, ...
+
+beginning:
+An unanswered question in this area is whether ... should ...
+A controversial issue relating to ... has brought to the attention of ...
+Now in the competitive society, people are more eager to ...
+The perception of ... is changing vastly.
+Undoubtedly, ... is an interesting topic for several people.
+
+beginning 2nd:
+In contrast, based on my experiences, I do not believe that ...
+I am personally convinced that ...
+
+end of the beginning:
+In the subsequent paragraphs, I will elaborate on my viewpoint through three compelling reasons.
+I feel this way for three/a couple of (main) reasons, which this essay will explore/elaborate.
+
+1st para:
+First of all,
+First and foremost,
+What should be prioritized is ...
+
+2st para:
+Also,
+Furthermore,
+In addition,
+On the other hand,
+Besides,
+Another reason worthwhile mentioning is that...
+What should be equally discussed is that ...
+In the second place, the passage claims that...
+
+3rd para:
+Lastly, ...
+Last but not least, ...
+
+conclusion:
+Overall,
+In conclusion,
+In sum,
+To sum up,
+Reflecting upon all reasons mentioned above,
+taking the aforementioned reasons into account,
+
+People should:
+keep the attitude of
+thoroughly exert their power to
+improve their ability to
+endeavor to
+get accustomed to
+
+
+so that they can:
+understand another civilisation
+superbly flourish in their lives
+improve their life quality
+form their future prosperity
+take a leap forward in achievements
+facilitate the way to succeed
+go through obstacles
+adapt to the ... world
+excel in the working market
+undergo the attension
+develop a much stronger character
+
+People should not:
+
+so that they may:
+affect our objective judgements
+
+品质: (own ...(+n.))
+perseverance
+resilient
+be equipped with skills 
+enhance a multitude of perspectives toward issues
+thoroughly consider all facets playing role in a perplexing issue
+combine their expertise in various fields
+
+adj:
+many=enormous
+	=a lot of
+	=thousands of
+	=a multitude of
+	=a vast range of
+perfect=flawless
+various of=a wide spectrum/variety of
+		  =a wide range of 
+		  =an assortment of
+important=vital
+		 =prominent
+		 =exert a beneficial influence
+		 =have a considerable effect on
+
+Sentence patterns:
+...will never ... however difficult it is.
+I couldn't ... if I ...
+Only by chance did I find out what happened.
+
+Other phrases:
+drift attention to
+get access to
+contribute to
+Without a shadow of doubt,
+the one-dimension nature of their knowledge
+meticulous details in dilemmas
+is under considerable controversy for ...(alternating)
+may not be their cups of tea.
+\end{lstlisting}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ 
+   
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ 
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\begin{thebibliography}{99}
+
+ 
+%\bibitem{AF12}%
+%Antunes, P., Freitas, P.: Optimal spectral rectangles and lattice ellipses. \emph{Proc. Royal Soc. London Ser. A.} \textbf{469} (2012), 20120492.
+
+
+  
+
+\end{thebibliography}
+
+
+\end{document}
+
+
+

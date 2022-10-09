@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.15)  18 SEP 2022 12:33
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.15)  26 SEP 2022 00:24
 entering extended mode
 **./code.tex
 (code.tex
@@ -987,15 +987,12 @@ File: lstlang1.sty 2018/09/02 1.7 listings language file
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [15]
-Overfull \hbox (13.13487pt too wide) in paragraph at lines 840--841
+Overfull \hbox (13.13487pt too wide) in paragraph at lines 847--848
 []\TU/lmr/m/n/10.95 RULES \TU/SimSun(0)/m/n/10.95 的 基 本 结 构 是[][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][]
  []
 
-[16]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [17]
+[16] [17]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [18]
@@ -1020,11 +1017,11 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [24]
 Missing character: There is no ◿ in font [lmmonolt10-bold]:!
-Missing character: There is no ◺ in font [lmmonolt10-bold]:!
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [25]
+Missing character: There is no ◺ in font [lmmonolt10-bold]:!
 Missing character: There is no ◸ in font [lmmonolt10-bold]:!
 Missing character: There is no ◹ in font [lmmonolt10-bold]:!
 
@@ -1113,34 +1110,31 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [41]
-[42]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [43]
+[42] [43]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [44]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [45]
-Overfull \hbox (25.40816pt too wide) in paragraph at lines 2156--2157
+Overfull \hbox (25.40816pt too wide) in paragraph at lines 2163--2164
  \TU/lmr/m/n/10.95 9.1.\TU/SimSun(0)/bx/n/10.95 安 装 \TU/lmr/bx/n/10.95 + \TU/Si
 mSun(0)/bx/n/10.95 初 始 代 码\TU/lmr/bx/n/10.95 .[][] \TU/SimSun(0)/m/n/10.95 前 端 
 没 有 啥 好 说 的，|  我 所 理 解 的 就 是 \TU/lmr/m/n/10.95 html+css+javascript.
  []
 
 
-Overfull \hbox (18.74924pt too wide) in paragraph at lines 2158--2159
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [46]
+Overfull \hbox (18.74924pt too wide) in paragraph at lines 2165--2166
  \TU/lmr/m/n/10.95 9.2.\TU/SimSun(0)/bx/n/10.95 调 试\TU/lmr/bx/n/10.95 .[][] \TU
 /SimSun(0)/m/n/10.95 运 行 代 码 的 快 捷 键 为 \TU/lmr/m/n/10.95 Ctrl+B. \TU/SimSun(0)/
 m/n/10.95 注 释 快 捷 键 为 \TU/lmr/m/n/10.95 Ctrl+/, Ctrl+Shift+/\TU/SimSun(0)/m/n/1
 0.95 可
  []
 
-[46] [47] [48]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [49]
+[47] [48] [49]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [50]
@@ -1152,38 +1146,32 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [52]
 
 LaTeX Font Warning: Font shape `TU/FangSong(0)/bx/n' undefined
-(Font)              using `TU/FangSong(0)/m/n' instead on input line 2443.
+(Font)              using `TU/FangSong(0)/m/n' instead on input line 2460.
 
 [53] [54]
 
-LaTeX Warning: Empty `thebibliography' environment on input line 2542.
+LaTeX Warning: Empty `thebibliography' environment on input line 2559.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2545.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2562.
 [55]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2545.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2562.
  (code.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 2545.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2545.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 2562.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2562.
 
+Package rerunfilecheck Info: File `code.out' has not changed.
+(rerunfilecheck)             Checksum: 1FA29965C54FBC1079F1C778D8EC2945.
 
-
-Package rerunfilecheck Warning: File `code.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `code.out':
-(rerunfilecheck)             Before: 774E031C3DE2348ABED500A8631CB307
-(rerunfilecheck)             After:  5D739FE8AB964B129A5EB5D392CEFC98.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2545.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2562.
  ) 
 Here is how much of TeX's memory you used:
- 26920 strings out of 427748
- 508422 string characters out of 3150981
- 1062947 words of memory out of 3000000
- 30562 multiletter control sequences out of 15000+200000
+ 26926 strings out of 427748
+ 508485 string characters out of 3150981
+ 1061947 words of memory out of 3000000
+ 30568 multiletter control sequences out of 15000+200000
  541373 words of font info for 86 fonts, out of 3000000 for 9000
  1489 hyphenation exceptions out of 8191
  52i,8n,68p,534b,1931s stack positions out of 5000i,500n,10000p,200000b,50000s
