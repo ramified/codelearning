@@ -736,8 +736,32 @@ $\stackrel{\sim}{\longrightarrow}$
 \text{ \rotatebox[origin=c]{270}{$\circlearrowleft$} }
 
 Beamer从上往下:\lstinline|\begin{overlayarea}{\linewidth}{\textheight}\end{overlayarea}|
+\href{https://tex.stackexchange.com/questions/458136/beamer-how-to-keep-an-image-at-its-location-while-using-only-to-uncover-text}{一个更好的方式}
 
 
+Size:
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+\Huge
+\huge
+\LARGE
+\Large
+\large
+\normalsize (default)
+\small
+\footnotesize
+\scriptsize
+\tiny
+\end{lstlisting}
+
+Mathsize:
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+\displaystyle
+\textstyle
+\scriptstyle
+\scriptscriptstyle
+\end{lstlisting}
+
+\href{https://tex.stackexchange.com/questions/286442/how-to-change-color-and-transparency-of-arrows-in-tikz}{Tikz+背景颜色适应}
 
 \subsection{本文参考文献}
 
@@ -2205,6 +2229,11 @@ _([^_]*)_
 \textbf{\1}
 \end{lstlisting}
 
+这是在latex中使用的代码，目的是将\lstinline|31-7|替换为\lstinline|7-31|.
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=10pt]
+(\d{1,})-(\d{1,})
+\2-\1
+\end{lstlisting}
 \section{热键设置(AutoHotkey)}
 这是一款开源软件。为了Hackergame的脚本，同时我猜会大幅度提高打代码的速度。我想可以实现\href{https://zhuanlan.zhihu.com/p/60049290}{快速打笔记}的功能？
 \subsection{调试}
