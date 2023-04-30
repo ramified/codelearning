@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.15)  29 MAR 2023 10:56
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.15)  1 MAY 2023 00:48
 entering extended mode
 **./mathematical_abbreviations.tex
 (mathematical_abbreviations.tex
@@ -1672,41 +1672,45 @@ Underfull \vbox (badness 10000) detected at line 389
  []
 
 [1]
-Underfull \vbox (badness 10000) detected at line 407
- []
-
-
 Underfull \vbox (badness 10000) detected at line 418
  []
 
 
-Underfull \vbox (badness 10000) detected at line 430
- []
-
-
-Underfull \vbox (badness 10000) detected at line 442
+Underfull \vbox (badness 10000) detected at line 429
  []
 
 [2]
+Underfull \vbox (badness 10000) detected at line 441
+ []
+
+
 Underfull \vbox (badness 10000) detected at line 454
  []
 
+
+Underfull \vbox (badness 10000) detected at line 466
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 478
+ []
+
 [3]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 456.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 456.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 480.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 480.
  (mathematical_abbreviations.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 456.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 456.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 480.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 480.
 Package rerunfilecheck Info: File `mathematical_abbreviations.out' has not chan
 ged.
-(rerunfilecheck)             Checksum: 63910813A745E6234FCDF2AC46CBF47F.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 456.
+(rerunfilecheck)             Checksum: 7D244EF20BE816F899EC756919CCBB97.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 480.
  ) 
 Here is how much of TeX's memory you used:
- 36580 strings out of 427748
- 678199 string characters out of 3150981
- 732524 words of memory out of 3000000
- 39938 multiletter control sequences out of 15000+200000
+ 36581 strings out of 427748
+ 678206 string characters out of 3150981
+ 732635 words of memory out of 3000000
+ 39939 multiletter control sequences out of 15000+200000
  540619 words of font info for 62 fonts, out of 3000000 for 9000
  1489 hyphenation exceptions out of 8191
  61i,6n,82p,984b,456s stack positions out of 5000i,500n,10000p,200000b,50000s
