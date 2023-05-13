@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.15)  7 MAY 2023 23:22
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.15)  13 MAY 2023 20:14
 entering extended mode
 **./mathematical_abbreviations.tex
 (mathematical_abbreviations.tex
@@ -1672,43 +1672,46 @@ Underfull \vbox (badness 10000) detected at line 389
  []
 
 [1]
-Underfull \vbox (badness 10000) detected at line 423
- []
-
-
-Underfull \vbox (badness 10000) detected at line 434
+Underfull \vbox (badness 10000) detected at line 433
  []
 
 [2]
-Underfull \vbox (badness 10000) detected at line 446
+Underfull \vbox (badness 10000) detected at line 444
  []
 
 
-Underfull \vbox (badness 10000) detected at line 459
+Underfull \vbox (badness 10000) detected at line 456
  []
 
 
-Underfull \vbox (badness 10000) detected at line 465
+Underfull \vbox (badness 10000) detected at line 469
  []
 
 
-Underfull \vbox (badness 10000) detected at line 478
+Underfull \vbox (badness 10000) detected at line 475
  []
 
 
-Underfull \vbox (badness 10000) detected at line 490
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [3]
+Underfull \vbox (badness 10000) detected at line 488
  []
 
-[3] [4]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 492.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 492.
+
+Underfull \vbox (badness 10000) detected at line 500
+ []
+
+[4]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 502.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 502.
  (mathematical_abbreviations.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 492.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 492.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 502.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 502.
 Package rerunfilecheck Info: File `mathematical_abbreviations.out' has not chan
 ged.
 (rerunfilecheck)             Checksum: B55126F6F9BD0EFB655B8A4929CBB4CD.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 492.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 502.
  ) 
 Here is how much of TeX's memory you used:
  36582 strings out of 427748
@@ -1717,6 +1720,6 @@ Here is how much of TeX's memory you used:
  39940 multiletter control sequences out of 15000+200000
  540619 words of font info for 62 fonts, out of 3000000 for 9000
  1489 hyphenation exceptions out of 8191
- 61i,6n,82p,984b,455s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 61i,6n,82p,984b,456s stack positions out of 5000i,500n,10000p,200000b,50000s
 
 Output written on mathematical_abbreviations.pdf (4 pages).
