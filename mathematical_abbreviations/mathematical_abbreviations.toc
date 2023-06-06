@@ -1,8 +1,8 @@
 \contentsline {section}{\tocsection {}{1}{Introduction}}{1}{section.1}% 
 \contentsline {section}{\tocsection {}{2}{Jargons}}{1}{section.2}% 
 \contentsline {section}{\tocsection {}{3}{Mathematicians}}{1}{section.3}% 
-\contentsline {section}{\tocsection {}{4}{Subjects}}{2}{section.4}% 
+\contentsline {section}{\tocsection {}{4}{Subjects}}{3}{section.4}% 
 \contentsline {section}{\tocsection {}{5}{Geometrical objects}}{3}{section.5}% 
-\contentsline {section}{\tocsection {}{6}{Other math stuffs}}{3}{section.6}% 
-\contentsline {section}{\tocsection {}{7}{Other non-math stuffs}}{3}{section.7}% 
+\contentsline {section}{\tocsection {}{6}{Other math stuffs}}{4}{section.6}% 
+\contentsline {section}{\tocsection {}{7}{Other non-math stuffs}}{4}{section.7}% 
 \contentsline {section}{\tocsection {}{8}{Universities}}{4}{section.8}% 
