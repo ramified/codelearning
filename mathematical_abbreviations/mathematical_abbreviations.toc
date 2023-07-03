@@ -5,4 +5,4 @@
 \contentsline {section}{\tocsection {}{5}{Geometrical objects}}{4}{section.5}% 
 \contentsline {section}{\tocsection {}{6}{Other math stuffs}}{4}{section.6}% 
 \contentsline {section}{\tocsection {}{7}{Other non-math stuffs}}{4}{section.7}% 
-\contentsline {section}{\tocsection {}{8}{Universities}}{4}{section.8}% 
+\contentsline {section}{\tocsection {}{8}{Universities}}{5}{section.8}% 
