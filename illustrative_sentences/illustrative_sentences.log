@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.15)  20 AUG 2023 22:43
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.15)  8 OCT 2023 19:57
 entering extended mode
 **./illustrative_sentences.tex
 (illustrative_sentences.tex
@@ -1030,14 +1030,14 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [7]
 [8]
 
-LaTeX Warning: Empty `thebibliography' environment on input line 494.
+LaTeX Warning: Empty `thebibliography' environment on input line 495.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 497.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 498.
 [9]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 497.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 498.
  (illustrative_sentences.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 497.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 497.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 498.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 498.
 Package rerunfilecheck Info: File `illustrative_sentences.out' has not changed.
 
 (rerunfilecheck)             Checksum: B1D23FBC8D39333346B15439967AAA9D.
@@ -1045,13 +1045,13 @@ Package rerunfilecheck Info: File `illustrative_sentences.out' has not changed.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 497.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 498.
  ) 
 Here is how much of TeX's memory you used:
- 26433 strings out of 427748
- 499487 string characters out of 3150981
+ 26435 strings out of 427748
+ 499521 string characters out of 3150981
  986002 words of memory out of 3000000
- 30031 multiletter control sequences out of 15000+200000
+ 30033 multiletter control sequences out of 15000+200000
  537220 words of font info for 66 fonts, out of 3000000 for 9000
  1489 hyphenation exceptions out of 8191
  52i,7n,68p,552b,2032s stack positions out of 5000i,500n,10000p,200000b,50000s
