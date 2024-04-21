@@ -64,6 +64,8 @@
 \usepackage{diagbox}
 \usepackage{longtable}
 
+\newsavebox\ltmcbox
+
 %%%packages for ToC, LoF and LoT
 
 
@@ -308,7 +310,7 @@
 
 %%%%%%%%%%%%%%%%%%%% here we make some global settings. Understand everything here before you make a document!
 
-\usepackage[a4paper,left=3cm,right=3cm,bottom=4cm]{geometry}
+\usepackage[a4paper,left=2cm,right=2cm,bottom=4cm]{geometry}
 \usepackage{indentfirst}	% Indent first paragraph after section header
 
 \setcounter{tocdepth}{2}
@@ -360,14 +362,18 @@ WLOG & without loss of generality  \\ \hline
  & \\ \hline
  & \\ \hline
 \end{longtable}
-
+\pagebreak
 \section{Mathematicians}
 
 %https://www.bejson.com/othertools/stringarraysort/
-\begin{remark}
-Białynicki-Birula, Mittag-Leffler, and Levi-Civita are individuals, while Birch and Swinnerton-Dyer is not a trio.
-\end{remark}
 
+
+%https://tex.stackexchange.com/questions/45980/balancing-long-table-inside-multicol-in-latex
+% some minor problems: can't add too many words before "multicols".
+
+\begin{multicols}{2}
+\setbox\ltmcbox\vbox{
+\makeatletter\col@number\@ne
 \begin{longtable}{l|l}
 \hline
 AA & Arzelà--Ascoli\\ \hline
@@ -386,6 +392,7 @@ AS & Ax--Schanuel\\ \hline
 AW & Alexander--Whitney\\ \hline
 BB & Baily--Borel\\ \hline
 BB & Barr--Beck\\ \hline
+BB & Beauville--Bogomolov\\ \hline
 BB & Beilinson--Bernstein\\ \hline
 BBDG & Beilinson--Bernstein--Deligne--Gabber\\ \hline
 BC & Banach--Colmez\\ \hline
@@ -393,6 +400,8 @@ BCH & Baker--Campbell--Hausdorff\\ \hline
 BD & Breen--Deligne\\ \hline
 BGG & Bernstein--Gelfand--Gelfand\\ \hline
 BK & Bloch--Kato\\ \hline
+BKK & Bernstein--Kushnirenko--Khovanskii\\ \hline
+BL & Bernstein--Lunts\\ \hline
 BL & Bombieri--Lang\\ \hline
 BL & Borel--Lebesgue\\ \hline
 BM  & Blakers--Massey\\ \hline
@@ -406,9 +415,11 @@ BP & Brieskorn--Pham\\ \hline
 BQ & Bloch--Quillen\\ \hline
 BS & Banach--Steinhaus\\ \hline
 BS & Banach--Stone\\ \hline
+BS & Borel--Serre\\ \hline
 BS & Bott--Samelson\\ \hline
 BS & Brumer--Stark\\ \hline
 BT & Banach--Tarski\\ \hline
+BT & Barsotti--Tate\\ \hline
 BT & Bruhat--Tits\\ \hline
 BU & Borsuk--Ulam\\ \hline
 BW & Bolzano--Weierstrass\\ \hline
@@ -417,6 +428,7 @@ CG & Clebsch--Gordan\\ \hline
 CJ & Chen--Jiang\\ \hline
 CKN & Caffarelli--Kohn--Nirenberg\\ \hline
 CM & Castelnuovo--Mumford\\ \hline
+CM & Codazzi--Mainardi\\ \hline
 CP &  Cauchy--Pompeiu\\ \hline
 CR & Cauchy--Riemann\\ \hline
 CS & Cappell--Shaneson\\ \hline
@@ -448,6 +460,7 @@ ES & Eilenberg--Steenrod\\ \hline
 ES & Eisenbud--Shamash\\ \hline
 EW & Eilenberg--Watts\\ \hline
 EZ & Eilenberg--Zilber\\ \hline
+FD & Fourier--Deligne\\ \hline
 FF & Fargues--Fontaine\\ \hline
 FJ & Fulton--Johnson\\ \hline
 FK & Feynman--Kac\\ \hline
@@ -463,10 +476,12 @@ FT & Farrell--Tate\\ \hline
 FT & Feit--Thompson\\ \hline
 FU & Fréchet--Urysohn\\ \hline
 FW & Fontaine--Winterberger\\ \hline
+GC & Gauss--Codazzi\\ \hline
 GGP & Gan--Gross--Prasad\\ \hline
 GL & Green--Lazarsfeld\\ \hline
 GM & Gauss--Manin\\ \hline
 GM & Goresky--MacPherson\\ \hline
+GM & Grothendieck--Messing\\ \hline
 GP & Gross--Prasad\\ \hline
 GP & Gross--Prasad\\ \hline
 GS & Garcia--Sankaran\\ \hline
@@ -491,15 +506,18 @@ JH & Jordan--Hölder\\ \hline
 JM & Jacobson--Morozov\\ \hline
 KA & Krull--Akizuki\\ \hline
 KAM & Kolmogorov--Arnold--Moser\\ \hline
+KH & Kobayashi--Hitchin\\ \hline
 KL & Kazhdan--Lusztig \\ \hline
 KL & Kubota--Leopoldt\\ \hline
 KM & Kac--Moody\\ \hline
+KN & Kulkarni--Nomizu\\ \hline
 KR & Kudla--Rapoport\\ \hline
 KS & Kashiwara--Schapira\\ \hline
 KS & Kelvin--Stokes\\ \hline
 KS & Kirby--Siebenmann\\ \hline
 KS & Kodaira--Spencer\\ \hline
 KS & Krull--Schmidt\\ \hline
+KT & Kinoshita--Terasaka\\ \hline
 KW & Kronecker--Weber\\ \hline
 LH & Leray--Hirsch\\ \hline
 LK & Langlands--Kottwitz\\ \hline
@@ -510,6 +528,7 @@ LR & Langlands--Rapoport\\ \hline
 LT & Langlands--Tunnell\\ \hline
 LT & Lubin--Tate\\ \hline
 LV & Lawrence--Venkatesh\\ \hline
+LW & Lindemann--Weierstrass\\ \hline
 LZ & Liu--Zheng\\ \hline
 LZ & Lu--Zheng\\ \hline
 MA & Monge--Ampère\\ \hline
@@ -534,6 +553,7 @@ PL & Poincare--Lefschetz\\ \hline
 PT & Pontryagin--Thom\\ \hline
 PV & Poincaré--Verdier\\ \hline
 PW & Peter--Weyl\\ \hline
+PW & Pila--Wilkie\\ \hline
 RH & Riemann--Hurwitz\\ \hline
 RHW & Rota--Heron--Welsh\\ \hline
 RM & Riesz--Markov\\ \hline
@@ -545,6 +565,7 @@ RT & Riesz--Thorin\\ \hline
 RZ & Rapoport--Zink\\ \hline
 SB & Severi--Brauer\\ \hline
 SN & Skolem--Noether\\ \hline
+SS & Schneider--Stuhler\\ \hline
 SS & Sobolev-Slobodeckij\\ \hline
 SS & Stanley--Stembridge\\ \hline
 ST & Serre-Tate\\ \hline
@@ -560,33 +581,35 @@ TN & Tate--Nakayama\\ \hline
 TS & Thom--Sebastiani\\ \hline
 TT & Tomita--Takesaki\\ \hline
 TW & Taylor--Wiles\\ \hline
+VB & Vietoris--Begle\\ \hline
+VC & Vapnik--Chervonenkis\\ \hline
 WD & Weil--Deligne\\ \hline
 WW & Wigner--Weyl\\ \hline
+YM & Yang--Mills\\ \hline
 ZP & Zilber--Pink\\ \hline
 ZR & Zariski--Riemann\\ \hline
-KH & Kobayashi--Hitchin\\ \hline
-YM & Yang--Mills\\ \hline
-KN & Kulkarni--Nomizu\\ \hline
-VC & Vapnik--Chervonenkis\\ \hline
-KT & Kinoshita--Terasaka\\ \hline
-GM & Grothendieck--Messing\\ \hline
-BT & Barsotti--Tate\\ \hline
-VB & Vietoris--Begle\\ \hline
-GC & Gauss--Codazzi\\ \hline
-CM & Codazzi--Mainardi\\ \hline
- & \\ \hline
- & \\ \hline
- & \\ \hline
- & \\ \hline
- & \\ \hline
- & \\ \hline
- & \\ \hline
- & \\ \hline
  & \\ \hline
  & \\ \hline
  & \\ \hline
  & \\ \hline
 \end{longtable}
+\unskip
+\unpenalty
+\unpenalty}
+
+\unvbox\ltmcbox
+
+
+
+
+\end{multicols}
+
+\begin{remark}
+Bia\l{}ynicki-Birula, Mittag-Leffler, and Levi-Civita are individuals, while Birch and Swinnerton-Dyer is not a trio.
+
+Koll\'{a}r, Shepherd-Barron, and Alexeev is not a quartet.
+\end{remark}
+
 
 \section{Subjects related}
 
@@ -616,7 +639,7 @@ RT & representation theory\\ \hline
 LLC & local langlands correspondence \\ \hline
 GLC & global langlands correspondence  \\ \hline
 MMP & minimal model program\\ \hline
- & \\ \hline
+HoTT & homotopy type theory\\ \hline
  & \\ \hline
  & \\ \hline
  & \\ \hline
@@ -670,7 +693,7 @@ NMD & normal Morse data\\ \hline
 MC & middle convolution\\ \hline
 LSA & local stratified acyclicity\\ \hline
 SMT & stratified Morse theory\\ \hline
- & \\ \hline
+CIT & conjecture on intersections with tori\\ \hline
  & \\ \hline
 
 \end{longtable}
@@ -705,5 +728,7 @@ WIAS & Weierstrass Institute for Applied Analysis and Stochastics\\ \hline
  & \\ \hline
  & \\ \hline
 \end{longtable}
+
+
 
 \end{document}
