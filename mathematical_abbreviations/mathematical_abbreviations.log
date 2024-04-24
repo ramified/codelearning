@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.15)  21 APR 2024 17:24
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.15)  24 APR 2024 11:18
 entering extended mode
 **./mathematical_abbreviations.tex
 (mathematical_abbreviations.tex
@@ -1665,7 +1665,7 @@ Package caption Info: End \AtBeginDocument code.
 File: se-ascii-print.def 2016/05/16 v1.11 stringenc: Printable ASCII characters
 
 )
-Underfull \vbox (badness 10000) detected at line 364
+Underfull \vbox (badness 10000) detected at line 362
  []
 
 
@@ -1676,19 +1676,19 @@ Overfull \vbox (21.0pt too high) has occurred while \output is active []
 
  [2]
 [3]
-Underfull \vbox (badness 10000) detected at line 635
+Underfull \vbox (badness 10000) detected at line 633
  []
 
 [4]
-Underfull \vbox (badness 10000) detected at line 646
+Underfull \vbox (badness 10000) detected at line 644
  []
 
 
-Underfull \vbox (badness 10000) detected at line 659
+Underfull \vbox (badness 10000) detected at line 657
  []
 
 
-Underfull \vbox (badness 10000) detected at line 683
+Underfull \vbox (badness 10000) detected at line 681
  []
 
 [5]
@@ -1717,7 +1717,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 734.
 Here is how much of TeX's memory you used:
  36586 strings out of 427748
  678304 string characters out of 3150981
- 767769 words of memory out of 3000000
+ 767766 words of memory out of 3000000
  39942 multiletter control sequences out of 15000+200000
  540627 words of font info for 63 fonts, out of 3000000 for 9000
  1489 hyphenation exceptions out of 8191
