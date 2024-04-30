@@ -196,7 +196,7 @@ Hefei, 230026\\ P.R. China\\}
 \begin{abstract}
 这里总结自己学过的代码供查阅。为啥不用英文？英文的参考文献浩如烟海，也不差我一个啊。另外引用的很多网页也都是中文的，我也懒得再花时间解释哪个是中文哪个是英文了。对数学系的同学而言，代码的逻辑并不难，大家不会的只是格式而已。第一节横向介绍我们需要啥，之后纵向对每一种语言给出对应的代码。
 
-在这份文档的编译中第一次学python和Github,可以说是紧跟潮流23333
+Nowadays people have already the chatGPT, so it makes this document useless.
 \end{abstract}
 
 
@@ -226,8 +226,10 @@ Hefei, 230026\\ P.R. China\\}
 \end{itemize}
 \subsection{基本逻辑}
 \begin{itemize}
-	\item 数据结构类型(数字、字符串、其他结构)
-	\item 基本四则运算+mod(若数据结构中包含矩阵，则需要矩阵的各类运算；)
+	\item 数据结构类型(数字、字符串、数列、矩阵、结构体、其他结构)
+	\item 逻辑运算符
+	\item 基本四则运算+mod
+	\item 高级数学运算(复数，矩阵，求导)
 	\item 条件语句
 	\item 循环语句
 	\item 函数
@@ -324,9 +326,28 @@ Python是一门高级的编程语言。他有许多的标准模块(standard modu
 >>> a,b=8,13 # a++ is not allowed in python
 >>> a ** (b-1) % b # verify the Fermat's little theorem
 \end{lstlisting}
-计算器上的Ans记为\lstinline|_|, \lstinline|round(0.142857,1)|给出$0.1$
+计算器上的Ans记为\lstinline|_|, \lstinline|round(0.142857,1)|给出$0.1$.
+
+
+
+
 
 python中的逻辑运算符如下:与(\lstinline|and &|)，或(\lstinline{or |})
+
+
+\subsubsection{矩阵运算}
+详见\href{https://doc.sagemath.org/html/en/reference/matrices/sage/matrix/constructor.html}{构造/展示矩阵}。
+
+可以学到：
+\begin{enumerate}
+\item 创建矩阵
+\item 创建特殊矩阵(单位阵，$a_ij$显示表达，循环阵，图的(0,1)-矩阵)
+\item 组合向量构成矩阵
+\item 指定所在环(有理数域，实数域，有限域)
+\item 矩阵所在的空间$m.parent()$
+
+\end{enumerate}
+
 
 条件语句和循环语句的书写规范详见\href{https://docs.python.org/3/tutorial/controlflow.html}{这里}。以下是计算素数的例子。
 \begin{lstlisting}[language=iPython]
@@ -2191,6 +2212,9 @@ Pause_when_Done=off
 \subsection{调试}
 运行代码的快捷键为Ctrl+B.注释快捷键为Ctrl+/, Ctrl+Shift+/可以在当前位置插入注释。
 
+Ctrl+Shift+P可以进行功能查找。
+分屏：Alt+Shift+1/2/3
+
 输入部分单词可以按Tab键补全代码，按住ctrl键可以多点输入。
 
 对于java,可以使用\lstinline|alert("test");|
@@ -2543,6 +2567,7 @@ return
 简易示意图
 可能引入的概念:Laurent展开/同调群、基本群的概念(在数回中，请使得最后画出的曲线表示基本群不平凡但是同调群不平凡)/覆叠，万有覆叠，deck transformation(华容道简化难度:允许deck transformation将区块变换至另一个基本区域中相同的位置；或者，我们允许上下粘接)/曲率/曲率驱动游戏/descent(数独解何时能成为更小的黎曼面的解)
 视角：收敛区域视角(遮罩圆形)、星形区域视角、基本区域视角、万有覆叠视角、第一人称视角、二维3D视角(视角需要通过"培训+考试"解锁)
+变种：通过同时考虑一个黎曼面的两个覆叠来设计关卡；可以考虑改变定义黎曼面的参数来改变世界，这样可以引入moduli space；改变黎曼面的参数也是在黎曼面上实现，尝试让人物可以同时操纵base space和fiber space来完成关卡。
 
 虚拟对话
 -宇宙到底是啥？(永远都到达不了的点是否真的存在？-black hole 宇宙是几维的？2+3(颜色)+1(时间) 如何测量时间，or时间的流逝是否是均匀的？)
