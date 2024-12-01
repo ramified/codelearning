@@ -1,0 +1,36 @@
+def symmetric_sum(k, b):
+    total_sum = 0
+    for m in Partitions(k):
+        term = 1
+        for i in range(1, k+1):
+            mi = sum(1 for part in m if part == i)
+            if mi > 0:
+                term *= b[i] ** mi / (factorial(mi) * i^mi)
+        total_sum += term
+    return total_sum
+
+k = 8
+l = k+1
+
+print([i for i in range(l)])
+
+G = WeylGroup(['E',6])
+
+irr = G.irreducible_characters()
+
+chi = irr[3]
+
+chi.values()
+
+chicf = ClassFunction(G, chi); chicf
+
+aop = [chicf.adams_operation(i).values() for i in range(l)]
+
+a = [[aop[i][j] for i in range(len(aop))] for j in range(len(aop[0]))]
+print([[a[i][j] for j in range(l)] for i in range(25)])
+
+#print(symmetric_sum(k, a[2]))
+sym2chi = [symmetric_sum(k, a[i])  for i in range(25)]
+print(sym2chi)
+sym2chicf = ClassFunction(G, sym2chi);
+[sym2chicf.scalar_product(y) for y in irr]

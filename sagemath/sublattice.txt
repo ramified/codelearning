@@ -1,0 +1,132 @@
+https://doc.sagemath.org/html/en/reference/combinat/sage/combinat/root_system/weyl_group.html
+#https://stackoverflow.com/questions/44834721/keeping-table-formatting-in-sage-with-multiple-tables
+#https://doc.sagemath.org/html/en/reference/repl/sage/repl/rich_output/pretty_print.html
+
+# lattice index initial code
+
+v1 = vector([1, 1])
+
+v2 = vector([1, -1])
+
+v3 = vector([0, 0])
+
+M = matrix([v1, v2, v3])
+
+rank = M.rank()
+
+if rank == 2:
+
+# Extract a 2x2 basis matrix using the first two independent rows
+
+	basis_matrix = M.smith_form()[0][:2] 
+
+	index = abs(basis_matrix.det()) 
+
+	print(f"Index of the sublattice: {index}")
+
+else:
+	print("The given vectors do not span a rank-2 sublattice.")	
+
+
+
+
+### Combines all codes
+
+v1 = vector([1, 1])
+W = WeylGroup(["B", 2],  implementation='matrix') 
+M2 = matrix([a * v1 for a in W])
+M = M2.apply_map(lambda x: x.numerator())
+rank = M.rank()
+if rank == 2:
+# Extract a 2x2 basis matrix using the first two independent rows
+	basis_matrix = M.smith_form()[0][:2] 
+	index = abs(basis_matrix.det()) 
+	print(f"Index of the sublattice: {index}")
+else:
+	print("The given vectors do not span a rank-2 sublattice.")	
+
+
+
+
+
+
+### Types really matter!
+
+v1 = vector([1, 1])
+v2 = vector([-1, -1])
+v3 = vector([1, -1])
+v4 = vector([1, -1])
+v5 = vector([1, 1])
+v6 = vector([-1, -1])
+v7 = vector([-1, 1])
+v8 = vector([-1, 1])
+W = WeylGroup(["B", 2],  implementation='matrix') 
+M2 = matrix([a * v1 for a in W])
+M = matrix([v1, v2, v3, v4,v5,v6,v7,v8])
+print(f"These two are the same: {M==M2}")
+print(f"But after applying functions they are not the same:  {M.smith_form()==M2.smith_form()}")
+print(f"Since their types are different:  {type(M)==type(M2)}")
+
+
+
+### How to make pretty tables
+#https://stackoverflow.com/questions/44834721/keeping-table-formatting-in-sage-with-multiple-tables
+#https://doc.sagemath.org/html/en/reference/repl/sage/repl/rich_output/pretty_print.html
+
+table_data = [[i + j + i * j for j in range(5)] for i in range(5)]
+table = table(table_data)
+pretty_print(table)
+
+
+
+### sublattice of Type B2, pretty table version
+#https://stackoverflow.com/questions/44834721/keeping-table-formatting-in-sage-with-multiple-tables
+#https://doc.sagemath.org/html/en/reference/repl/sage/repl/rich_output/pretty_print.html
+
+W = WeylGroup(["B", 2],  implementation='matrix') 
+n=10
+table_data = [[0 for j in range(n)] for i in range(n)]
+
+for i in range(n):
+    for j in range(n):
+        v1 = vector([i, j])
+        M2 = matrix([a * v1 for a in W])
+        M = M2.apply_map(lambda x: x.numerator())
+        rank = M.rank()
+        if rank == 2:
+        # Extract a 2x2 basis matrix using the first two independent rows
+            basis_matrix = M.smith_form()[0][:2] 
+            table_data[i][j]= abs(basis_matrix.det()) 
+        else:
+            table_data[i][j]= -1 #inf	
+table = table(table_data)
+pretty_print(table)
+
+
+
+### sublattice of Type B2, pretty table version, verify the expected formula
+#https://stackoverflow.com/questions/44834721/keeping-table-formatting-in-sage-with-multiple-tables
+#https://doc.sagemath.org/html/en/reference/repl/sage/repl/rich_output/pretty_print.html
+
+W = WeylGroup(["B", 2],  implementation='matrix') 
+n=15
+table_data = [[0 for j in range(n)] for i in range(n)]
+
+for i in range(n):
+    for j in range(n):
+        v1 = vector([i, j])
+        M2 = matrix([a * v1 for a in W])
+        M = M2.apply_map(lambda x: x.numerator())
+        rank = M.rank()
+        if rank == 2:
+        # Extract a 2x2 basis matrix using the first two independent rows
+            basis_matrix = M.smith_form()[0][:2] 
+            c=gcd(i,j)
+            table_data[i][j]= abs(basis_matrix.det())/c**2 
+            if i*j/c**2 % 2 == 1:
+                table_data[i][j] = table_data[i][j]/2
+        else:
+            table_data[i][j]= -1 #inf	
+table = table(table_data)
+pretty_print(table)
+
