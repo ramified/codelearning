@@ -1,0 +1,24 @@
+#https://doc.sagemath.org/html/en/reference/combinat/sage/combinat/root_system/root_system.html
+
+lie_algebra = RootSystem(["E", 6])
+
+weight_space = lie_algebra.weight_space();
+root_lattice = lie_algebra.root_lattice()
+coroot_lattice = lie_algebra.coroot_lattice()
+
+simple_roots = root_lattice.basis()
+simple_roots_in_weight_space = weight_space.simple_roots()
+simple_coroots = root_lattice.simple_coroots()  ### It is the coroots in root lattice
+fundamental_weights = weight_space.fundamental_weights()
+
+
+print("Pairings of fundamental weights with simple (co)roots:")
+for i, fw in fundamental_weights.items():
+    for j, sr in simple_coroots.items():
+        pairing = fw.scalar(sr)
+        print(f"⟨ω_{i}, α_{j}⟩ = {pairing}")
+print("Pairings of simple roots with simple roots:")
+for i, sr1 in simple_roots.items():
+    for j, sr2 in simple_coroots.items():
+        pairing = sr1.to_ambient().dot_product(sr2.to_ambient())
+        print(f"⟨α_{i}, α_{j}⟩ = {pairing}")

@@ -1,0 +1,24 @@
+# Be careful about the Bourbaki index! It is not the same as the wiki index(for which i took) The ambiance is not the same even after changing the index.
+# Also care about the index of the list. Usually the list make by myself begins with 0, while the list (e.g. simple_roots) begins with 1.
+
+
+lie_algebra = RootSystem(["E", 6])
+
+weight_space = lie_algebra.weight_space();
+root_lattice = lie_algebra.root_lattice()
+coroot_lattice = lie_algebra.coroot_lattice()
+
+simple_roots = root_lattice.basis()
+simple_roots_in_weight_space = weight_space.simple_roots()
+simple_coroots = root_lattice.simple_coroots()  ### It is the coroots in root lattice
+fundamental_weights = weight_space.fundamental_weights()
+
+alpha = simple_coroots
+ortho = [ alpha[1], alpha[4], alpha[6], 2*alpha[2]+alpha[1]+2*alpha[3]+3*alpha[4]+2*alpha[5]+alpha[6] ]
+
+# Compute the pairings
+print("Pairings of fundamental weights with simple (co)roots:")
+for j, sr in enumerate(ortho, start=0):
+    m = fundamental_weights[1].scalar(sr)
+    print(f"{m}")
+
