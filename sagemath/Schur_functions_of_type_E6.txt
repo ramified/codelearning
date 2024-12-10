@@ -1,8 +1,7 @@
-# Be careful about the Bourbaki index! It is not the same as the wiki index(for which i took) The ambiance is not the same even after changing the index.
-# Also care about the index of the list. Usually the list make by myself begins with 0, while the list (e.g. simple_roots) begins with 1.
-
 
 lie_algebra = RootSystem(["E", 6])
+ambient_space = lie_algebra.ambient_space()
+W = ambient_space.weyl_group()
 
 weight_space = lie_algebra.weight_space();
 root_lattice = lie_algebra.root_lattice()
@@ -21,4 +20,20 @@ print("Pairings of fundamental weights with simple (co)roots:")
 for j, sr in enumerate(ortho, start=0):
     m = fundamental_weights[1].scalar(sr)
     print(f"{m}")
-
+    
+test_weight = fundamental_weights[1] + fundamental_weights[2]
+sum = 0
+i=0
+#for w in W[:100]:
+for w in W:
+    wt_amb = w.action(test_weight.to_ambient())
+    coefficient = []
+    prod = 1
+    for j, sr in enumerate(ortho, start=0):
+        result = ortho[j].to_ambient().scalar(wt_amb)
+        prod = prod * result * result 
+        coefficient.append(result)
+    i=i+1
+    print(f"the {i}'s computation:{coefficient} and {prod}, the temp sum is {sum}")
+    sum = sum + prod
+print(f"the final coefficient is {sum}")   
