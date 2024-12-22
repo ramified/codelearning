@@ -1,0 +1,12 @@
+How is the Gauss map related with the line bundle (or vector bundles)?
+
+Exact Answer: The Gauss map is a section of the unit normal bundle of a hypersurface (or submanifold), which is a line bundle (or vector bundle).
+
+
+Reasoning: The Gauss map takes a point on a hypersurface (or more generally, a submanifold) in Euclidean space (or more generally, in a Riemannian manifold) and maps it to the unit normal vector at that point. This unit normal vector can be viewed as an element of the unit sphere, considered as the set of all possible unit vectors in the ambient space. Thus, for each point on the hypersurface, we assign a vector from the unit normal bundle. In other words, the Gauss map can be interpreted as a section of the unit normal bundle of the hypersurface, where the normal bundle is a line bundle (when considering a hypersurface) or more generally a vector bundle. Specifically, it assigns to each point p in M a vector in the fiber of N at p. Thus the Gauss map establishes the relationship between a hypersurface and its normal bundle.
+
+
+When the map to $P^n$ is given by a line bundle over $X$, the map to Grassmannian is given by?
+
+
+Exact Answer: It is given by a rank‑k vector bundle on X together with enough global sections, that is a globally generated rank k bundle defining the morphism to the Grassmannian.

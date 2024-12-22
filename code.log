@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.15)  28 APR 2024 22:56
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.15)  22 DEC 2024 13:57
 entering extended mode
 **./code.tex
 (code.tex
@@ -1010,4 +1010,227 @@ Package fontspec Info: Font family 'FangSong(0)' created for font 'FangSong'
 
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 329.
- [3
+ [3] [4]
+LaTeX Font Info:    Try loading font information for U+euf on input line 401.
+
+("C:\Users\Administrator\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\u
+euf.fd"
+File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
+) [5]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [7]
+[8] [9]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [10]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [11]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [12]
+Missing character: There is no ︠ in font [lmmono10-regular]:!
+Missing character: There is no ︠ in font [lmmono10-regular]:!
+
+[13] [14]
+("C:\Users\Administrator\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listings\l
+stlang1.sty"
+File: lstlang1.sty 2018/09/02 1.7 listings language file
+) [15]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [16]
+Overfull \hbox (13.13487pt too wide) in paragraph at lines 896--897
+[]\TU/lmr/m/n/10.95 RULES \TU/SimSun(0)/m/n/10.95 的 基 本 结 构 是[][][][][][][][][]
+[][][][][][][][][][][][][][][][][][][][]
+ []
+
+[17]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [18]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [19]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [20]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [21]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [22]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [23]
+Missing character: There is no ◿ in font [lmmono10-regular]:!
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [24]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [25]
+Missing character: There is no ◿ in font [lmmonolt10-bold]:!
+Missing character: There is no ◺ in font [lmmonolt10-bold]:!
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [26]
+Missing character: There is no ◸ in font [lmmonolt10-bold]:!
+Missing character: There is no ◹ in font [lmmonolt10-bold]:!
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [27]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [28]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [29]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [30]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [31]
+Missing character: There is no ◹ in font [lmmonolt10-bold]:!
+Missing character: There is no ◸ in font [lmmonolt10-bold]:!
+Missing character: There is no ◹ in font [lmmonolt10-bold]:!
+Missing character: There is no ◺ in font [lmmonolt10-bold]:!
+Missing character: There is no ◿ in font [lmmonolt10-bold]:!
+Missing character: There is no ◺ in font [lmmonolt10-bold]:!
+Missing character: There is no ◿ in font [lmmonolt10-bold]:!
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [32]
+Missing character: There is no ◿ in font [lmmonolt10-bold]:!
+Missing character: There is no ◺ in font [lmmonolt10-bold]:!
+Missing character: There is no ◿ in font [lmmonolt10-bold]:!
+Missing character: There is no ◺ in font [lmmonolt10-bold]:!
+Missing character: There is no ◿ in font [lmmonolt10-bold]:!
+Missing character: There is no ◹ in font [lmmonolt10-bold]:!
+Missing character: There is no ◹ in font [lmmonolt10-bold]:!
+Missing character: There is no ◸ in font [lmmonolt10-bold]:!
+Missing character: There is no ◸ in font [lmmono10-regular]:!
+Missing character: There is no ◹ in font [lmmono10-regular]:!
+Missing character: There is no ◹ in font [lmmono10-regular]:!
+Missing character: There is no ◿ in font [lmmono10-regular]:!
+Missing character: There is no ◺ in font [lmmono10-regular]:!
+Missing character: There is no ◹ in font [lmmono10-regular]:!
+Missing character: There is no ◺ in font [lmmono10-regular]:!
+Missing character: There is no ◿ in font [lmmono10-regular]:!
+Missing character: There is no ◿ in font [lmmono10-regular]:!
+Missing character: There is no ◺ in font [lmmono10-regular]:!
+Missing character: There is no ◹ in font [lmmono10-regular]:!
+Missing character: There is no ◸ in font [lmmono10-regular]:!
+Missing character: There is no ◿ in font [lmmono10-regular]:!
+Missing character: There is no ◿ in font [lmmono10-regular]:!
+Missing character: There is no ◸ in font [lmmono10-regular]:!
+Missing character: There is no ◹ in font [lmmono10-regular]:!
+Missing character: There is no ◺ in font [lmmono10-regular]:!
+Missing character: There is no ◸ in font [lmmono10-regular]:!
+Missing character: There is no ◺ in font [lmmono10-regular]:!
+Missing character: There is no ◿ in font [lmmono10-regular]:!
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [33]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [34]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [35]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [36]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [37]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [38]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [39]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [40]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [41]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [42]
+[43] [44]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [45]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [46]
+Overfull \hbox (25.40816pt too wide) in paragraph at lines 2213--2214
+ \TU/lmr/m/n/10.95 9.1.\TU/SimSun(0)/bx/n/10.95 安 装 \TU/lmr/bx/n/10.95 + \TU/Si
+mSun(0)/bx/n/10.95 初 始 代 码\TU/lmr/bx/n/10.95 .[][] \TU/SimSun(0)/m/n/10.95 前 端 
+没 有 啥 好 说 的，|  我 所 理 解 的 就 是 \TU/lmr/m/n/10.95 html+css+javascript.
+ []
+
+
+Overfull \hbox (18.74924pt too wide) in paragraph at lines 2215--2216
+ \TU/lmr/m/n/10.95 9.2.\TU/SimSun(0)/bx/n/10.95 调 试\TU/lmr/bx/n/10.95 .[][] \TU
+/SimSun(0)/m/n/10.95 运 行 代 码 的 快 捷 键 为 \TU/lmr/m/n/10.95 Ctrl+B. \TU/SimSun(0)/
+m/n/10.95 注 释 快 捷 键 为 \TU/lmr/m/n/10.95 Ctrl+/, Ctrl+Shift+/\TU/SimSun(0)/m/n/1
+0.95 可
+ []
+
+[47] [48] [49] [50]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [51]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [52]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [53]
+
+LaTeX Font Warning: Font shape `TU/FangSong(0)/bx/n' undefined
+(Font)              using `TU/FangSong(0)/m/n' instead on input line 2527.
+
+[54] [55]
+
+LaTeX Warning: Empty `thebibliography' environment on input line 2629.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2632.
+[56]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2632.
+ (code.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 2632.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2632.
+
+Package rerunfilecheck Info: File `code.out' has not changed.
+(rerunfilecheck)             Checksum: 1FA29965C54FBC1079F1C778D8EC2945.
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2632.
+ ) 
+Here is how much of TeX's memory you used:
+ 27043 strings out of 427748
+ 511088 string characters out of 3150981
+ 1070174 words of memory out of 3000000
+ 30624 multiletter control sequences out of 15000+200000
+ 541381 words of font info for 87 fonts, out of 3000000 for 9000
+ 1489 hyphenation exceptions out of 8191
+ 52i,8n,68p,534b,1931s stack positions out of 5000i,500n,10000p,200000b,50000s
+
+Output written on code.pdf (56 pages).

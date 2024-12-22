@@ -22,11 +22,12 @@ for j, sr in enumerate(ortho, start=0):
     print(f"{m}")
     
 test_weight = fundamental_weights[1] + fundamental_weights[2]
+test_weight_amb = test_weight.to_ambient()
 sum = 0
 i=0
 #for w in W[:100]:
 for w in W:
-    wt_amb = w.action(test_weight.to_ambient())
+    wt_amb = w.action(test_weight_amb)
     coefficient = []
     prod = 1
     for j, sr in enumerate(ortho, start=0):
