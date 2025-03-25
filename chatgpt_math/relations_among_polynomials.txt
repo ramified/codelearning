@@ -1,0 +1,22 @@
+How could I find the polynomial f(x_1,x_2,x_3,x_4) of minimal degree, such that f(a^4b^2,4a^2+2b^2,4a^4+2b^4,4a^6+2b^6)=0? Use sagemath to give an algorithm.
+
+# Define the polynomial ring
+R.<a, b, x1, x2, x3, x4> = PolynomialRing(QQ)
+
+# Define the substitutions
+F1 = a^4 * b^2 - x1
+F2 = 4*a^2 + 2*b^2 - x2
+F3 = 4*a^4 + 2*b^4 - x3
+F4 = 4*a^6 + 2*b^6 - x3
+
+# Compute the elimination ideal
+I = ideal(F1, F2, F3, F4)
+elim_ideal = I.elimination_ideal([a, b])
+
+# Extract a polynomial in x1, x2, x3
+minimal_poly = elim_ideal.gens()[0]
+print(minimal_poly)
+
+
+answer:
+x2^3 - 6*x2*x3 - 48*x1 + 8*x3

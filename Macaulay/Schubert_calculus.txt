@@ -1,0 +1,46 @@
+/* 
+some websites which may be useful
+introduce help, loop
+https://www.cimat.mx/~abraham.mc/teaching/spring20/IntroductionM2.pdf
+
+Schubert calculus
+https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Schubert2/html/index.html
+https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Schubert2/html/_schur_lp__List_cm__Abstract__Sheaf_rp.html
+*/
+
+
+--initial
+loadPackage "Schubert2";    --always load package
+r:=3;
+g:=7;
+G = flagBundle({r,g-r}, VariableNames => {s,c})
+(S,Q) = bundles G
+chern(S)
+chern(Q)
+
+
+integral chern S --test
+toSchubertBasis chern(S)
+
+--Plethysm
+B = symmetricPower(3,Q)
+chern exteriorPower_3 Q
+chern schur_{1,1,1} Q
+
+--Chern class of symmetric products
+loadPackage "Schubert2";
+g:=7;
+for r from 0 to 3 list (
+	base(g, Bundle => (E,r,c));
+	chern schur_{2} E
+	)
+
+--variation: Chern class of symmetric products
+loadPackage "Schubert2";
+g:=20;
+for k from 0 to 3 list (
+	for r from 0 to 4 list (
+		base(g, Bundle => (E,r,c));
+		chern(k, schur_{2} E)
+		)
+	)
