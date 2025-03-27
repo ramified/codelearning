@@ -1,0 +1,29 @@
+--correspondence test
+--OO_X is the structure sheaf
+loadPackage "Schubert2";
+G26 = flagBundle({2,4},VariableNames => K);
+P5 = flagBundle({1,5},VariableNames => H);
+I = incidenceCorrespondence(P5,G26) --from G26 to P5, a strange setting
+c = chern(dual first bundles P5)
+I^* (c)
+
+
+--Chern class of fano of lines in a deg 3 hypersurface (in P^(n-1))
+--here b = [F]
+n=6;
+loadPackage "Schubert2";
+G = flagBundle({2,n-2},VariableNames => {,c});
+B=symmetricPower_3 dual first bundles G;
+b = chern(rank B, B) --or ctop B
+bbasis = toSchubertBasis b
+a = integral b
+
+--try to compute [S]
+n=6;
+loadPackage "Schubert2";
+G = flagBundle({2,n-2},VariableNames => {,c});
+(S,Q) = bundles G;
+A=symmetricPower_2 S;
+B=dual Q;
+degeneracyLocus2(1,B,A) --the cycle class of the locus where the rank of a generic map from A to B is at most k
+toSchubertBasis oo
