@@ -1,0 +1,21 @@
+
+### This computes the geometrical genus of the curve y^n=x^m-1.
+
+# Define the formula
+def f(m, n):
+    return (m*n - m - n - gcd(m, n) + 2) / 2
+
+# Create a matrix with the computed values
+M = Matrix(12, 12, lambda i, j: f(i+1, j+1))
+
+# Display the table with row and column labels
+html_table = "<table border='1' style='border-collapse: collapse;'>"
+html_table += "<tr><th>m \\ n</th>" + "".join(f"<th>{j+1}</th>" for j in range(12)) + "</tr>"
+
+for i in range(12):
+    html_table += f"<tr><th>{i+1}</th>" + "".join(f"<td>{M[i,j]}</td>" for j in range(12)) + "</tr>"
+
+html_table += "</table>"
+
+# Output HTML in Sage
+html(html_table)

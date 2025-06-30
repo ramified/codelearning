@@ -1,0 +1,158 @@
+# This program tries to compute the \epsilon function in [Potier97, p217], as well as rank of these exceptional vector bundles. In the future I should also compute the Chern class of these vector bundles.
+
+# Define structure for dyadic number
+class Dyadic:
+    def __init__(self, nom, exponent):
+        self.nom = nom                # numerator n
+        self.exponent = exponent      # exponent k, so denom = 2^k
+        self.denom = 2^exponent
+        self.value = None
+        self.rank = None
+
+    def rational(self):
+        return Rational((self.nom, self.denom))
+
+    def __repr__(self):
+        return f"Dyadic({self.nom}/2^{self.exponent}) = {self.value}"
+
+# Build list of dyadic numbers in [0,1] with denominator ≤ 2^5
+dyadic_numbers = []
+dyadic_dict = {}
+def simp(n, k):
+    n = ZZ(n)  
+    if n == 0:
+        return (0, 0)
+    v = n.valuation(2)
+    if v >= 0:
+        return (n // 2^v, k - v)
+    else:
+        return (n // 2^k, 0)
+
+
+# Define recursive function f
+def compute_f(n,k):
+    if k==0:
+        return n
+    #elif n==1:
+        #print(f"f({n}/2^{k}) = {simp(n-1,k)}")
+        #return 0.2
+    else: 
+        
+        #for key, dyadic in dyadic_dict.items(): # for debug
+        #    print(key, dyadic.value)
+        left = dyadic_dict[simp(n-1,k)]
+        right = dyadic_dict[simp(n+1,k)]
+        r1 = QQ(left.value).denominator()
+        r2 = QQ(right.value).denominator()
+        diff = (1/r1**2 - 1/r2**2)/2
+
+        return (left.value + right.value)/2 + diff/(3 + left.value - right.value)
+for n in range(-1, 2):
+    x = Dyadic(n, 0)
+    dyadic_numbers.append(x)
+    dyadic_dict[(n, 0)] = x  # use (nom, exponent) as key
+    dyadic_dict[(n, 0)].value=n   
+    
+for k in range(1,7):  # exponent from 1 to 5
+    for n in range(1, 2^k, 2):
+        x = Dyadic(n, k)
+        dyadic_numbers.append(x)
+        dyadic_dict[(n, k)] = x  # use (nom, exponent) as key
+        dyadic_dict[(n, k)].value=compute_f(n,k)
+
+
+
+# Plot
+points = [(float(d.rational()), float(d.value)) for d in dyadic_numbers]
+p = list_plot(points, plotjoined=False, marker='o', axes_labels=['x', 'f(x)'], figsize=6)
+#for x, y in points:
+#    p += text(f"{y:.3f}", (x, y), fontsize=8, vertical_alignment='bottom', horizontal_alignment='left')
+p.show()
+
+
+
+
+
+############################################
+#The ranks are all in the sequence A002559, i.e.,  Markoff (or Markov) numbers!!!
+
+# Define structure for dyadic number
+class Dyadic:
+    def __init__(self, nom, exponent):
+        self.nom = nom                # numerator n
+        self.exponent = exponent      # exponent k, so denom = 2^k
+        self.denom = 2^exponent
+        self.value = None
+        self.rank = None
+
+    def rational(self):
+        return Rational((self.nom, self.denom))
+
+    def __repr__(self):
+        return f"Dyadic({self.nom}/2^{self.exponent}) = {self.value}"
+
+# Build list of dyadic numbers in [0,1] with denominator ≤ 2^5
+dyadic_numbers = []
+dyadic_dict = {}
+def simp(n, k):
+    n = ZZ(n)  
+    if n == 0:
+        return (0, 0)
+    v = n.valuation(2)
+    if v >= 0:
+        return (n // 2^v, k - v)
+    else:
+        return (n // 2^k, 0)
+
+
+# Define recursive function f
+def compute_f1(n,k):
+    if k==0:
+        return n
+    #elif n==1:
+        #print(f"f({n}/2^{k}) = {simp(n-1,k)}")
+        #return 0.2
+    else: 
+        
+        #for key, dyadic in dyadic_dict.items(): # for debug
+        #    print(key, dyadic.value)
+        left = dyadic_dict[simp(n-1,k)]
+        right = dyadic_dict[simp(n+1,k)]
+        r1 = QQ(left.value).denominator()
+        r2 = QQ(right.value).denominator()
+        diff = (1/r1**2 - 1/r2**2)/2
+
+        return (left.value + right.value)/2 + diff/(3 + left.value - right.value)
+    
+def compute_f2(n,k):
+    if k==0:
+        return 1
+    else: 
+        left = dyadic_dict[simp(n-1,k)]
+        right = dyadic_dict[simp(n+1,k)]
+        rank = left.rank * right.rank * (3 + left.value - right.value)
+        print(f"The vector bundle E_{n/2**k} has slope {k} and rank {rank}")
+        #print(f"left.rank: {left.rank}; right.rank: {right.rank}, left.value: {left.value}, right.value:{right.value} , final: {left.rank * right.rank * (3 + left.value - right.value)}")
+        return rank
+for n in range(-1, 2):
+    x = Dyadic(n, 0)
+    dyadic_numbers.append(x)
+    dyadic_dict[(n, 0)] = x  # use (nom, exponent) as key
+    dyadic_dict[(n, 0)].value=n   
+    dyadic_dict[(n, 0)].rank=1
+    
+for k in range(1,6):  # exponent from 1 to 5
+    for n in range(1, 2^k, 2):
+        x = Dyadic(n, k)
+        dyadic_numbers.append(x)
+        dyadic_dict[(n, k)] = x  # use (nom, exponent) as key
+        dyadic_dict[(n, k)].value=compute_f1(n,k)
+        dyadic_dict[(n, k)].rank=compute_f2(n,k)
+
+
+# Plot
+points = [(float(d.rational()), float(d.rank)) for d in dyadic_numbers]
+p = list_plot(points, plotjoined=False, marker='o', axes_labels=['x', 'f(x)'], figsize=6)
+#for x, y in points:
+#    p += text(f"{y:.3f}", (x, y), fontsize=8, vertical_alignment='bottom', horizontal_alignment='left')
+p.show()
