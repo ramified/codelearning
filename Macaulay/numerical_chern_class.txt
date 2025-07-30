@@ -1,0 +1,17 @@
+needsPackage "NormalToricVarieties";
+PP2 = toricProjectiveSpace 2;
+degrees ring PP2
+chi OO PP2_2
+latticePoints PP2_2
+
+
+
+needsPackage "NormalToricVarieties";
+d = 3;
+PPd = toricProjectiveSpace d;
+A0 = intersectionRing PPd;
+Omega = cotangentSheaf PPd
+TP = dual Omega
+chern TP
+ch TP
+todd TP

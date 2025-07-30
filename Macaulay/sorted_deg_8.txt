@@ -1,0 +1,41 @@
+
+--length FinallyPoly is 53, while answer is 43(not 45)
+
+
+--The difference among (), [], and {} 
+--https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Macaulay2Doc/html/_lists_spand_spsequences.html
+
+R = ZZ/10007;
+isField R
+S=R[x,y,z]
+Coef = {4,2,2,3,3,2};
+IniPoly = for i from 0 when i < 6 list random(Coef_i, S)
+a = IniPoly_0;
+b = IniPoly_1;
+c = IniPoly_2;
+d = IniPoly_3;
+e = IniPoly_4;
+f = IniPoly_5;
+TestPoly = {b*c-f^2, a*c-e^2, a*b-d^2, e*f-c*d, d*f-b*e, d*e-a*f};
+FinalPoly = for i from 0 when i < 6 list mingle (entries (matrix{{TestPoly_i}} * basis(Coef_i, S)));
+FinallyPoly = mingle FinalPoly;
+length FinallyPoly
+
+(M,C) = coefficients matrix{FinallyPoly}
+answer = rank C
+
+
+
+
+
+
+
+--the partial differentials
+R = QQ[a,b,c,d,e,f];
+M =matrix{{a,d,e},{d,b,f}, {e,f,c}}
+diff (transpose vars R, matrix{{det M}})
+
+
+https://tinyurl.com/23z8y9xx
+
+
