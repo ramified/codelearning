@@ -1,0 +1,214 @@
+# Möbius invariants for set partitions of [d]
+# ===========================================
+
+d = 6  # change this to any positive integer
+
+from sage.combinat.set_partition import SetPartitions
+from math import factorial, prod
+
+def mobius_from_block_sizes(d, block_sizes):
+    """Compute μ(0,α) for partition α with given block_sizes."""
+    k = len(block_sizes)
+    return (-1) ** (d - k) * prod([factorial(s - 1) for s in block_sizes])
+
+rows = []
+P = SetPartitions(d)
+
+for alpha in P:
+    # blocks as sorted lists for stable display
+    blocks = [sorted(list(b)) for b in alpha]
+    # nice block notation e.g. {{1,2},{3}}
+    block_notation = "{" + ", ".join("{" + ",".join(str(x) for x in b) + "}" for b in blocks) + "}"
+    block_sizes = [len(b) for b in blocks]
+    k = len(blocks)
+    mu = mobius_from_block_sizes(d, block_sizes)
+    rows.append((block_notation, block_sizes, k, d - k, mu))
+
+# headers like your example
+headers = ["partition", "block_sizes", "k = #blocks", "d - k", "μ(0,α)"]
+table(rows, header_row=headers)
+
+
+
+
+
+
+
+# Möbius + α(m)^{2l} table for set partitions of [d]
+# ==================================================
+
+# --- parameters ---
+d = 3                            # ground set [d]
+l_partition_type = [1,1,1]        # chosen partition type of l
+l = sum(l_partition_type)  
+# We'll sum only over (l1,...,lk) of this type for each α
+
+from sage.combinat.set_partition import SetPartitions
+from sage.all import IntegerVectors, var, factorial, prod
+from math import prod
+
+# --- variables m1,...,md ---
+m_names = ",".join(f"m{i}" for i in range(1, d+1))
+var(m_names)
+m = [eval(f"m{i}") for i in range(1, d+1)]
+
+# --- helpers ---
+def mobius_from_block_sizes(d, block_sizes):
+    k = len(block_sizes)
+    return (-1) ** (d - k) * prod([factorial(s - 1) for s in block_sizes])
+
+def matches_partition_type(vec, ptype):
+    """Check whether nonzero parts of vec form the given partition type."""
+    pos = sorted([v for v in vec if v > 0], reverse=True)
+    return pos == sorted(ptype, reverse=True)
+
+def partition_to_string(alpha):
+    blocks = [sorted(list(b)) for b in alpha]
+    return "{" + ", ".join("{" + ",".join(str(x) for x in b) + "}" for b in blocks) + "}"
+
+# --- computation ---
+rows = []
+P = SetPartitions(d)
+
+for alpha in P:
+    blocks = [sorted(list(b)) for b in alpha]
+    k = len(blocks)
+    block_sizes = [len(b) for b in blocks]
+    mu = mobius_from_block_sizes(d, block_sizes)
+
+    # Sum over all (l1,...,lk) of the desired type
+    total = 0
+    for vec in IntegerVectors(l, k):
+        if not matches_partition_type(vec, l_partition_type):
+            continue
+        # term = ∏ (Σ_{i∈Aj} m_i)^{2 l_j}
+        factors = []
+        for j, block in enumerate(blocks):
+            block_sum = sum(m[i-1] for i in block)
+            exp = 2 * vec[j]
+            factors.append(block_sum**exp if exp > 0 else 1)
+        total += prod(factors)
+
+    rows.append((
+        partition_to_string(alpha),
+        k,
+        d - k,
+        block_sizes,
+        mu,
+        total
+    ))
+
+# --- display table ---
+headers = ["partition α", "k", "d - k", "block_sizes", "μ(0,α)", f"Σ α(m)^(2l), type={l_partition_type}"]
+table(rows, header_row=headers)
+
+
+
+
+
+
+
+
+
+
+
+
+# Möbius + α(m)^{2l} table for set partitions of [d], final version
+# ==================================================
+
+# --- parameters ---
+d = 3                            # ground set [d]
+l_partition_type = [1,1]        # chosen partition type of l
+l = sum(l_partition_type)  
+# We'll sum only over (l1,...,lk) of this type for each α
+
+from sage.combinat.set_partition import SetPartitions
+from sage.all import IntegerVectors, var, factorial, prod
+from math import prod
+
+# --- variables m1,...,md ---
+m_names = ",".join(f"m{i}" for i in range(1, d+1))
+var(m_names)
+m = [eval(f"m{i}") for i in range(1, d+1)]
+
+# --- helpers ---
+def mobius_from_block_sizes(d, block_sizes):
+    k = len(block_sizes)
+    return (-1) ** (d - k) * prod([factorial(s - 1) for s in block_sizes])
+
+def matches_partition_type(vec, ptype):
+    """Check whether nonzero parts of vec form the given partition type."""
+    pos = sorted([v for v in vec if v > 0], reverse=True)
+    return pos == sorted(ptype, reverse=True)
+
+def partition_to_string(alpha):
+    blocks = [sorted(list(b)) for b in alpha]
+    return "{" + ", ".join("{" + ",".join(str(x) for x in b) + "}" for b in blocks) + "}"
+
+# --- computation ---
+rows = []
+P = SetPartitions(d)
+
+total_sum_over_alpha = 0
+
+for alpha in P:
+    blocks = [sorted(list(b)) for b in alpha]
+    k = len(blocks)
+    block_sizes = [len(b) for b in blocks]
+    mu = mobius_from_block_sizes(d, block_sizes)
+
+    # Sum over all (l1,...,lk) of the desired type
+    total = 0
+    for vec in IntegerVectors(l, k):
+        if not matches_partition_type(vec, l_partition_type):
+            continue
+        # term = ∏ (Σ_{i∈Aj} m_i)^{2 l_j}
+        factors = []
+        for j, block in enumerate(blocks):
+            block_sum = sum(m[i-1] for i in block)
+            exp = 2 * vec[j]
+            factors.append(block_sum**exp if exp > 0 else 1)
+        total += prod(factors)
+    total_sum_over_alpha = total_sum_over_alpha + mu*total*d**(k-len(l_partition_type))
+
+    rows.append((
+        partition_to_string(alpha),
+        k,
+        d - k,
+        block_sizes,
+        mu,
+        total
+    ))
+
+# --- display table ---
+headers = ["partition α", "k", "d - k", "block_sizes", "μ(0,α)", f"Σ α(m)^(2l), type={l_partition_type}"]
+
+print("Sum over all partitions α with given l-partition type:" , total_sum_over_alpha.expand())
+
+table(rows, header_row=headers)
+
+
+
+
+g = 2
+m = [var('m{}'.format(i+1)) for i in range(2*g-2)]
+
+
+# Import the symmetric group
+from itertools import permutations
+
+# Initialize the sum
+S = 0
+
+# Loop over all permutations of {0,...,2g-3} (indices of m)
+for sigma in permutations(range(2*g-2)):
+    prod_term = 1
+    for l in range(1, g):
+        prod_term *= (m[sigma[2*l-2]] - m[sigma[2*l-1]])^2
+    S += prod_term
+
+# Divide by 2^(g-1)
+result = S / (2^(g-1))
+
+# Show the result
+result.expand()
