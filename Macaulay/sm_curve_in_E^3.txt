@@ -1,0 +1,39 @@
+R = QQ[x1,y1,z1, x2,y2,z2, x3,y3,z3, Degrees => {
+        {1,0,0}, {1,0,0}, {1,0,0},   -- first P2
+        {0,1,0}, {0,1,0}, {0,1,0},   -- second P2
+        {0,0,1}, {0,0,1}, {0,0,1}    -- third P2
+     },
+     MonomialOrder => GRevLex
+];
+
+-- Fermat cubic for each factor
+E1 = ideal(x1^3 + y1^3 + z1^3);
+E2 = ideal(x2^3 + y2^3 + z2^3);
+E3 = ideal(x3^3 + y3^3 + z3^3);
+
+A = E1 + E2 + E3;  -- ideal of A = E×E×E
+
+m1 = x1*x2*x3;
+m2 = y1*y2*y3;
+m3 = z1*z2*z3;
+
+m4 = y1*y2*z3;
+m5 = z1*z2*x3;
+m6 = x1*x2*y3;
+-- τ-invariant sections of O(1,1,1)
+s1 = m1 + m2 + m3;
+s2 = m4 + m5 + m6;
+
+I = A + ideal(s1, s2);
+
+-- Saturate to remove components at infinity
+I = saturate(I);
+
+-- Check the dimension: should be 1 (curve)
+dim I - 3
+
+-- Smoothness check: Jacobian criterion, allow to be singular at zero point
+J = jacobian gens I;
+Sing = I + minors(1, J)
+dim Sing  -- should be < 0 (empty)
+

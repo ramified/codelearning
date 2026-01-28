@@ -1,0 +1,33 @@
+# Define formal symbols for the values of II in the (dz, dzbar) basis
+Izz, Izbz, Ibzz, Ibzbz = var('Izz Izbz Ibzz Ibzbz')
+
+# Define II as a dictionary on basis pairs (complex-bilinear)
+II = {
+    ('z','z'): Izz,
+    ('z','zb'): Izbz,
+    ('zb','z'): Ibzz,
+    ('zb','zb'): Ibzbz
+}
+
+# Express dx, dy in terms of dz, dzbar
+#   dx = (dz + dzbar)/2
+#   dy = (dz - dzbar)/(2*i)
+a_dx = {'z': 1/2,  'zb': 1/2}
+a_dy = {'z': 1/(2*I), 'zb': -1/(2*I)}
+
+def II_eval(form1, form2):
+    """Compute II(form1, form2) from their expansions in the {dz, dzbar} basis."""
+    s = 0
+    for a in ['z','zb']:
+        for b in ['z','zb']:
+            s += form1[a]*form2[b]*II[(a,b)]
+    return s
+
+# Compute all components
+II_xx = II_eval(a_dx, a_dx)
+II_yy = II_eval(a_dy, a_dy)
+II_xy = II_eval(a_dx, a_dy)
+II_yx = II_eval(a_dy, a_dx)
+
+expr = expand(II_xx*II_yy - II_xy*II_yx)
+expr
