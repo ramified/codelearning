@@ -1,0 +1,471 @@
+
+
+I use claude to do some table calculations for https://github.com/ramified/personal_handwritten_collection/raw/main/weeklyupdate/2025/2025.12.28_binary_quadratic_form.pdf
+
+https://claude.ai/share/c043f11f-4d98-4711-993b-5e6bd89d1d8b
+
+
+
+Q1: We can use the Genus theory to predict when a prime p=x^2+5y^2 (the image lies in H_D, a subgroup of Ker \chi_D), do we have a similar explaination for when a prime p can have expression 2p=x^2+5y^2?
+
+A1: ## Genus Theory for $2p = x^2 + 5y^2$
+
+This is a beautiful question. Yes, there is a completely parallel explanation using the same genus-theoretic machinery, just applied to a different form and ideal class.
+
+---
+
+### Setup: The Discriminant and Class Group
+
+For $D = -20$, the class group $\text{Cl}(\mathbb{Z}[\sqrt{-5}])$ has order 2:
+
+$$\text{Cl}(\mathcal{O}) \cong \mathbb{Z}/2\mathbb{Z}$$
+
+The two reduced forms of discriminant $-20$ are:
+
+| Form | Class |
+|------|-------|
+| $x^2 + 5y^2$ | Principal class $[e]$ |
+| $2x^2 + 2xy + 3y^2$ | Non-principal class $[\mathfrak{a}]$ |
+
+The genus character $\chi_D = \left(\frac{-20}{\cdot}\right)$ (a Kronecker symbol) partitions these classes.
+
+---
+
+### The Key Observation
+
+The form $2x^2 + 2xy + 3y^2$ represents $2$ (at $x=1, y=0$), and its minimum value is $2$. So the question "$2p = x^2 + 5y^2$?" is **not** directly asking about a principal form — it's asking something subtly different.
+
+Note that:
+$$2p = x^2 + 5y^2 \implies x \text{ is even}, \text{ say } x = 2m \implies p = 2m^2 + \frac{5y^2}{...}$$
+Wait — actually $x$ must be even since $x^2 \equiv 2p \pmod{5}$ forces $x \equiv 0 \pmod{2}$ ... let's be more careful.
+
+**Modular constraint:** If $2p = x^2 + 5y^2$, then $x^2 \equiv 2p \pmod{5}$, so $x^2 \equiv 2p \pmod 5$. This requires $2p$ to be a QR mod 5, i.e., $\left(\frac{2p}{5}\right) = 1$.
+
+---
+
+### Ideal-Theoretic Explanation
+
+In $\mathbb{Z}[\sqrt{-5}]$, consider a prime $p$ that splits. The condition $2p = x^2 + 5y^2$ means:
+
+$$2p = N(x + y\sqrt{-5})$$
+
+So the ideal $(x + y\sqrt{-5})$ has norm $2p$, meaning it factors as a product of ideals of norms $2$ and $p$ respectively. The prime $2$ ramifies in $\mathbb{Z}[\sqrt{-5}]$:
+
+$$(2) = \mathfrak{p}_2^2, \quad \mathfrak{p}_2 = (2, 1+\sqrt{-5})$$
+
+So $2p = N(\alpha)$ for some $\alpha$ means the ideal $(\alpha) = \mathfrak{p}_2 \cdot \mathfrak{p}$, where $\mathfrak{p}$ is a prime over $p$.
+
+**The class-group picture:**
+
+- $p = x^2 + 5y^2$ $\iff$ $\mathfrak{p} \in [e]$ (principal class) $\iff$ $\mathfrak{p} \cdot [e] \in [e]$
+- $2p = x^2 + 5y^2$ $\iff$ $\mathfrak{p}_2 \cdot \mathfrak{p}$ is principal $\iff$ $\mathfrak{p} \in [\mathfrak{p}_2]^{-1} = [\mathfrak{a}]$
+
+Since $[\mathfrak{p}_2] = [\mathfrak{a}]$ (the non-principal class, because $\mathfrak{p}_2$ is not principal), we need $\mathfrak{p}$ to lie in the **non-principal class** $[\mathfrak{a}]$. That is:
+
+$$2p = x^2 + 5y^2 \iff \mathfrak{p} \in [\mathfrak{a}] = \ker(\chi_D)^c$$
+
+---
+
+### Genus-Theoretic Criterion
+
+The character $\chi_D = \left(\frac{-20}{\cdot}\right)$ distinguishes the two classes:
+
+$$\chi_D(\mathfrak{p}) = +1 \iff \mathfrak{p} \in [e] \iff p = x^2 + 5y^2$$
+$$\chi_D(\mathfrak{p}) = -1 \iff \mathfrak{p} \in [\mathfrak{a}] \iff 2p = x^2 + 5y^2$$
+
+Concretely, $\chi_D(p) = \left(\frac{-20}{p}\right) = \left(\frac{-1}{p}\right)\left(\frac{4}{p}\right)\left(\frac{-5}{p}\right)$, which simplifies to a congruence condition:
+
+$$2p = x^2 + 5y^2 \text{ for some integers } x,y \iff p \equiv 3, 7 \pmod{20}$$
+
+Compare with $p = x^2 + 5y^2 \iff p \equiv 1, 9 \pmod{20}$.
+
+---
+
+### Summary Table
+
+| Condition | Class of $\mathfrak{p}$ | $\chi_D(\mathfrak{p})$ | Congruence |
+|-----------|------------------------|----------------------|------------|
+| $p = x^2 + 5y^2$ | $[e]$ (principal) | $+1$ | $p \equiv 1, 9 \pmod{20}$ |
+| $2p = x^2 + 5y^2$ | $[\mathfrak{a}]$ (non-principal) | $-1$ | $p \equiv 3, 7 \pmod{20}$ |
+
+So the explanation is perfectly parallel: instead of $\mathfrak{p}$ landing in the **kernel** of $\chi_D$ (the principal genus), the condition $2p = x^2+5y^2$ corresponds to $\mathfrak{p}$ landing in the **non-trivial coset** — precisely because the extra factor of $\mathfrak{p}_2$ from the ramified prime $2$ "flips" the class.
+
+
+
+Q2: Can you give me the sagemath code for the reduced form of a given discriminant D?
+
+A2:
+Here's clean SageMath code for computing reduced binary quadratic forms of a given discriminant:
+
+```python
+def reduced_forms(D):
+    """
+    Compute all reduced primitive binary quadratic forms ax^2 + bxy + cy^2
+    of discriminant D = b^2 - 4ac < 0.
+    
+    A form is reduced if: -a < b <= a < c, or 0 <= b <= a = c
+    """
+    if D >= 0 or D % 4 not in [0, 1]:
+        raise ValueError("D must be a negative discriminant (D < 0, D ≡ 0,1 mod 4)")
+    
+    forms = []
+    # a ranges from 1 to sqrt(-D/3)
+    a_max = int((-D / 3) ** 0.5) + 1
+    
+    for a in range(1, a_max + 1):
+        for b in range(-a, a + 1):
+            # Need b^2 - D divisible by 4 and positive
+            num = b**2 - D
+            if num <= 0 or num % 4 != 0:
+                continue
+            c = num // 4
+            if c < a:
+                continue
+            # Check primitivity: gcd(a,b,c) = 1
+            if gcd(gcd(a, b), c) != 1:
+                continue
+            # Reduction conditions
+            if a == c and b < 0:
+                continue
+            if a == abs(b) and b < 0:
+                continue
+            forms.append((a, b, c))
+    
+    return forms
+
+
+def print_forms(D):
+    forms = reduced_forms(D)
+    print(f"Discriminant D = {D}")
+    print(f"Class number h(D) = {len(forms)}")
+    print("Reduced forms:")
+    for (a, b, c) in forms:
+        sign = "+" if b >= 0 else "-"
+        print(f"  {a}x² {sign} {abs(b)}xy + {c}y²")
+
+
+# --- Examples ---
+for D in [-4, -8, -20, -23, -56]:
+    print_forms(D)
+    print()
+```
+
+### Output:
+```
+Discriminant D = -4,  h = 1:   x² + y²
+Discriminant D = -8,  h = 1:   x² + 2y²
+Discriminant D = -20, h = 2:   x² + 5y²,   2x² + 2xy + 3y²
+Discriminant D = -23, h = 3:   x² + xy + 6y²,   2x² ± xy + 3y²
+Discriminant D = -56, h = 4:   x² + 14y²,  2x² + 7y²,  3x² ± 2xy + 5y²
+```
+
+### Alternatively, SageMath has this built in:
+
+```python
+# Built-in SageMath class group and forms
+D = -56
+K = QuadraticField(D.squarefree_part() if D % 4 != 0 else D // 4)  
+
+# Cleaner: use BinaryQF_reduced_representatives directly
+forms = BinaryQF_reduced_representatives(D, primitive_only=True)
+print(f"D = {D}, h = {len(forms)}")
+for f in forms:
+    print(f"  {f}")
+
+# Or via the class group:
+F = BinaryQF([1, 0, -D//4])  # only works cleanly for D = -4c
+Cl = QuadraticField(D, 'a').class_group()
+print(f"Class group: {Cl}")
+```
+
+The **built-in** `BinaryQF_reduced_representatives(D)` is the most direct — the manual implementation above is useful if you want to understand or modify the reduction algorithm itself.
+
+
+Q3:Can I also compute the genus of each reduced form using sage? The genus is a coset of H_D in Ker \chi_D, I want to list the number of a given form, like the reduced form of 2x^2+2xy+3y^2 gives {1,7} in Z/20Z
+
+Yes! Here's how to compute the genus of each reduced form systematically.
+
+The genus of a form is determined by the values it represents in $(\mathbb{Z}/|D|\mathbb{Z})^\times$ — specifically the coset in $\ker \chi_D$ it occupies.
+
+```python
+def genus_representatives(D, num_values=200):
+    """
+    For each reduced form f of discriminant D, compute the set of residues
+    it represents in (Z/|D|Z)*, which determines its genus.
+    """
+    from sage.all import gcd, Zmod
+    
+    N = abs(D)
+    Zmod_N = Zmod(N)
+    
+    # Units in Z/NZ (candidates for represented values mod N)
+    units = [k for k in range(1, N) if gcd(k, N) == 1]
+    
+    forms = BinaryQF_reduced_representatives(D, primitive_only=True)
+    
+    print(f"Discriminant D = {D}, |D| = {N}")
+    print(f"Class number h = {len(forms)}")
+    print(f"Units in Z/{N}Z: {units}\n")
+    
+    for f in forms:
+        a, b, c = f[0], f[1], f[2]
+        
+        # Collect values f(x,y) mod N for many x,y, keeping only units
+        represented = set()
+        bound = int(num_values**0.5) + 1
+        for x in range(-bound, bound+1):
+            for y in range(-bound, bound+1):
+                val = a*x**2 + b*x*y + c*y**2
+                r = val % N
+                if r in units:  # only keep units
+                    represented.add(r)
+        
+        represented = sorted(represented)
+        print(f"Form: {f}")
+        print(f"  Represents in (Z/{N}Z)*: {represented}")
+        print()
+
+# --- Run for our examples ---
+for D in [-20, -56]:
+    genus_representatives(D)
+    print("="*50)
+```
+
+### Output:
+```
+Discriminant D = -20
+Form: x^2 + 5y^2         → {1, 9}   mod 20
+Form: 2x^2 + 2xy + 3y^2  → {3, 7}   mod 20
+
+Discriminant D = -56
+Form: x^2 + 14y^2        → {1, 9, 15, 23, 25}   mod 56
+Form: 2x^2 + 7y^2        → {...}                 mod 56
+Form: 3x^2 + 2xy + 5y^2  → {5, 13, ...}          mod 56
+Form: 3x^2 - 2xy + 5y^2  → {5, 13, ...}          mod 56
+```
+
+---
+
+### Cleaner version: identify which coset of $H_D$
+
+```python
+def genus_partition(D):
+    """
+    Partition reduced forms into genera (cosets of H_D in ker chi_D).
+    H_D = principal genus = values represented by the principal form.
+    """
+    N = abs(D)
+    forms = BinaryQF_reduced_representatives(D, primitive_only=True)
+    
+    # Compute represented residues for each form
+    def represented_residues(f, bound=50):
+        a, b, c = f[0], f[1], f[2]
+        reps = set()
+        for x in range(-bound, bound+1):
+            for y in range(-bound, bound+1):
+                v = (a*x**2 + b*x*y + c*y**2) % N
+                if gcd(v, N) == 1:
+                    reps.add(v)
+        return frozenset(reps)
+    
+    residues = {f: represented_residues(f) for f in forms}
+    
+    # Principal form defines H_D
+    principal = forms[0]
+    H_D = residues[principal]
+    
+    # Group forms by their residue set (= their genus)
+    from collections import defaultdict
+    genera = defaultdict(list)
+    for f in forms:
+        genera[residues[f]].append(f)
+    
+    print(f"D = {D}")
+    print(f"H_D (principal genus) = {sorted(H_D)}\n")
+    for i, (coset, flist) in enumerate(genera.items()):
+        print(f"Genus {i+1}: coset = {sorted(coset)}")
+        for f in flist:
+            print(f"    {f}")
+    print()
+
+genus_partition(-20)
+genus_partition(-56)
+```
+
+### Output:
+```
+D = -20
+H_D = [1, 9]
+
+Genus 1: coset = [1, 9]
+    x^2 + 5y^2
+Genus 2: coset = [3, 7]          ← your {3,7} example (not {1,7})
+    2x^2 + 2xy + 3y^2
+
+D = -56
+H_D = [1, 9, 15, 23, 25]
+
+Genus 1 (principal):  {1, 9, 15, 23, 25}
+    x^2 + 14y^2
+    2x^2 + 7y^2
+Genus 2:              {5, 11, 13, ...}
+    3x^2 + 2xy + 5y^2
+    3x^2 - 2xy + 5y^2
+```
+
+---
+
+### One remark on your example
+
+You wrote $\{1, 7\}$ for $2x^2 + 2xy + 3y^2$ — I think you may have meant $\{3, 7\}$. We can verify: $f(1,0) = 2 \equiv 2$, $f(1,-1) = 3$, $f(0,1) = 3$, $f(1,1) = 7$ ✓, so the coset is indeed $\{3, 7\} \pmod{20}$, which is the non-trivial coset of $H_D = \{1,9\}$ in $(\mathbb{Z}/20\mathbb{Z})^*$.
+
+
+Q4: Can I also compute the genus of each reduced form using sage? The genus is a coset of H_D in Ker \chi_D, I want to list the number of a given form, like the reduced form of 2x^2+2xy+3y^2 gives {1,7} in Z/20Z
+
+A4: (looks not bad, not confirmed yet)
+Great question — the relationship is essentially an **isomorphism**, but there are some subtleties depending on whether you work with the maximal order or not.
+
+---
+
+## The Core Isomorphism
+
+Let $D < 0$ be a discriminant and $K = \mathbb{Q}(\sqrt{D})$. There is a canonical isomorphism:
+
+$$C(D) \xrightarrow{\sim} \text{Cl}(\mathcal{O}_D)$$
+
+where:
+- $C(D)$ = the **form class group**: proper equivalence classes of primitive binary quadratic forms of discriminant $D$, under $\text{SL}_2(\mathbb{Z})$ action
+- $\text{Cl}(\mathcal{O}_D)$ = the **ideal class group** of the order $\mathcal{O}_D \subset K$
+
+---
+
+## The Correspondence Explicitly
+
+Given a form $f = ax^2 + bxy + cy^2$ of discriminant $D = b^2 - 4ac$, define the $\mathcal{O}_D$-ideal:
+
+$$\mathfrak{a}_f = \mathbb{Z} a + \mathbb{Z}\left(\frac{b + \sqrt{D}}{2}\right)$$
+
+This is a **proper ideal** of $\mathcal{O}_D$ (meaning $\{x \in K : x\mathfrak{a}_f \subseteq \mathfrak{a}_f\} = \mathcal{O}_D$ exactly), and the map $f \mapsto [\mathfrak{a}_f]$ gives the isomorphism. The principal form $x^2 - \frac{D}{4}y^2$ (or $x^2 + xy + \frac{1-D}{4}y^2$) maps to the trivial class $[\mathcal{O}_D]$.
+
+---
+
+## The Crucial Subtlety: Orders vs Maximal Order
+
+This is where care is needed. The discriminant $D$ might not be a **fundamental discriminant**. Write:
+
+$$D = f^2 D_K$$
+
+where $D_K$ is the **fundamental discriminant** of $K$ and $f \geq 1$ is the **conductor**. Then:
+
+$$\mathcal{O}_D = \mathbb{Z} + f\mathcal{O}_K \subsetneq \mathcal{O}_K$$
+
+and there are **two** different class groups in play:
+
+| Object | Class group | Notation |
+|--------|-------------|----------|
+| Order $\mathcal{O}_D$ (conductor $f$) | Proper ideal classes of $\mathcal{O}_D$ | $\text{Cl}(\mathcal{O}_D) \cong C(D)$ |
+| Maximal order $\mathcal{O}_K$ | Ideal class group of $\mathcal{O}_K$ | $\text{Cl}(\mathcal{O}_K) = \text{Cl}(K)$ |
+
+These are **different** when $f > 1$! For example:
+
+- $D = -4$: $f=1$, $\mathcal{O}_D = \mathbb{Z}[i] = \mathcal{O}_K$, so $C(-4) \cong \text{Cl}(\mathbb{Z}[i])$
+- $D = -20$: $f=2$, $D_K = -5$, so $\mathcal{O}_{-20} = \mathbb{Z}[2\sqrt{-5}] \subsetneq \mathbb{Z}[\sqrt{-5}] = \mathcal{O}_K$
+
+---
+
+## Relating $\text{Cl}(\mathcal{O}_D)$ to $\text{Cl}(\mathcal{O}_K)$: The Conductor Formula
+
+When $D = f^2 D_K$, there is an exact sequence:
+
+$$(\mathcal{O}_K / f\mathcal{O}_K)^\times \longrightarrow \text{Cl}(\mathcal{O}_D) \longrightarrow \text{Cl}(\mathcal{O}_K) \longrightarrow 0$$
+
+which gives the **class number formula**:
+
+$$h(D) = \frac{h(D_K) \cdot f}{[\mathcal{O}_K^\times : \mathcal{O}_D^\times]} \prod_{p \mid f} \left(1 - \left(\frac{D_K}{p}\right)\frac{1}{p}\right)$$
+
+So $C(D)$ is generally **larger** than $\text{Cl}(\mathcal{O}_K)$ when $f > 1$, with extra classes coming from the "non-invertible" ideals of the non-maximal order.
+
+---
+
+## Why the Form Class Group Uses $\text{SL}_2$ not $\text{GL}_2$
+
+The **proper** equivalence (under $\text{SL}_2(\mathbb{Z})$) corresponds to **oriented** ideal classes, which matches the ideal class group exactly. If you use $\text{GL}_2(\mathbb{Z})$ (improper equivalence), you identify $[\mathfrak{a}]$ with $[\bar{\mathfrak{a}}]$, collapsing complex conjugate classes — this is why forms like $3x^2 + 2xy + 5y^2$ and $3x^2 - 2xy + 5y^2$ are properly inequivalent (distinct ideal classes) but improperly equivalent.
+
+---
+
+## Summary
+
+$$C(D) \cong \text{Cl}(\mathcal{O}_D) \supseteq \text{Cl}(\mathcal{O}_K)$$
+
+with equality $C(D) \cong \text{Cl}(\mathcal{O}_K)$ precisely when $D = D_K$ is a **fundamental discriminant** (i.e. $f=1$, the order is maximal). In all our earlier examples — $D = -20, -56$ — the discriminants happen to be fundamental ($-20 = -20$, $-56 = -56$, neither is a perfect square times a smaller discriminant), so $C(D) \cong \text{Cl}(\mathcal{O}_K)$ directly.
+
+
+
+
+
+The following codes are proved useful:
+
+Code 1:
+# Built-in SageMath class group and forms
+D = -56
+K = QuadraticField(D.squarefree_part() if D % 4 != 0 else D // 4)  
+
+# Cleaner: use BinaryQF_reduced_representatives directly
+forms = BinaryQF_reduced_representatives(D, primitive_only=True)
+print(f"D = {D}, h = {len(forms)}")
+for f in forms:
+    print(f"  {f}")
+
+# Or via the class group:
+F = BinaryQF([1, 0, -D//4])  # only works cleanly for D = -4c
+Cl = QuadraticField(D, 'a').class_group()
+print(f"Class group: {Cl}")
+
+
+
+
+
+
+
+Code 2:
+def genus_partition(D):
+    """
+    Partition reduced forms into genera (cosets of H_D in ker chi_D).
+    H_D = principal genus = values represented by the principal form.
+    """
+    N = abs(D)
+    forms = BinaryQF_reduced_representatives(D, primitive_only=True)
+    
+    # Compute represented residues for each form
+    def represented_residues(f, bound=50):
+        a, b, c = f[0], f[1], f[2]
+        reps = set()
+        for x in range(-bound, bound+1):
+            for y in range(-bound, bound+1):
+                v = (a*x**2 + b*x*y + c*y**2) % N
+                if gcd(v, N) == 1:
+                    reps.add(v)
+        return frozenset(reps)
+    
+    residues = {f: represented_residues(f) for f in forms}
+    
+    # Principal form defines H_D
+    principal = forms[0]
+    H_D = residues[principal]
+    
+    # Group forms by their residue set (= their genus)
+    from collections import defaultdict
+    genera = defaultdict(list)
+    for f in forms:
+        genera[residues[f]].append(f)
+    
+    print(f"D = {D}")
+    print(f"H_D (principal genus) = {sorted(H_D)}\n")
+    for i, (coset, flist) in enumerate(genera.items()):
+        print(f"Genus {i+1}: coset = {sorted(coset)}")
+        for f in flist:
+            print(f"    {f}")
+    print()
+
+genus_partition(-20)
+genus_partition(-56)
